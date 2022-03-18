@@ -24,7 +24,7 @@ const Login =({handleChange})=>{
                     }
                     label="Remember Me"
                 />
-            <Button type='submit' color='primary' variant='contained'style={btnstyle} fullWidth >Sign In</Button>
+            <Button type='submit' color='primary' variant='contained' onCLick={event=>window.location=''} style={btnstyle} fullWidth >Sign In</Button>
             <Typography>
                 <Link href="#">Forgot Password?</Link>
             </Typography>
