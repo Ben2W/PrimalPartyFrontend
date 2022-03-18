@@ -1,9 +1,10 @@
 import React from 'react';
+import SideBar from '../components/SideBar';
 
 function Dashboard() {
   return (
     <div className="Dashboard">
-      Hello World
+      <SideBar />
     </div>
   );
 }
