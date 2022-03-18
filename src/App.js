@@ -1,7 +1,13 @@
-
+import React from 'react';
+import './App.css';
+import SignInOutContainer from './containers';
 
 function App() {
-  return null
+  return (
+    <div className="App">
+      <SignInOutContainer />
+    </div>
+  );
 }
 
 export default App;
