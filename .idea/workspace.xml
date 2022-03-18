@@ -2,11 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="617260c9-2153-4373-acad-c5d7f272eb13" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/ChooseIcon.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/SideBar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/FunctionReferences.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/SideBar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SideBar.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,7 +60,7 @@
       <workItem from="1647572482680" duration="41000" />
       <workItem from="1647572546474" duration="3130000" />
       <workItem from="1647575764905" duration="5205000" />
-      <workItem from="1647580997542" duration="1514000" />
+      <workItem from="1647580997542" duration="3009000" />
     </task>
     <servers />
   </component>

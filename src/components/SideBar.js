@@ -16,6 +16,7 @@ import PersonIcon from '@mui/icons-material/Person';
 import HomeIcon from '@mui/icons-material/Home';
 import ChooseIcon from "./ChooseIcon"
 import CakeIcon from '@mui/icons-material/Cake';
+import PregnantWomanIcon from '@mui/icons-material/PregnantWoman';
 
 const drawerWidth = 240;
 
@@ -71,6 +72,16 @@ export default function SideBar() {
                             <ListItemText primary={text} />
                         </ListItem>
                     ))}
+                    <div>
+                        <List>
+                            <ListItem button>
+                                <ListItemIcon>
+                                    {<PregnantWomanIcon/>}
+                                </ListItemIcon>
+                                <ListItemText primary={"Ben's Mom"}/>
+                            </ListItem>
+                        </List>
+                    </div>
                 </List>
             </Drawer>
         </Box>
