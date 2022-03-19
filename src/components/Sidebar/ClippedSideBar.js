@@ -6,8 +6,9 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
-import ListItemHelper from "./ListItemHelper"
+// import ListItemHelper from "./ListItemHelper"
 import PrimalJetLogo from "./resizedLogo.png"
+import ListItemClass from "./ListItemClass"
 
 const drawerWidth = 240;
 
@@ -33,13 +34,13 @@ export default function ClippedDrawer() {
       >
         <Toolbar />
         <Box sx={{ overflow: 'auto' }}>
-            {ListItemHelper(1)}
-            {ListItemHelper(2)}
-            {ListItemHelper(3)}
-            {ListItemHelper(4)}
+            <ListItemClass id={1} />
+            <ListItemClass id={2} />
+            <ListItemClass id={3} />
+            <ListItemClass id={4} />
             <Divider />
-            {ListItemHelper(5)}
-            {ListItemHelper(6)}
+            <ListItemClass id={5} />
+            <ListItemClass id={6} />
         </Box>
       </Drawer>
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
