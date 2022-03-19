@@ -1,5 +1,5 @@
 import React from 'react'
-import { Grid, Paper, Avatar, TextField, FormControlLabel, Checkbox, Button, Typography, Link } from '@material-ui/core'
+import { Grid, Paper, Avatar, TextField, Button, Typography, Link } from '@material-ui/core'
 import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
 
 const Signup =({handleChange})=>{
