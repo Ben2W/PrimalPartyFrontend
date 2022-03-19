@@ -3,7 +3,6 @@ import PersonIcon from '@mui/icons-material/Person';
 import HomeIcon from '@mui/icons-material/Home';
 import ContactMailIcon from '@mui/icons-material/ContactMail';
 import GroupIcon from '@mui/icons-material/Group';
-import CakeIcon from '@mui/icons-material/Cake';
 
 export default function ChooseIcon(index){
     if (index === 0)

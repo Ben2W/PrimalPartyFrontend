@@ -10,7 +10,7 @@ const SignInOutContainer=()=>{
     const handleChange = (event, newValue) => {
         setvalue(newValue);
     };
-    const paperStyle={width: 320}
+    const paperStyle={width: 320, marginTop: 100, marginBottom: 100}
 
     function TabPanel(props) {
         const { children, value, index, ...other } = props;
