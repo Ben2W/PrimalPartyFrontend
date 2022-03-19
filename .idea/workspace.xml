@@ -2,14 +2,28 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="617260c9-2153-4373-acad-c5d7f272eb13" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/FunctionReferences.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Sidebar/ClippedSideBar.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Sidebar/IconHelper.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Sidebar/ListItemHelper.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Sidebar/TextHelper.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Sidebar/dino_icon2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Sidebar/resizedLogo.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/SideBar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SideBar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/FunctionReferences.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Sidebar/FunctionReferences.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/SideBar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Sidebar/SideBar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Dashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Dashboard.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -42,8 +56,13 @@
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+    <property name="settings.editor.selected.configurable" value="preferences.general" />
     <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/components/Sidebar" />
+    </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -61,6 +80,7 @@
       <workItem from="1647572546474" duration="3130000" />
       <workItem from="1647575764905" duration="5205000" />
       <workItem from="1647580997542" duration="3009000" />
+      <workItem from="1647665009671" duration="3590000" />
     </task>
     <servers />
   </component>

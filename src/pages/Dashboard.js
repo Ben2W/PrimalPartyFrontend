@@ -1,10 +1,11 @@
 import React from 'react';
-import SideBar from '../components/SideBar';
+import ClippedSideBar from "../components/Sidebar/ClippedSideBar"
+
 
 function Dashboard() {
   return (
     <div className="Dashboard">
-      <SideBar />
+      <ClippedSideBar />
     </div>
   );
 }

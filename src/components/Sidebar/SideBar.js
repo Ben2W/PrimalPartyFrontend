@@ -14,7 +14,7 @@ import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
 import PersonIcon from '@mui/icons-material/Person';
 import HomeIcon from '@mui/icons-material/Home';
-import ChooseIcon from "./ChooseIcon"
+import ChooseIcon from "../ChooseIcon"
 import CakeIcon from '@mui/icons-material/Cake';
 import PregnantWomanIcon from '@mui/icons-material/PregnantWoman';
 
