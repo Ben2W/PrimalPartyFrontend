@@ -8,7 +8,8 @@ import Container from '@mui/material/Container';
 import CelebrationIcon from '@mui/icons-material/Celebration';
 
 const navigationLinks = [
-  {name: "About", href: ""}
+  {name: "About", href: ""},
+  {name: "Dashboard (temp)", href: "../dashboard"}
 ];
 
 const useStyles = makeStyles((theme) => ({
