@@ -2,16 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="617260c9-2153-4373-acad-c5d7f272eb13" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/Sidebar/ClippedSideBar.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Sidebar/IconHelper.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Sidebar/ListItemHelper.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Sidebar/TextHelper.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Sidebar/dino_icon2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Sidebar/resizedLogo.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/FunctionReferences.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Sidebar/FunctionReferences.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/SideBar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Sidebar/SideBar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Dashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Dashboard.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -80,7 +71,7 @@
       <workItem from="1647572546474" duration="3130000" />
       <workItem from="1647575764905" duration="5205000" />
       <workItem from="1647580997542" duration="3009000" />
-      <workItem from="1647665009671" duration="3590000" />
+      <workItem from="1647665009671" duration="5774000" />
     </task>
     <servers />
   </component>
@@ -100,5 +91,9 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>
