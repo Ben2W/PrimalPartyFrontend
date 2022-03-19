@@ -1,11 +1,13 @@
 import React from 'react';
 import './App.css';
-import SignInOutContainer from './containers';
+import Navbar from './components/Navbar';
+import HeroSection from './components/HeroSection';
 
 function App() {
   return (
     <div className="App">
-      <SignInOutContainer />
+      <Navbar />
+      <HeroSection/>
     </div>
   );
 }
