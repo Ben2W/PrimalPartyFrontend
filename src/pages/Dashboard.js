@@ -15,7 +15,8 @@ function Dashboard() {
           <Grid item>
             <Card
             title="Pizza Party" 
-            date="March 18, 2022" 
+            date="March 18, 2022"
+            address="123 Citrus Dr." 
             button="View More" 
             desc="This is a pizza party."
             />
@@ -24,7 +25,8 @@ function Dashboard() {
           <Grid item>
             <Card
             title="Pool Party" 
-            date="March 18, 2022"  
+            date="March 18, 2022" 
+            address="UCF Pegasus Ballroom"  
             button="View More" 
             desc="This is a pool party. Bruh bruh bruh bruh."
             />
@@ -34,6 +36,7 @@ function Dashboard() {
             <Card
             title="Pool Party" 
             date="March 18, 2022"  
+            address="Your mom's house" 
             button="View More" 
             desc="This is a pool party. Bruh bruh bruh bruh bruh bruh bruh bruh bruh bruh bruh bruh bruh bruh."
             />
@@ -43,6 +46,7 @@ function Dashboard() {
             <Card
             title="Pool Party" 
             date="March 18, 2022"  
+            address="Bruh land" 
             button="View More" 
             desc="This is a pool party. Bruh bruh bruh bruh."
             />
