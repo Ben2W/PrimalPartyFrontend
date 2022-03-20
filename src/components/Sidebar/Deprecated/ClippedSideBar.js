@@ -7,7 +7,7 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 // import ListItemHelper from "./ListItemHelper"
-import PrimalJetLogo from "./resizedLogo.png"
+import PrimalJetLogo from "../resizedLogo.png"
 import ListItemClass from "./ListItemClass"
 
 const drawerWidth = 240;
