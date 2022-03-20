@@ -1,5 +1,5 @@
 import React from "react";
-import DisabledByDefaultIcon from '@mui/icons-material/DisabledByDefault';
+// import DisabledByDefaultIcon from '@mui/icons-material/DisabledByDefault';
 import PersonIcon from '@mui/icons-material/Person';
 import HomeIcon from '@mui/icons-material/Home';
 import InsertInvitationIcon from '@mui/icons-material/InsertInvitation';
@@ -22,6 +22,6 @@ export default function IconHelper(id){
         case 6:
             return <AddCircleIcon/>
         default:
-            return <DisabledByDefaultIcon/>;
+            return null;
     }
 }
