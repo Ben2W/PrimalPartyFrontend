@@ -35,7 +35,7 @@ function Dashboard() {
             title="Pool Party" 
             date="March 18, 2022"  
             button="View More" 
-            desc="This is a pool party. Bruh bruh bruh bruh."
+            desc="This is a pool party. Bruh bruh bruh bruh bruh bruh bruh bruh bruh bruh bruh bruh bruh bruh."
             />
           </Grid>
 
