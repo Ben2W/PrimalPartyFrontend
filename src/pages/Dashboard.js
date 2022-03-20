@@ -1,61 +1,20 @@
 import React from 'react';
-import { Grid, Paper, Avatar, TextField, FormControlLabel, Checkbox, Button, Typography, Link, Container } from '@material-ui/core'
-import SideBar from '../components/SideBar';
-import Card from '../components/Card.js';
 
+// import ClippedSideBar from "../components/Sidebar/ClippedSideBar"
+import HookedSideBar from "../components/Sidebar/HookedSideBar"
 
 function Dashboard() {
   return (
     <div className="Dashboard">
-    
-
-      <Container>
-        <Grid container spacing={3}>
-
-          <Grid item>
-            <Card
-            title="Pizza Party" 
-            date="March 18, 2022"
-            address="123 Citrus Dr." 
-            button="View More" 
-            desc="This is a pizza party."
-            />
-          </Grid>
-
-          <Grid item>
-            <Card
-            title="Pool Party" 
-            date="March 18, 2022" 
-            address="UCF Pegasus Ballroom"  
-            button="View More" 
-            desc="This is a pool party. Bruh bruh bruh bruh."
-            />
-          </Grid>
-
-          <Grid item>
-            <Card
-            title="Pool Party" 
-            date="March 18, 2022"  
-            address="Your mom's house" 
-            button="View More" 
-            desc="This is a pool party. Bruh bruh bruh bruh bruh bruh bruh bruh bruh bruh bruh bruh bruh bruh. "
-            />
-          </Grid>
-
-          <Grid item>
-            <Card
-            title="Pool Party" 
-            date="March 18, 2022"  
-            address="Bruh" 
-            button="View More" 
-            desc="This is a pool party. Bruh bruh bruh bruh."
-            />
-          </Grid>
-
-        </Grid>
-      </Container>
+      <HookedSideBar
+        id = {1}
+        name = "Princess Peach"
+      />
     </div>
   );
 }
+
+// we will replace dummy date with data from the database that is passed through to dashboard once we get api endpoints.
+// Dashboard will take data from login when we route to here.
 
 export default Dashboard;
