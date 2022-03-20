@@ -9,8 +9,13 @@ import CelebrationIcon from '@mui/icons-material/Celebration';
 import {useNavigate} from "react-router-dom";
 
 const navigationLinks = [
-  {name: "About", href: ""},
-  {name: "Dashboard (temp)", href: "../dashboard"}
+  {name: "About", href: "../about"},
+  {name: "Dashboard", href: "../dashboard"},
+  {name: "Account", href: "../account"},
+  {name: "Create Party", href: "../createparty"},
+  {name: "Forgot Password", href: "../forgotpassword"},
+  {name: "Friends", href: "../friends"},
+  {name: "Invites", href: "../invites"}
 ];
 
 const useStyles = makeStyles((theme) => ({
