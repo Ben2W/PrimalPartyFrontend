@@ -4,22 +4,40 @@ import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
-
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { purple } from '@mui/material/colors';
 
 export default function BasicCard(props){
 
-    const paperStyle={padding: 20, height: '32vh', width:280, margin: "10px auto"}
-
+    const cardStyle={padding: 0, width:250, height:300, margin: "10px auto"}
+    const btnStyle={margin:'8px 0', backgroundColor:"#3D4849"}
+    const descStyle={margin:'30px 0', display:"flex"}
+    
     return (
-        <Card sx={{minWidth:275}}>
+        <Card sx={cardStyle}>
             <div className="card_body">
-                <div>
-                    <h2 className="cardTitle">{props.title}</h2>
-                    <p className="date">{props.date}</p>
-                    <p className="cardDesc">{props.desc}</p>
-                    <button className="card_btn">{props.button}</button>
-                </div>
+                <CardContent>
+                    <div>
+                        <Typography gutterBottom variant="h5" component="div">
+                          {props.title}
+                        </Typography>
 
+                        <Typography variant="p" component="div">
+                          {props.date}
+                        </Typography>
+                    </div>
+
+                    <div>
+                        <Typography variant="body" color="text.secondary" style={descStyle}>
+                          {props.desc}
+                        </Typography>
+                    </div>
+                  </CardContent>
+
+
+                  <CardActions disableSpacing>
+                        <Button type='submit' color='primary' variant='contained' style={btnStyle} fullWidth >{props.button}</Button>
+                  </CardActions>
             </div>
         </Card>
     )

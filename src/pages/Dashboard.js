@@ -7,10 +7,10 @@ import Card from '../components/Card.js';
 function Dashboard() {
   return (
     <div className="Dashboard">
-      <Container>
-        <Grid container spacing={2}>
+    
 
-          <SideBar />
+      <Container>
+        <Grid container spacing={3}>
 
           <Grid item>
             <Card
