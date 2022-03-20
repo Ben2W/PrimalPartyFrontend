@@ -15,38 +15,38 @@ export default function BasicCard(props){
     
     return (
         <Paper style={cardStyle.paperContainer}>
-        <Grid containter alignItems="stretch">
-            <Card style={cardStyle}>
-                <Grid>
-                    <CardContent>
-                        <div className="wrapper">
-                            <Typography variant="h5" style={{color:'#F5F5F5'}}>
-                              {props.title}
+            <Grid containter alignItems="stretch">
+                <Card style={cardStyle}>
+                    <Grid>
+                        <CardContent>
+                            <div className="wrapper">
+                                <Typography variant="h5" style={{color:'#F5F5F5'}}>
+                                  {props.title}
+                                </Typography>
+
+                                <Typography variant="subtitle2" style={{color:'#F5F5F5'}}>
+                                  Date: {props.date}
+                                </Typography>
+
+                                <Typography variant="subtitle2" style={{color:'#F5F5F5'}}>
+                                  Address: {props.address}
+                                </Typography>
+                            </div>
+
+                            <Typography variant="body2" color="text.light" style={descStyle}>
+                              {props.desc}
                             </Typography>
 
-                            <Typography variant="subtitle2" style={{color:'#F5F5F5'}}>
-                              Date: {props.date}
-                            </Typography>
+                          </CardContent>
+                      </Grid>
 
-                            <Typography variant="subtitle2" style={{color:'#F5F5F5'}}>
-                              Address: {props.address}
-                            </Typography>
-                        </div>
-
-                        <Typography variant="body2" color="text.light" style={descStyle}>
-                          {props.desc}
-                        </Typography>
-
-                      </CardContent>
-                  </Grid>
-
-                  <Grid>
-                      <CardActions>
-                            <Button type='submit' color='primary' variant='contained' style={btnStyle} fullWidth >{props.button}</Button>
-                      </CardActions>
-                  </Grid>
-            </Card>
-        </Grid>
+                      <Grid>
+                          <CardActions>
+                                <Button type='submit' color='primary' variant='contained' style={btnStyle} fullWidth >{props.button}</Button>
+                          </CardActions>
+                      </Grid>
+                </Card>
+            </Grid>
         </Paper>
     )
 }
