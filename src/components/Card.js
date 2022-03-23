@@ -27,11 +27,21 @@ const style = {
     p: 4,
 };
 
+const backgroundStyle = {
+            background:
+      'linear-gradient(170deg,#000000, #FFFFFF 80%)'
+};
+
 export default function BasicCard(props){
 
     const cardStyle = {
         width: 275, height: 300, display: 'flex', justifyContent: 'space-between', flexDirection: 'column', backgroundImage: `url(${Image})`
     }
+
+    const cardStyle2 = {
+        width: 275, height: 300, display: 'flex', justifyContent: 'space-between', flexDirection: 'column', background: 'linear-gradient(145deg, #e66465, #9198e5)'
+    }
+
     const btnStyle={backgroundColor:"#000000", display:'block'}
     const descStyle = { padding: '0 0 0 0', color: '#F5F5F5' }
     const descStyleModal = { padding: '0 0 0 0', color: '#000000' }
@@ -42,7 +52,7 @@ export default function BasicCard(props){
 
     return (
         <Grid containter alignItems="stretch">
-            <Card variant="outlined" style={cardStyle}>
+            <Card style={cardStyle2}>
                     <Grid>
                         <CardContent>
                             <div className="wrapper">
