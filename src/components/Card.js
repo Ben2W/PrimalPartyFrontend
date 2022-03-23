@@ -1,6 +1,7 @@
 import React from 'react'
-import { Grid, Paper, Avatar, TextField, FormControlLabel, Checkbox, Button, Typography, Link } from '@material-ui/core'
+import { Grid, Paper, Avatar, TextField, FormControlLabel, Checkbox, Button, Typography, Link } from '@material-ui/core';
 import Card from '@mui/material/Card';
+import CardInfo from '../components/CardInfo.js';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
@@ -28,8 +29,10 @@ const style = {
 
 export default function BasicCard(props){
 
-    const cardStyle={width:250, height: 275, display: 'flex', justifyContent: 'space-between', flexDirection: 'column', backgroundImage: `url(${Image})`}
-    const btnStyle={backgroundColor:"#000000"}
+    const cardStyle = {
+        width: 275, height: 300, display: 'flex', justifyContent: 'space-between', flexDirection: 'column', backgroundImage: `url(${Image})`
+    }
+    const btnStyle={backgroundColor:"#000000", display:'block'}
     const descStyle = { padding: '0 0 0 0', color: '#F5F5F5' }
     const descStyleModal = { padding: '0 0 0 0', color: '#000000' }
 
@@ -68,9 +71,7 @@ export default function BasicCard(props){
 
                       <Grid>
                         <CardActions>
-                            <div>
-                                <Button onClick={handleOpen} type='submit' color='primary' variant='contained' style={btnStyle} fullWidth >{props.button}</Button>
-
+                            <Button onClick={handleOpen} type='submit' color='primary' variant='contained' style={btnStyle} fullWidth >{props.button}</Button>
                                 <Modal
                                     aria-labelledby="transition-modal-title"
                                     aria-describedby="transition-modal-description"
@@ -84,36 +85,16 @@ export default function BasicCard(props){
                                 >
                                     <Fade in={open}>
                                         <Box sx={style}>
-                                            <Grid>
-                                                <CardContent>
-                                                    <div className="wrapper">
-                                                        <Typography variant="h5" style={{ color: '#000000' }}>
-                                                            {props.title}
-                                                        </Typography>
-
-                                                        <Typography variant="subtitle2" style={{ color: '#000000' }}>
-                                                            Date: {props.date}
-                                                        </Typography>
-
-                                                        <Typography variant="subtitle2" style={{ color: '#000000' }}>
-                                                            Address: {props.address}
-                                                        </Typography>
-                                                    </div>
-
-                                                    <Alert severity="info">
-                                                        Bring Pizza
-                                                    </Alert>
-
-                                                    <Typography variant="body2" style={descStyleModal}>
-                                                        {props.desc}
-                                                    </Typography>
-
-                                                </CardContent>
-                                            </Grid>
+                                        <CardInfo
+                                            title={props.title}
+                                            date={props.date}
+                                            address={props.address}
+                                            button={props.button}
+                                            desc={props.desc}
+                                        />
                                         </Box>
                                     </Fade>
                                 </Modal>
-                            </div>
                         </CardActions>
                      </Grid>
                 </Card>
