@@ -4,7 +4,7 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import { useNavigate } from 'react-router-dom';
 
 const local = 'http://localhost:8080/register'
-const main = 'https://primalpartybackend.azurewebsites.net/login'
+const main = 'https://primalpartybackend.azurewebsites.net/register'
 
 const Signup = ({handleChange}) => {
     const paperStyle={padding: 20, minheight: '32vh', width:280, margin: "10px auto"}

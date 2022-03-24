@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Grid, Paper, Avatar, TextField, Button, Typography, Link } from '@material-ui/core'
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const local = 'http://localhost:8080/register'
 const main = 'https://primalpartybackend.azurewebsites.net/login'
@@ -35,34 +36,31 @@ const Login = ({handleChange}) => {
         }
         formBody = formBody.join("&");
 
-        fetch(main, {
-            method: 'POST',
-            headers: {
-                "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"
-            },
-            body: formBody
-        })
-        .then(response => {
-            console.log(response.status);
-            if(!response.ok) {
-                throw Error('could not fetch the data for that resource')
-            }
-            return response.json();
-        })
-        .then(data => {
-            console.log(data.user._id);
+        axios.post(main)
 
-            setIsPending(false);
+        // fetch(main, {
+        //     method: 'POST',
+        //     headers: {
+        //         "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"
+        //     },
+        //     credentials: 'same-origin',
+        //     body: formBody,
+        // })
+        // .then(response => {
+        //     if(!response.ok) {
+        //         throw Error('could not fetch the data for that resource')
+        //     }
+        //     return response.json();
+        // })
+        // .then((data) => {
+        //     console.log(data);
+        //     // setIsPending(false);
+        //     // navigate('/dashboard');
+        // })
+        // .catch(err => {
+        //     console.log(err.message);
+        // })
 
-            navigate('/dashboard/' + data.user._id);
-
-        })
-        .then(() => {
-            
-        })
-        .catch(err => {
-            console.log(err.message);
-        })
     }
 
     return (
