@@ -16,7 +16,7 @@ ReactDOM.render(
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<App />} />
-        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/dashboard/:id" element={<Dashboard />} />
         <Route path="/about" element={<About />} />
         <Route path="/account" element={<Account />} />
         <Route path="/createparty" element={<CreateParty />} />
