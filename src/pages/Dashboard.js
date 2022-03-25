@@ -5,6 +5,12 @@ import { useNavigate } from 'react-router-dom';
 const Dashboard = () => {
   let navigate = useNavigate();
 
+  const handleCreate = (e) => {
+    e.preventDefault();
+
+    navigate('/createparty');
+  }
+
   const handleSubmit = (e) => {
     e.preventDefault();
     fetch('http://localhost:8080/logout', {
@@ -48,7 +54,7 @@ const Dashboard = () => {
     .then(response => response.json())
     .then(data => {
       console.log(data);
-      navigate('/account',{ replace: true });
+      navigate('/account');
     })    
   }
 
@@ -76,6 +82,14 @@ const Dashboard = () => {
           type="submit"
         >
           Account
+        </Button>
+      </form>
+
+      <form onSubmit={handleCreate}>
+        <Button
+          to='/createparty'
+        >
+          Create Party
         </Button>
       </form>
     </div>
