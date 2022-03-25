@@ -39,11 +39,12 @@ const Dashboard = () => {
   })
   }
   
-  fetch(main, {
+  fetch('http://localhost:8080/protected', {
     method: 'GET',
     headers: {
       "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"
-    }
+    },
+    credentials: 'include',
   })
   .then(response => response.json())
   .then(data => {

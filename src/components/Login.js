@@ -4,7 +4,7 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-const local = 'http://localhost:8080/register'
+const local = 'http://localhost:8080/login'
 const main = 'https://primalpartybackend.azurewebsites.net/login'
 
 const Login = ({handleChange}) => {
@@ -36,30 +36,28 @@ const Login = ({handleChange}) => {
         }
         formBody = formBody.join("&");
 
-        axios.post(main)
-
-        // fetch(main, {
-        //     method: 'POST',
-        //     headers: {
-        //         "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"
-        //     },
-        //     credentials: 'same-origin',
-        //     body: formBody,
-        // })
-        // .then(response => {
-        //     if(!response.ok) {
-        //         throw Error('could not fetch the data for that resource')
-        //     }
-        //     return response.json();
-        // })
-        // .then((data) => {
-        //     console.log(data);
-        //     // setIsPending(false);
-        //     // navigate('/dashboard');
-        // })
-        // .catch(err => {
-        //     console.log(err.message);
-        // })
+        fetch(local, {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"
+            },
+            credentials: 'include',
+            body: formBody,
+        })
+        .then(response => {
+            if(!response.ok) {
+                throw Error('could not fetch the data for that resource')
+            }
+            return response.json();
+        })
+        .then((data) => {
+            console.log(data);
+            setIsPending(false);
+            navigate('/dashboard');
+        })
+        .catch(err => {
+            console.log(err.message);
+        })
 
     }
 
