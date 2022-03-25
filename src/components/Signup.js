@@ -45,12 +45,13 @@ const Signup = ({handleChange}) => {
         formBody = formBody.join("&");
         console.log(formBody);
 
-        fetch(main,  {
+        fetch(local, {
             method: 'POST',
             headers: {
                 "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"
             },
-            body: formBody
+            credentials: 'include',
+            body: formBody,
         })
         .then(response => {
             console.log(response.status);
@@ -59,9 +60,10 @@ const Signup = ({handleChange}) => {
             }
             return response.json();
         })
-        .then(() => {
+        .then((data) => {
+            console.log(data);
             setIsPending(false);
-            navigate('/dashboard');
+            navigate('/verify');
         })
         .catch(err => {
             console.log(err.message);
