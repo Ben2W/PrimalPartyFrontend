@@ -12,6 +12,9 @@ import Modal from '@mui/material/Modal';
 import Fade from '@mui/material/Fade';
 import Alert from '@mui/material/Alert';
 import AlertTitle from '@mui/material/Alert';
+import '../App.css';
+import Table from '../components/Table.js';
+
 
 
 const style = {
@@ -28,36 +31,40 @@ const style = {
 
 export default function CardInfo(props){
 
-    const cardStyle={width:250, height: 275, display: 'flex', justifyContent: 'space-between', flexDirection: 'column', backgroundImage: `url(${Image})`}
-    const btnStyle={backgroundColor:"#000000"}
+    const cardStyle={width:250, height: 275, display: 'flex', justifyContent: 'space-between', flexDirection: 'column'}
+    const btnStyle = { backgroundColor:"#F5F5F5"}
     const descStyle = { padding: '0 0 0 0', color: '#F5F5F5' }
-    const descStyleModal = { padding: '0 0 0 0', color: '#000000' }
+    const descStyleModal = { padding: '0 0 0 0', color: '#F5F5F5' }
 
     return (
         <Grid>
             <CardContent>
                 <div className="wrapper">
-                    <Typography variant="h5" style={{ color: '#000000' }}>
+                    <Typography variant="h5" style={{ color: '#F5F5F5' }}>
                         {props.title}
                     </Typography>
 
-                    <Typography variant="subtitle2" style={{ color: '#000000' }}>
+                    <Typography variant="subtitle2" style={{ color: '#F5F5F5' }}>
                         Date: {props.date}
                     </Typography>
 
-                    <Typography variant="subtitle2" style={{ color: '#000000' }}>
+                    <Typography variant="subtitle2" style={{ color: '#F5F5F5' }}>
                         Address: {props.address}
                     </Typography>
                 </div>
 
-                <Alert severity="info">
-                    Bring Pizza
-                </Alert>
-
                 <Typography variant="body2" style={descStyleModal}>
                     {props.desc}
                 </Typography>
+
+                <Alert severity="info">
+                    Bring Pizza
+                </Alert>
             </CardContent>
+
+            <Table />
         </Grid>
+
+
     )
 }

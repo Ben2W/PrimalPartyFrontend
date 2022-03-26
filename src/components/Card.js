@@ -21,7 +21,7 @@ const style = {
     left: '50%',
     transform: 'translate(-50%, -50%)',
     width: 400,
-    bgcolor: 'background.paper',
+    background: 'linear-gradient(145deg, #e66465, #9198e5)',
     border: '2px solid #000',
     boxShadow: 24,
     p: 4,
@@ -35,15 +35,15 @@ const backgroundStyle = {
 export default function BasicCard(props){
 
     const cardStyle = {
-        width: 275, height: 300, display: 'flex', justifyContent: 'space-between', flexDirection: 'column', backgroundImage: `url(${Image})`
+        width: 275, height: 315, display: 'flex', justifyContent: 'space-between', flexDirection: 'column', backgroundImage: `url(${Image})`
     }
 
     const cardStyle2 = {
-        width: 275, height: 300, display: 'flex', justifyContent: 'space-between', flexDirection: 'column', background: 'linear-gradient(145deg, #e66465, #9198e5)'
+        width: 275, height: 315, display: 'flex', justifyContent: 'space-between', flexDirection: 'column', background: 'linear-gradient(145deg, #e66465, #9198e5)'
     }
 
     const btnStyle={backgroundColor:"#000000", display:'block'}
-    const descStyle = { padding: '0 0 0 0', color: '#F5F5F5' }
+    const descStyle = { padding: '30px 0 0 0', color: '#F5F5F5' }
     const descStyleModal = { padding: '0 0 0 0', color: '#000000' }
 
     const [open, setOpen] = React.useState(false);
@@ -67,20 +67,23 @@ export default function BasicCard(props){
                                 <Typography variant="subtitle2" style={{color:'#F5F5F5'}}>
                                   Address: {props.address}
                                 </Typography>
-
-                                <Alert severity="info">You have # task(s)</Alert>
-
                             </div>
 
                             <Typography variant="body2" style={descStyle}>
-                              {props.desc}
+                            {props.desc}
+
                             </Typography>
 
                           </CardContent>
-                      </Grid>
+                    </Grid>
 
-                      <Grid>
-                        <CardActions>
+                    <Grid>
+                        <Alert severity="info" style={{ margin: '0 15px 0 15px' }}>You have # task(s)</Alert>
+                    </Grid>
+
+
+                    <Grid>
+                    <CardActions>
                             <Button onClick={handleOpen} type='submit' color='primary' variant='contained' style={btnStyle} fullWidth >{props.button}</Button>
                                 <Modal
                                     aria-labelledby="transition-modal-title"
