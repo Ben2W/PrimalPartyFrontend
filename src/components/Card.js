@@ -82,7 +82,7 @@ export default function BasicCard(props){
 
                     <Grid>
                     <CardActions>
-                            <Button onClick={handleOpen} type='submit' color='primary' variant='contained' style={btnStyle} fullWidth >{props.button}</Button>
+                            <Button onClick={handleOpen} type='submit' color='primary' variant='contained' style={btnStyle} fullWidth >View More</Button>
                                 <Modal
                                     aria-labelledby="transition-modal-title"
                                     aria-describedby="transition-modal-description"
@@ -97,11 +97,11 @@ export default function BasicCard(props){
                                     <Fade in={open}>
                                         <Box sx={style}>
                                         <CardInfo
-                                            title={props.title}
-                                            date={props.date}
-                                            address={props.address}
-                                            button={props.button}
-                                            desc={props.desc}
+                                            title={props.props.title}
+                                            date={props.props.date}
+                                            address={props.props.address}
+                                            button="View More"
+                                            desc={props.props.description}
                                         />
                                         </Box>
                                     </Fade>
