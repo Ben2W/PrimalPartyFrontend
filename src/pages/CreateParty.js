@@ -3,7 +3,8 @@ import { Grid, Paper, Avatar, TextField, Button, Typography, Link } from '@mater
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 
-const local = 'http://localhost:8080/events'
+//const URL = 'http://localhost:8080'
+const URL = 'https://primalpartybackend.azurewebsites.net'
 
 function CreateParty() {
   const paperStyle={padding: 20, minheight: '32vh', width:280, margin: "10px auto"}
@@ -39,7 +40,7 @@ function CreateParty() {
         }
         formBody = formBody.join("&");
 
-        fetch(local ,{
+        fetch(URL + '/events' ,{
           method: 'POST',
           headers: {
             "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"

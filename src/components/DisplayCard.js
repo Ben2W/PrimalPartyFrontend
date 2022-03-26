@@ -2,6 +2,9 @@ import { Typography } from '@mui/material'
 import React, { useEffect, useState } from 'react';
 import DisplayCardHelper from '../components/DisplayCardHelper'
 
+//const URL = 'http://localhost:8080'
+const URL = 'https://primalpartybackend.azurewebsites.net'
+
 const DisplayCard = () => {
     const [events, setEvents] = useState([])
 
@@ -10,7 +13,7 @@ const DisplayCard = () => {
       }, []);
 
     const fetchEvents = async() => {
-    fetch('http://localhost:8080/events', {
+    fetch(URL + '/events', {
         method: 'GET',
         headers: {
         "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"

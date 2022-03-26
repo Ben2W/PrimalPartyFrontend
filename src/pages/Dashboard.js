@@ -4,6 +4,9 @@ import { Box } from '@mui/system';
 import HookedSideBar from '../components/Sidebar/HookedSideBar';
 import DisplayCard from '../components/DisplayCard'
 
+//const URL = 'http://localhost:8080'
+const URL = 'https://primalpartybackend.azurewebsites.net'
+
 const Dashboard = () => {
   const [user, setUser] = useState([])
 
@@ -12,7 +15,7 @@ const Dashboard = () => {
   }, []);
 
   const fetchAccount = async() => {
-     fetch('http://localhost:8080/account', {
+     fetch(URL + '/account', {
       method: 'GET',
       headers: {
         "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"
