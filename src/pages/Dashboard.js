@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { Box } from '@mui/system';
 
 import HookedSideBar from '../components/Sidebar/HookedSideBar';
-import DisplayCard from '../components/Card'
+import DisplayCard from '../components/DisplayCard'
 
 const Dashboard = () => {
   const [user, setUser] = useState([])
@@ -24,7 +24,7 @@ const Dashboard = () => {
     .then(response => response.json())
     .then(data => {
       setUser(data.user)
-      // console.log(data);
+      //console.log(data);
       // console.log(data.user);
     })   
   }

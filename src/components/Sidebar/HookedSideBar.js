@@ -26,6 +26,7 @@ import ListItemText from "@mui/material/ListItemText";
 const drawerWidth = 240;
 
 const HookedSideBar = (props) => {
+
     const navigate = useNavigate();
     const handleClick = () => {
         navigate("/dashboard");
@@ -58,7 +59,7 @@ const HookedSideBar = (props) => {
                     [`& .MuiDrawer-paper`]: { width: drawerWidth, boxSizing: 'border-box' },
                 }}
             >
-                <Paper variant="outlined" sx={{width: "drawerWidth", display: "flex", padding: "5px" }}>
+                <Paper variant="outlined" sx={{width: "drawerWidth", display: "flex", padding: "5px"}}>
                     <img src={defaultLogo} alt="PrimalJetLogo" width="25%" />
                         <Typography variant="h5" align = "center">
                             <div
@@ -69,7 +70,7 @@ const HookedSideBar = (props) => {
                         </Typography>
                 </Paper>
                 {/*<Toolbar /> We can replace this with a function to close the sidebar, for now it's a permanent sidebar*/}
-                    <Box sx={{ overflow: 'auto' }}>
+                    <Box sx={{ overflow: 'auto', marginLeft: 1 }}>
                     <List>
                         <ListItem button component={Link} to='/account'>
                             <ListItemIcon>

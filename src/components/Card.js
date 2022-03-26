@@ -9,7 +9,7 @@ import Image from '../img/purple-grad.png'; // Import using relative path
 
 export default function BasicCard(props){
 
-    const cardStyle={width:250, height: 275, display: 'flex', justifyContent: 'space-between', flexDirection: 'column', backgroundImage: `url(${Image})`}
+    const cardStyle={marginTop: 20, width:250, height: 275, display: 'flex', justifyContent: 'space-between', flexDirection: 'column', backgroundImage: `url(${Image})`}
     const btnStyle={backgroundColor:"#000000"}
     const descStyle={padding:'30px 0 0 0', color:'#F5F5F5'}
     
@@ -21,20 +21,20 @@ export default function BasicCard(props){
                         <CardContent>
                             <div className="wrapper">
                                 <Typography variant="h5" style={{color:'#F5F5F5'}}>
-                                  {props.title}
+                                  {props.props.name}
                                 </Typography>
 
                                 <Typography variant="subtitle2" style={{color:'#F5F5F5'}}>
-                                  Date: {props.date}
+                                  Date: {props.props.date}
                                 </Typography>
 
                                 <Typography variant="subtitle2" style={{color:'#F5F5F5'}}>
-                                  Address: {props.address}
+                                  Address: {props.props.address}
                                 </Typography>
                             </div>
 
                             <Typography variant="body2" color="text.light" style={descStyle}>
-                              {props.desc}
+                              {props.props.description}
                             </Typography>
 
                           </CardContent>
@@ -42,7 +42,7 @@ export default function BasicCard(props){
 
                       <Grid>
                           <CardActions>
-                                <Button type='submit' color='primary' variant='contained' style={btnStyle} fullWidth >{props.button}</Button>
+                                <Button type='submit' color='primary' variant='contained' style={btnStyle} fullWidth >View More</Button>
                           </CardActions>
                       </Grid>
                 </Card>
