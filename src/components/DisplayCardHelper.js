@@ -1,5 +1,6 @@
 import React from "react";
 import Card from '../components/Card'
+import { Box } from "@mui/material";
 
 
 export default function DisplayCardHelper(props){
@@ -11,6 +12,8 @@ export default function DisplayCardHelper(props){
     }
 
     return (
-        <div>{cards}</div>
+        <div>
+            {cards}
+        </div>
     )
 }

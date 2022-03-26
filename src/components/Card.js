@@ -1,10 +1,8 @@
 import React from 'react'
-import { Grid, Paper, Avatar, TextField, FormControlLabel, Checkbox, Button, Typography, Link } from '@material-ui/core'
+import { Grid, Paper,Button, Typography } from '@material-ui/core'
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
-import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Image from '../img/purple-grad.png'; // Import using relative path
 
 export default function BasicCard(props){
@@ -12,9 +10,10 @@ export default function BasicCard(props){
     const cardStyle={marginTop: 20, width:250, height: 275, display: 'flex', justifyContent: 'space-between', flexDirection: 'column', backgroundImage: `url(${Image})`}
     const btnStyle={backgroundColor:"#000000"}
     const descStyle={padding:'30px 0 0 0', color:'#F5F5F5'}
+    const paperStyle={display: 'flex', flexWrap: 'nowrap', maxWidth: 250, maxHeight: 275, }
     
     return (
-        <Paper style={cardStyle.paperContainer}>
+        <Paper style={paperStyle}>
             <Grid containter alignItems="stretch">
                 <Card style={cardStyle}>
                     <Grid>

@@ -9,7 +9,6 @@ import Divider from '@mui/material/Divider';
 // import ListItemHelper from "./ListItemHelper"
 // import PrimalJetLogo from "./resizedLogo.png"
 // import ListItemClass from "./ListItemClass"
-import HookedItemClass from "./HookedItemClass"
 import defaultLogo from "./defaultLogo.png"
 import {Paper, TextField} from "@mui/material";
 import {useNavigate, Link} from "react-router-dom";

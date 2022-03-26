@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { Button } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
 import { Box } from '@mui/system';
 
 import HookedSideBar from '../components/Sidebar/HookedSideBar';
@@ -35,7 +33,7 @@ const Dashboard = () => {
   return (
     <div className="dashboard">
       <HookedSideBar user = {user} />
-      <Box sx={{ marginLeft: 35, marginTop: 5}}>
+      <Box sx={{ marginLeft: 35, marginTop: 5 }}>
         <DisplayCard />
       </Box>
     </div>

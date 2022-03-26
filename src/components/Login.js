@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import { Grid, Paper, Avatar, TextField, Button, Typography, Link } from '@material-ui/core'
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
 
 const local = 'http://localhost:8080/login'
 const main = 'https://primalpartybackend.azurewebsites.net/login'
