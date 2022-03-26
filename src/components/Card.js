@@ -1,21 +1,56 @@
 import React from 'react'
-import { Grid, Paper,Button, Typography } from '@material-ui/core'
+import { Grid, Paper, Avatar, TextField, FormControlLabel, Checkbox, Button, Typography, Link } from '@material-ui/core';
 import Card from '@mui/material/Card';
+import CardInfo from '../components/CardInfo.js';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Image from '../img/purple-grad.png'; // Import using relative path
+import Backdrop from '@mui/material/Backdrop';
+import Box from '@mui/material/Box';
+import Modal from '@mui/material/Modal';
+import Fade from '@mui/material/Fade';
+import Alert from '@mui/material/Alert';
+import AlertTitle from '@mui/material/Alert';
+
+
+const style = {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: 400,
+    background: 'linear-gradient(145deg, #e66465, #9198e5)',
+    border: '2px solid #000',
+    boxShadow: 24,
+    p: 4,
+};
+
+const backgroundStyle = {
+            background:
+      'linear-gradient(170deg,#000000, #FFFFFF 80%)'
+};
 
 export default function BasicCard(props){
 
-    const cardStyle={marginTop: 20, width:250, height: 275, display: 'flex', justifyContent: 'space-between', flexDirection: 'column', backgroundImage: `url(${Image})`}
-    const btnStyle={backgroundColor:"#000000"}
-    const descStyle={padding:'30px 0 0 0', color:'#F5F5F5'}
-    const paperStyle={display: 'flex', flexWrap: 'nowrap', maxWidth: 250, maxHeight: 275, }
-    
+    const cardStyle = {
+        width: 275, height: 315, display: 'flex', justifyContent: 'space-between', flexDirection: 'column', backgroundImage: `url(${Image})`
+    }
+
+    const cardStyle2 = {
+        width: 275, height: 315, display: 'flex', justifyContent: 'space-between', flexDirection: 'column', background: 'linear-gradient(145deg, #e66465, #9198e5)'
+    }
+
+    const btnStyle={backgroundColor:"#000000", display:'block'}
+    const descStyle = { padding: '30px 0 0 0', color: '#F5F5F5' }
+    const descStyleModal = { padding: '0 0 0 0', color: '#000000' }
+
+    const [open, setOpen] = React.useState(false);
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
+
     return (
-        <Paper style={paperStyle}>
-            <Grid containter alignItems="stretch">
-                <Card style={cardStyle}>
+        <Grid containter alignItems="stretch">
+            <Card style={cardStyle2}>
                     <Grid>
                         <CardContent>
                             <div className="wrapper">
@@ -32,20 +67,48 @@ export default function BasicCard(props){
                                 </Typography>
                             </div>
 
-                            <Typography variant="body2" color="text.light" style={descStyle}>
-                              {props.props.description}
+                            <Typography variant="body2" style={descStyle}>
+
+                            {props.props.description}
                             </Typography>
 
                           </CardContent>
-                      </Grid>
+                    </Grid>
 
-                      <Grid>
-                          <CardActions>
-                                <Button type='submit' color='primary' variant='contained' style={btnStyle} fullWidth >View More</Button>
-                          </CardActions>
-                      </Grid>
+                    <Grid>
+                        <Alert severity="info" style={{ margin: '0 15px 0 15px' }}>You have # task(s)</Alert>
+                    </Grid>
+
+
+                    <Grid>
+                    <CardActions>
+                            <Button onClick={handleOpen} type='submit' color='primary' variant='contained' style={btnStyle} fullWidth >{props.button}</Button>
+                                <Modal
+                                    aria-labelledby="transition-modal-title"
+                                    aria-describedby="transition-modal-description"
+                                    open={open}
+                                    onClose={handleClose}
+                                    closeAfterTransition
+                                    BackdropComponent={Backdrop}
+                                    BackdropProps={{
+                                        timeout: 500,
+                                    }}
+                                >
+                                    <Fade in={open}>
+                                        <Box sx={style}>
+                                        <CardInfo
+                                            title={props.title}
+                                            date={props.date}
+                                            address={props.address}
+                                            button={props.button}
+                                            desc={props.desc}
+                                        />
+                                        </Box>
+                                    </Fade>
+                                </Modal>
+                        </CardActions>
+                     </Grid>
                 </Card>
             </Grid>
-        </Paper>
     )
 }
