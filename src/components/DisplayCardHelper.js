@@ -12,8 +12,8 @@ export default function DisplayCardHelper(props){
     }
 
     return (
-        <div>
+        <Box sx={{display: 'flex'}}>
             {cards}
-        </div>
+        </Box>
     )
 }
