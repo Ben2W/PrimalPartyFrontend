@@ -1,4 +1,9 @@
-testing webooks asdasd asd
+# First please add a .env file to the root project directory with the following contents:
+```
+REACT_APP_URL='http://localhost:8080/' 
+```
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
