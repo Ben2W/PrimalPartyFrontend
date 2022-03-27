@@ -33,7 +33,7 @@ const HookedSideBar = (props) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        fetch('http://localhost:8080/logout', {
+        fetch(process.env.REACT_APP_URL + '/logout', {
           method: 'POST',
           headers: {
               "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"
