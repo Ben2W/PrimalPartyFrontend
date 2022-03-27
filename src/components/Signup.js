@@ -3,9 +3,6 @@ import { Grid, Paper, Avatar, TextField, Button, Typography, Link } from '@mater
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import { useNavigate } from 'react-router-dom';
 
-//const URL = 'http://localhost:8080'
-const URL = 'https://primalpartybackend.azurewebsites.net'
-
 const Signup = ({handleChange}) => {
     const paperStyle={padding: 20, minheight: '32vh', width:280, margin: "10px auto"}
     const avatarStyle={backgroundColor:'black'}
@@ -45,7 +42,7 @@ const Signup = ({handleChange}) => {
         formBody = formBody.join("&");
         console.log(formBody);
 
-        fetch(URL + '/register', {
+        fetch(process.env.REACT_APP_URL + '/register', {
             method: 'POST',
             headers: {
                 "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"

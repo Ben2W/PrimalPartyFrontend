@@ -2,8 +2,6 @@ import React, { useState } from 'react'
 import { Grid, Paper, TextField, Button } from '@material-ui/core'
 import { useNavigate } from 'react-router-dom';
 
-const local = 'http://localhost:8080/authorize/'
-
 function Verify() {
     const paperStyle={padding: 20, minheight: '32vh', width:280, margin: "10px auto"}
     const btnstyle={margin:'8px 0'}
@@ -27,7 +25,7 @@ function Verify() {
         // }
         // formBody = formBody.join("&");
 
-        fetch(local + token, {
+        fetch(process.env.REACT_APP_URL + '/authorize/' + token, {
             method: 'POST',
             headers: {
                 "Content-Type": "application/json;charset=UTF-8"
