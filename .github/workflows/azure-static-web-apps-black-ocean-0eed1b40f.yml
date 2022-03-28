@@ -34,6 +34,7 @@ jobs:
           ###### End of Repository/Build Configurations ######
         env: # Add environment variables here
             NODE_VERSION: 16.14.0
+            REACT_APP_URL: https://primalpartybackend.azurewebsites.net
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
     runs-on: ubuntu-latest
