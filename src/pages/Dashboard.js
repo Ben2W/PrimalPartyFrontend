@@ -14,9 +14,6 @@ const Dashboard = () => {
   const fetchAccount = async() => {
      fetch(process.env.REACT_APP_URL + '/account', {
       method: 'GET',
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"
-      },
       credentials: 'include',
     })
     .then(response => response.json())
