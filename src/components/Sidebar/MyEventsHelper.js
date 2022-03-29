@@ -1,7 +1,7 @@
 import React from "react";
 import MyEventsItem from "./MyEventsItem"
 import ListItem from "@mui/material/ListItem";
-
+import {Paper, TextField} from "@mui/material";
 
 export default function MyEventsHelper(props){
     console.log(props.props)
@@ -11,9 +11,12 @@ export default function MyEventsHelper(props){
         events.push(<MyEventsItem props = { props.props[i] } />)
     }
 
+
     return (
-        <ListItem button>
+        // <Paper elevation={8} sx={{width: "drawerWidth", padding: "5px", marginLeft: "10px"}}>
+        <div>
             {events}
-        </ListItem>
+        </div>
+        // </Paper>
     )
 }
