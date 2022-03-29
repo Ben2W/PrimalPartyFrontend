@@ -19,8 +19,8 @@ import { ListItemButton } from '@mui/material';
 import ListItemIcon from "@mui/material/ListItemIcon";
 import IconHelper from "./IconHelper";
 import ListItemText from "@mui/material/ListItemText";
-
-
+import MyEvents from "./MyEvents"
+import ShowEvents from "./ShowEvents"
 
 const drawerWidth = 240;
 
@@ -104,15 +104,10 @@ const HookedSideBar = (props) => {
                     </List>
                     <Divider />
                     <List>
-                        <ListItem button >
-                            <ListItemIcon>
-                                {IconHelper(5)}
-                            </ListItemIcon>
-                            <ListItemText primary='My Events'/>
-                        </ListItem>
+                        <ShowEvents/>
                     </List>
-
                     {/* Component that prints users created events */}
+                    {/*    <MyEvents/>*/}
 
                     <List>
                         <ListItem button component={Link} to='/createparty'>
