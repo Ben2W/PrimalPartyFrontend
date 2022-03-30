@@ -17,7 +17,7 @@ export default function Task(props){
 
     for (var i=0; i<props.assignees.length; i++) {
         assignees.push(
-            <AssigneeDisplay assignees={props.assignees[i]}/>
+            <AssigneeDisplay assignees={props.assignees[i].firstName}/>
         )
     }
 

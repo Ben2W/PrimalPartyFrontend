@@ -11,11 +11,13 @@ import '../App.css';
 
 export default function AssigneeDisplay(props){
 
-    console.log(props.assignee)
+    console.log(props.assignees)
 
     return (
         <div>
-            <div>{props.assignee}<Button>X</Button></div>
+            <div>{
+                props.assignees}<Button>X</Button>
+            </div>
         </div>
     )
 }
