@@ -33,10 +33,6 @@ const backgroundStyle = {
 export default function BasicCard(props){
 
     const cardStyle = {
-        width: 275, height: 315, display: 'flex', justifyContent: 'space-between', flexDirection: 'column', backgroundImage: `url(${Image})`
-    }
-
-    const cardStyle2 = {
         width: 275, height: 315, display: 'flex', justifyContent: 'space-between', flexDirection: 'column', background: 'linear-gradient(145deg, #e66465, #9198e5)'
     }
 
@@ -48,9 +44,23 @@ export default function BasicCard(props){
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 
+    const tasks = [
+        { 
+            id: 1, 
+            taskName: 'Bring Soda',
+            taskAssignees: ['John Bruh', 'Cool Guy']
+        }, 
+
+        {
+            id: 2, 
+            taskName: 'Bring Pizza',
+            taskAssignees: ['Cool Guy']
+        }
+    ]
+
     return (
         <Grid containter alignItems="stretch">
-            <Card style={cardStyle2}>
+            <Card style={cardStyle}>
                     <Grid>
                         <CardContent>
                             <div className="wrapper">
@@ -102,6 +112,7 @@ export default function BasicCard(props){
                                             address={props.props.address}
                                             button="View More"
                                             desc={props.props.description}
+                                            tasks={tasks}
                                         />
                                         </Box>
                                     </Fade>
