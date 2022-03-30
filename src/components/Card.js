@@ -49,7 +49,7 @@ export default function BasicCard(props){
     const handleClose = () => setOpen(false);
 
     return (
-        <Grid containter alignItems="stretch">
+        <Grid container alignItems="stretch">
             <Card style={cardStyle2}>
                     <Grid>
                         <CardContent>
