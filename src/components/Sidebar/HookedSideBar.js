@@ -119,14 +119,14 @@ const HookedSideBar = (props) => {
                     </List>
 
                     <List>
-                        <ListItemButton
+                        <ListItem button
                             onClick={handleSubmit}
                         >
                             <ListItemIcon>
                                 {IconHelper(7)}
                             </ListItemIcon>
                             <ListItemText primary='Logout'/>
-                        </ListItemButton>  
+                        </ListItem>
                     </List>
 
                         {/* <HookedItemClass id={props.id} name = {props.name} />
