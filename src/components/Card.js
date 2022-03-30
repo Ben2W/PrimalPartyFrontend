@@ -44,22 +44,8 @@ export default function BasicCard(props){
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 
-    const tasks = [
-        { 
-            id: 1, 
-            taskName: 'Bring Soda',
-            taskAssignees: ['John Bruh', 'Cool Guy']
-        }, 
-
-        {
-            id: 2, 
-            taskName: 'Bring Pizza',
-            taskAssignees: ['Cool Guy']
-        }
-    ]
-
     return (
-        <Grid containter alignItems="stretch">
+        <Grid container alignItems="stretch">
             <Card style={cardStyle}>
                     <Grid>
                         <CardContent>
@@ -112,7 +98,7 @@ export default function BasicCard(props){
                                             address={props.props.address}
                                             button="View More"
                                             desc={props.props.description}
-                                            tasks={tasks}
+                                            tasks={props.props.tasks}
                                         />
                                         </Box>
                                     </Fade>

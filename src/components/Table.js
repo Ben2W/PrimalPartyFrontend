@@ -8,29 +8,15 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Image from '../img/purple-grad.png'; // Import using relative path
 import Backdrop from '@mui/material/Backdrop';
 import '../App.css';
+import Task from './Task';
 
 const xBtnStyle = {background:'#FF0000', color: '#FFFFFF'}
 
-export default function Table(){
+export default function Table(props){
 
-    const [contacts, setContacts] = useState([]);
-    
-    const tasks = [
-        { 
-            id: 1, 
-            taskName: 'Bring Soda',
-            taskAssignees: ['John Bruh', 'Cool Guy']
-        }, 
-
-        {
-            id: 2, 
-            taskName: 'Bring Pizza',
-            taskAssignees: ['Cool Guy']
-        }
-    ]
-
+    const tasks = props.tasks;
+    console.log(props.tasks)
     return (
-
         <form>
             <Button>New Task</Button>
             <table>
@@ -46,19 +32,15 @@ export default function Table(){
                     tasks.map((value, key) => {
                     return (
                         <tr key={key}>
-
-                            <td>{value.taskName}</td>
-                            <td>
-                                <div>
-                                    {value.taskAssignees}
-                                    <Button>X</Button>
-                                </div>
-                                <div><Button>Add</Button></div>
-                            </td>
+                            <Task task={value.name} assignees={value.assignees}/>
                         </tr>
                     )
                     })
                 }
+
+                    <tr>
+                        <th colspan="2"><Button fullWidth style={{background:'#FFFFFF'}}>Add Task</Button></th>
+                    </tr>
                 </tbody>
             </table>
         </form>

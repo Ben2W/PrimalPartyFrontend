@@ -36,20 +36,6 @@ export default function CardInfo(props){
     const descStyle = { padding: '0 0 0 0', color: '#F5F5F5' }
     const descStyleModal = { padding: '0 0 0 0', color: '#F5F5F5' }
 
-    const tasks = [
-        { 
-            id: 1, 
-            taskName: 'Bring Soda',
-            taskAssignees: ['John Bruh', 'Cool Guy']
-        }, 
-
-        {
-            id: 2, 
-            taskName: 'Bring Pizza',
-            taskAssignees: ['Cool Guy']
-        }
-    ]
-
     return (
         <Grid>
             <CardContent>
@@ -75,8 +61,7 @@ export default function CardInfo(props){
                     Bring Pizza
                 </Alert>
             </CardContent>
-
-            <Table tasks/>
+            <Table tasks={props.tasks}/>
         </Grid>
 
 
