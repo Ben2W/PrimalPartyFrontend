@@ -39,7 +39,7 @@ function HeroSection() {
         <Container className={styles.container} maxWidth="lg">
           <Navbar />
           <Grid className={styles.content} container justifyContent="space-between" alignItems="center" >
-            <Grid item sm={8}>
+            <Grid item sm={7}>
               <Typography variant="h2" className={styles.h1}>Welcome to the PrimalParty</Typography>
               <Typography variant="h5" className={styles.h5}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce porta sit amet arcu et efficitur. </Typography>
             </Grid>
