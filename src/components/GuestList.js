@@ -47,7 +47,7 @@ export default function GuestList(props){
                         required
                         onChange={(e) => setGuestId(e.target.value)}              
                     />
-                    <Button type="submit" style={{width:'40%'}} variant="outlined">New Task</Button>
+                    <Button type="submit" style={{width:'40%'}} variant="outlined">Add Guest</Button>
                 </div>
             </form>
 
