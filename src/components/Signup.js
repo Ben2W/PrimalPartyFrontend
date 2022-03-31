@@ -2,11 +2,35 @@ import React, { useState } from 'react'
 import { Grid, Paper, Avatar, TextField, Button, Typography, Link } from '@material-ui/core'
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import { useNavigate } from 'react-router-dom';
+import { makeStyles } from '@material-ui/core'
+
+const useStyles = makeStyles(() => ({
+    paper: {
+        padding: 20, 
+        minheight: '32vh', 
+        width:280, 
+        margin: "10px auto",
+        fontSize: 20,
+
+    },
+    avatar: {
+        backgroundColor:'black',
+    },
+    button: {
+        margin:'8px 0', 
+        backgroundColor: '#17171A', 
+        color: '#ffffff', 
+        fontSize: 14, 
+        fontWeight: 600,
+        '&:hover': {
+            backgroundColor: '#fff',
+            color: '#17171A'
+        }
+    }
+}))
 
 const Signup = ({handleChange}) => {
-    const paperStyle={padding: 20, minheight: '32vh', width:280, margin: "10px auto"}
-    const avatarStyle={backgroundColor:'black'}
-    const btnstyle={margin:'8px 0'}
+    const styles = useStyles()
 
     //Change the value in the useState to show string in the form
     const [username, setUsername] = useState('');
@@ -68,12 +92,13 @@ const Signup = ({handleChange}) => {
     }
 
     return (
-        <Grid>
-            <Paper style={paperStyle}>
-                <Grid align="center" >
-                    <Avatar style={avatarStyle}><LockOutlinedIcon/></Avatar>
-                    <h2>Sign Up</h2> 
-                </Grid>
+        <div>
+            <Grid>
+                <Paper className={styles.paper}>
+                    <Grid align="center" >
+                        <Avatar className={styles.avatar}><LockOutlinedIcon/></Avatar>
+                        <h2>Sign Up</h2> 
+                    </Grid>
                     <form onSubmit={handleSubmit}>
                         <TextField
                             type="text"
@@ -84,7 +109,7 @@ const Signup = ({handleChange}) => {
                             onChange={(e) => setUsername(e.target.value)}            
                         /><br/>
                         <TextField
-                            type="text"
+                            type="password"
                             required   
                             fullWidth
                             label="Enter Password"
@@ -128,7 +153,7 @@ const Signup = ({handleChange}) => {
                             type='submit'
                             color='primary'
                             variant='contained'
-                            style={btnstyle}
+                            className={styles.button}
                             fullWidth
                         >
                             Sign In
@@ -138,23 +163,28 @@ const Signup = ({handleChange}) => {
                             type='submit'
                             color='primary'
                             variant='contained'
-                            style={btnstyle}
+                            className={styles.button}
                             fullWidth
                         >
                             Signing In
                         </Button> }
                     </form>
 
-            <Typography component={'span'}>
-                <Link href="#">Forgot Password?</Link>
-            </Typography>
-            <Typography component={'span'}> Do you have an account? 
-                <Link href="#" onClick={()=>handleChange("event", 0)}> 
-                Sign Up</Link>
-            </Typography>
-            </Paper>
-        </Grid>
-    )
+                    <Typography
+                        component={'span'}
+                    >
+                        Already have an account? &nbsp;
+                        <Link
+                            href="#"
+                            onClick={()=>handleChange("event", 0)}
+                        > 
+                            Sign In
+                        </Link>
+                    </Typography>
+                </Paper>
+            </Grid>
+        </div>
+    );
 }
 
 export default Signup;
