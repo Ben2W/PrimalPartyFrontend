@@ -7,7 +7,7 @@ export default function DisplayCardHelperGuest(props){
 
     let cards = [];
     for (var i=0; i<props.props.length; i++) {
-        cards.push(<CardGuest props = { props.props[i] } />)
+        cards.push(<CardGuest props = { props.props[i] } key ={ i } />)
     }
 
     return (
