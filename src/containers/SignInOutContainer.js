@@ -33,8 +33,9 @@ const SignInOutContainer=()=>{
       }
 
     return (
+      <div>
         <Paper style={paperStyle} elevation={10}>
-            <Tabs
+          <Tabs
                 value={value}
                 indicatorColor="primary"
                 textColor='primary'
@@ -51,7 +52,8 @@ const SignInOutContainer=()=>{
                 <Signup handleChange={handleChange} />
             </TabPanel>
         </Paper>
-    )
+      </div>
+    );
 }
 
 export default SignInOutContainer;

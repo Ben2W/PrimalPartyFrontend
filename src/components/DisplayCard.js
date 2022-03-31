@@ -11,14 +11,14 @@ const DisplayCard = () => {
       }, []);
 
     const fetchEvents = async() => {
-    fetch(process.env.REACT_APP_URL + '/events', {
-        method: 'GET',
-        credentials: 'include',
-    })
-    .then(response => response.json())
-    .then(data => {
-        setEvents(data.events)
-    })   
+        fetch(process.env.REACT_APP_URL + '/events', {
+            method: 'GET',
+            credentials: 'include',
+        })
+        .then(response => response.json())
+        .then(data => {
+            setEvents(data.events)
+        })   
     }
 
     return (

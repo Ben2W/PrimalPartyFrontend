@@ -6,17 +6,6 @@ import Toolbar from '@mui/material/Toolbar';
 import Container from '@mui/material/Container';
 
 import CelebrationIcon from '@mui/icons-material/Celebration';
-import {useNavigate} from "react-router-dom";
-
-const navigationLinks = [
-  {name: "About", href: "../about"},
-  {name: "Dashboard", href: "../dashboard"},
-  {name: "Account", href: "../account"},
-  {name: "Create Party", href: "../createparty"},
-  {name: "Forgot Password", href: "../forgotpassword"},
-  {name: "Friends", href: "../friends"},
-  {name: "Invites", href: "../invites"}
-];
 
 const useStyles = makeStyles((theme) => ({
   link: {
@@ -35,32 +24,28 @@ const useStyles = makeStyles((theme) => ({
 
 function Navbar() {
   const styles = useStyles();
-  const navigate = useNavigate();
-  const handleClick = (link) => {
-    return navigate({link});
-  }
+
   return (
-    <AppBar position="sticky" color="default">
-      <Container maxWidth="lg">
-        <Toolbar disableGutters>
-          <Link to="/" className={styles.SiteName} underline='none' color="textPrimary">
-            <CelebrationIcon className={styles.CelebrationIcon} />PrimalParty 
-          </Link>
-          {navigationLinks.map((item) => (
-          <Link 
-            className={styles.link}
-            color="textPrimary"
-            variant="button"
-            underline="none" 
-            href={item.href}
-            onClick={handleClick(item.href)}
-            >
-              {item.name}
-          </Link>
-        ))}
-        </Toolbar>
-      </Container>
-    </AppBar>
+    <div>
+      <AppBar color="default" sx={{backgroundColor: 'transparent', boxShadow: 0}}>
+        <Container maxWidth="lg">
+          <Toolbar disableGutters>
+            <Link button to="/" className={styles.SiteName} underline='none' color="textPrimary">
+              <CelebrationIcon className={styles.CelebrationIcon} />PrimalParty 
+            </Link>
+            <Link 
+              className={styles.link}
+              color="textPrimary"
+              variant="button"
+              underline="none" 
+              href="/about"
+              >
+                About
+            </Link>
+          </Toolbar>
+        </Container>
+      </AppBar>
+    </div>
   );
 }
 

@@ -1,17 +1,14 @@
 import React from 'react'
-import { Grid, Paper, Avatar, TextField, FormControlLabel, Checkbox, Button, Typography, Link } from '@material-ui/core';
+import { Grid, Button, Typography } from '@mui/material';
 import Card from '@mui/material/Card';
 import CardInfo from '../components/CardInfo.js';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
-import Image from '../img/purple-grad.png'; // Import using relative path
 import Backdrop from '@mui/material/Backdrop';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import Fade from '@mui/material/Fade';
 import Alert from '@mui/material/Alert';
-import AlertTitle from '@mui/material/Alert';
-
 
 const style = {
     position: 'absolute',
@@ -25,77 +22,71 @@ const style = {
     p: 4,
 };
 
-const backgroundStyle = {
-            background:
-      'linear-gradient(170deg,#000000, #FFFFFF 80%)'
-};
-
 export default function BasicCard(props){
-
-    const cardStyle = {
-        width: 275, height: 315, display: 'flex', justifyContent: 'space-between', flexDirection: 'column', backgroundImage: `url(${Image})`
-    }
-
     const cardStyle2 = {
         width: 275, height: 315, display: 'flex', justifyContent: 'space-between', flexDirection: 'column', background: 'linear-gradient(145deg, #e66465, #9198e5)'
     }
 
     const btnStyle={backgroundColor:"#000000", display:'block'}
     const descStyle = { padding: '30px 0 0 0', color: '#F5F5F5' }
-    const descStyleModal = { padding: '0 0 0 0', color: '#000000' }
 
     const [open, setOpen] = React.useState(false);
+
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 
     return (
-        <Grid container alignItems="stretch">
-            <Card style={cardStyle2}>
+        <div>
+            <Grid container alignItems="stretch">
+                <Card style={cardStyle2}>
                     <Grid>
                         <CardContent>
-                            <div className="wrapper">
-                                <Typography variant="h5" style={{color:'#F5F5F5'}}>
-                                  {props.props.name}
-                                </Typography>
-
-                                <Typography variant="subtitle2" style={{color:'#F5F5F5'}}>
-                                  Date: {props.props.date}
-                                </Typography>
-
-                                <Typography variant="subtitle2" style={{color:'#F5F5F5'}}>
-                                  Address: {props.props.address}
-                                </Typography>
-                            </div>
-
-                            <Typography variant="body2" style={descStyle}>
-
-                            {props.props.description}
+                            <Typography 
+                                variant="h5" style={{color:'#F5F5F5'}}
+                            >
+                                {props.props.name}
                             </Typography>
 
-                          </CardContent>
+                            <Typography 
+                                variant="subtitle2" style={{color:'#F5F5F5'}}
+                            >
+                                Date: {props.props.date}
+                            </Typography>
+
+                            <Typography 
+                                variant="subtitle2" style={{color:'#F5F5F5'}}
+                            >
+                                Address: {props.props.address}
+                            </Typography>
+
+                            <Typography
+                                variant="body2" style={descStyle}
+                            >
+                                {props.props.description}
+                            </Typography>
+                        </CardContent>
                     </Grid>
 
                     <Grid>
                         <Alert severity="info" style={{ margin: '0 15px 0 15px' }}>You have # task(s)</Alert>
                     </Grid>
 
-
                     <Grid>
-                    <CardActions>
+                        <CardActions>
                             <Button onClick={handleOpen} type='submit' color='primary' variant='contained' style={btnStyle} fullWidth >View More</Button>
-                                <Modal
-                                    aria-labelledby="transition-modal-title"
-                                    aria-describedby="transition-modal-description"
-                                    open={open}
-                                    onClose={handleClose}
-                                    closeAfterTransition
-                                    BackdropComponent={Backdrop}
-                                    BackdropProps={{
-                                        timeout: 500,
-                                    }}
-                                >
-                                    <Fade in={open}>
-                                        <Box sx={style}>
+                            <Modal
+                                aria-labelledby="transition-modal-title"
+                                aria-describedby="transition-modal-description"
+                                open={open}
+                                onClose={handleClose}
+                                closeAfterTransition
+                                BackdropComponent={Backdrop}
+                                BackdropProps={{
+                                    timeout: 500,
+                                }}
+                            >
+                                <Fade in={open}>
+                                    <Box sx={style}>
                                         <CardInfo
                                             title={props.props.title}
                                             date={props.props.date}
@@ -103,12 +94,13 @@ export default function BasicCard(props){
                                             button="View More"
                                             desc={props.props.description}
                                         />
-                                        </Box>
-                                    </Fade>
-                                </Modal>
+                                    </Box>
+                                </Fade>
+                            </Modal>
                         </CardActions>
-                     </Grid>
+                    </Grid>
                 </Card>
             </Grid>
-    )
+        </div>
+    );
 }

@@ -68,12 +68,13 @@ const Signup = ({handleChange}) => {
     }
 
     return (
-        <Grid>
-            <Paper style={paperStyle}>
-                <Grid align="center" >
-                    <Avatar style={avatarStyle}><LockOutlinedIcon/></Avatar>
-                    <h2>Sign Up</h2> 
-                </Grid>
+        <div>
+            <Grid>
+                <Paper style={paperStyle}>
+                    <Grid align="center" >
+                        <Avatar style={avatarStyle}><LockOutlinedIcon/></Avatar>
+                        <h2>Sign Up</h2> 
+                    </Grid>
                     <form onSubmit={handleSubmit}>
                         <TextField
                             type="text"
@@ -84,7 +85,7 @@ const Signup = ({handleChange}) => {
                             onChange={(e) => setUsername(e.target.value)}            
                         /><br/>
                         <TextField
-                            type="text"
+                            type="password"
                             required   
                             fullWidth
                             label="Enter Password"
@@ -145,16 +146,32 @@ const Signup = ({handleChange}) => {
                         </Button> }
                     </form>
 
-            <Typography component={'span'}>
-                <Link href="#">Forgot Password?</Link>
-            </Typography>
-            <Typography component={'span'}> Do you have an account? 
-                <Link href="#" onClick={()=>handleChange("event", 0)}> 
-                Sign Up</Link>
-            </Typography>
-            </Paper>
-        </Grid>
-    )
+                    <Typography
+                        component={'span'}
+                    >
+                        <Link 
+                            href="#"
+                        >
+                            Forgot Password?
+                        </Link>
+                        <br/>
+                    </Typography>
+
+                    <Typography
+                        component={'span'}
+                    >
+                        Already have an account? &nbsp;
+                        <Link
+                            href="#"
+                            onClick={()=>handleChange("event", 0)}
+                        > 
+                            Sign In
+                        </Link>
+                    </Typography>
+                </Paper>
+            </Grid>
+        </div>
+    );
 }
 
 export default Signup;

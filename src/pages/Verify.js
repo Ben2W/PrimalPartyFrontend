@@ -13,18 +13,6 @@ function Verify() {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        // const details = {
-        //     'token': token
-        // }
-        
-        // var formBody = [];
-        // for (var property in details) {
-        //     var encodedKey = encodeURIComponent(property);
-        //     var encodedValue = encodeURIComponent(details[property]);
-        //     formBody.push(encodedKey + "=" + encodedValue);
-        // }
-        // formBody = formBody.join("&");
-
         fetch(process.env.REACT_APP_URL + '/authorize/' + token, {
             method: 'POST',
             headers: {
@@ -48,12 +36,13 @@ function Verify() {
         })
     }
 
-  return (
-    <Grid>
-            <Paper style={paperStyle}>
-                <Grid align="center" >
-                    <h2>Authenticate Email</h2> 
-                </Grid>
+    return (
+        <div>
+            <Grid>
+                <Paper style={paperStyle}>
+                    <Grid align="center" >
+                        <h2>Authenticate Email</h2> 
+                    </Grid>
                     <form onSubmit={handleSubmit}>
                         <TextField
                             type="text"
@@ -73,9 +62,10 @@ function Verify() {
                             Verify
                         </Button>
                     </form>
-            </Paper>
-        </Grid>
-    )
+                </Paper>
+            </Grid>
+        </div>
+    );
 }
 
 export default Verify
