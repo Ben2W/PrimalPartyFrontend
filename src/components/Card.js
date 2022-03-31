@@ -44,9 +44,6 @@ export default function BasicCard(props){
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 
-    console.log("Props.props:")
-    console.log(props.props._id)
-
     return (
         <Grid container alignItems="stretch">
             <Card style={cardStyle}>

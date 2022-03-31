@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Grid, Paper, Avatar, TextField, FormControlLabel, Checkbox, Button, Typography, Link } from '@material-ui/core'
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
@@ -15,13 +15,12 @@ import ModeEditOutlineIcon from '@mui/icons-material/ModeEditOutline';
 const xBtnStyle = {background:'#FF0000', color: '#FFFFFF'}
 
 export default function Table(props){
-    const tasks = props.tasks;
-    console.log("Props:")
-    console.log(props)
-    console.log("Props._id:")
-    console.log(props._id)
-
+    const [tasks, setTasks] = useState([]);
     const [title, setTitle] = useState('');
+
+    useEffect(() => {
+        setTasks(props.tasks);
+      }, []);
 
     const newTaskSubmit = (e) => {
         e.preventDefault();
@@ -31,38 +30,34 @@ export default function Table(props){
         }
     
         var formBody = [];
-            for (var property in details) {
-                var encodedKey = encodeURIComponent(property);
-                var encodedValue = encodeURIComponent(details[property]);
-                formBody.push(encodedKey + "=" + encodedValue);
-            }
-            formBody = formBody.join("&");
+        for (var property in details) {
+            var encodedKey = encodeURIComponent(property);
+            var encodedValue = encodeURIComponent(details[property]);
+            formBody.push(encodedKey + "=" + encodedValue);
+        }
+        formBody = formBody.join("&");
 
-            console.log("Form Body: " + formBody)
+        console.log("Form Body: " + formBody)
 
-            fetch(process.env.REACT_APP_URL + ('/events/'+ props._id + '/tasks') ,{
-              method: 'POST',
-              headers: {
-                "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"
-              },
-              credentials: 'include',
-              body: formBody
-            })
-            .then(response => {
-              console.log(response.status)
-              if(!response.ok) {
-                throw Error('could not fetch the data for that resource')
-              }
-              return response.json();
-            })
-            .catch(err => {
-              console.log(err.message);
-          })
+        fetch(process.env.REACT_APP_URL + ('/events/'+ props._id + '/tasks') ,{
+            method: 'POST',
+            headers: {
+            "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"
+            },
+            credentials: 'include',
+            body: formBody
+        })
+        .then(response => {
+            return response.json();
+        })
+        .then(data => {
+            setTasks(data.retval.tasks);
+        })
       }
 
     return (
         <>
-            <form onSubmit={newTaskSubmit()}>
+            <form onSubmit={newTaskSubmit}>
                 <div style={{display:'flex'}}>
                     <TextField 
                         type="text"

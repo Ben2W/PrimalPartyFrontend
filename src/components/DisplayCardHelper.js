@@ -4,7 +4,6 @@ import { Box } from "@mui/material";
 
 
 export default function DisplayCardHelper(props){
-    console.log(props.props)
 
     let cards = [];
     for (var i=0; i<props.props.length; i++) {

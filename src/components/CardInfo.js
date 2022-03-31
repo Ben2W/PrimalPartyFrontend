@@ -36,11 +36,6 @@ export default function CardInfo(props){
     const descStyle = { padding: '0 0 0 0', color: '#F5F5F5' }
     const descStyleModal = { padding: '0 0 0 0', color: '#F5F5F5' }
 
-
-    console.log("Props._id:")
-    console.log(props._id)
-
-
     return (
         <Grid>
             <CardContent>
