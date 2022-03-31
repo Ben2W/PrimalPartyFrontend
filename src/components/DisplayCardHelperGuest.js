@@ -11,7 +11,7 @@ export default function DisplayCardHelperGuest(props){
     }
 
     return (
-        <Box sx={{display: 'flex'}}>
+        <Box sx={{display: 'inline-flex', flexDirection:'row'}}>
             {cards}
         </Box>
     )

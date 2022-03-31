@@ -2,7 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { Box } from '@mui/system';
 
 import HookedSideBar from '../components/Sidebar/HookedSideBar';
+import DisplayCard from '../components/DisplayCard'
 import DisplayCardGuest from '../components/DisplayCardGuest'
+import { Container } from 'react-bootstrap';
 
 const Dashboard = () => {
   const [user, setUser] = useState([])
@@ -35,6 +37,10 @@ const Dashboard = () => {
       <HookedSideBar user = {user} />
       <Box sx={{ marginLeft: 35, marginTop: 5 }}>
         <DisplayCardGuest />
+      </Box>
+
+      <Box sx={{ marginLeft: 35, marginTop: 5 }}>
+        <DisplayCard />
       </Box>
     </div>
   );

@@ -13,7 +13,8 @@ import Fade from '@mui/material/Fade';
 import Alert from '@mui/material/Alert';
 import AlertTitle from '@mui/material/Alert';
 import '../App.css';
-import Table from '../components/Table.js';
+import Table from '../components/Table';
+import GuestList from '../components/GuestList';
 
 
 
@@ -35,6 +36,9 @@ export default function CardInfo(props){
     const btnStyle = { backgroundColor:"#F5F5F5"}
     const descStyle = { padding: '0 0 0 0', color: '#F5F5F5' }
     const descStyleModal = { padding: '0 0 0 0', color: '#F5F5F5' }
+
+    console.log(props.guestList);
+
 
     return (
         <Grid>
@@ -61,6 +65,8 @@ export default function CardInfo(props){
                     Bring Pizza
                 </Alert>
             </CardContent>
+
+            <GuestList guestList={props.guestList}/>
             <Table tasks={props.tasks} _id={props._id}/>   
         </Grid>
 

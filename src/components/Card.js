@@ -44,6 +44,21 @@ export default function BasicCard(props){
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 
+    const handleEventDelete = (e) => {
+
+        e.preventDefault();
+
+        console.log(props.props._id)
+
+        fetch(process.env.REACT_APP_URL + ('/events/'+ props.props._id) ,{
+            method: 'DELETE',
+            credentials: 'include',
+        })
+        .then(response =>{
+            console.log("RESPONSE: " + response.status);
+        })
+      }
+
     return (
         <Grid container alignItems="stretch">
             <Card style={cardStyle}>
@@ -52,6 +67,7 @@ export default function BasicCard(props){
                             <div className="wrapper">
                                 <Typography variant="h5" style={{color:'#F5F5F5'}}>
                                   {props.props.name}
+                                  <Button onClick={handleEventDelete} type='submit'>Delete Event</Button>
                                 </Typography>
 
                                 <Typography variant="subtitle2" style={{color:'#F5F5F5'}}>
@@ -100,6 +116,7 @@ export default function BasicCard(props){
                                             desc={props.props.description}
                                             tasks={props.props.tasks}
                                             _id={props.props._id}
+                                            guestList={props.props.guests}
                                         />
                                         </Box>
                                     </Fade>
