@@ -16,17 +16,18 @@ const xBtnStyle = {background:'#FF0000', color: '#FFFFFF'}
 
 export default function Table(props){
     const tasks = props.tasks;
-    console.log("Props")
+    console.log("Props:")
     console.log(props)
-/*
-    let navigate = useNavigate();
+    console.log("Props._id:")
+    console.log(props._id)
+
+    const [title, setTitle] = useState('');
 
     const newTaskSubmit = (e) => {
         e.preventDefault();
 
         const details = {
           'name': title,
-          'description': description,
         }
     
         var formBody = [];
@@ -37,7 +38,9 @@ export default function Table(props){
             }
             formBody = formBody.join("&");
 
-            fetch(process.env.REACT_APP_URL + '/events/'+ {props} + '/tasks' ,{
+            console.log("Form Body: " + formBody)
+
+            fetch(process.env.REACT_APP_URL + ('/events/'+ props._id + '/tasks') ,{
               method: 'POST',
               headers: {
                 "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"
@@ -52,25 +55,21 @@ export default function Table(props){
               }
               return response.json();
             })
-            .then((data) => {
-              console.log(data);
-              navigate('/dashboard');
-            })
             .catch(err => {
               console.log(err.message);
           })
       }
-    */
 
     return (
         <>
-            <form>
+            <form onSubmit={newTaskSubmit()}>
                 <div style={{display:'flex'}}>
                     <TextField 
                         type="text"
-                        required                 
+                        required
+                        onChange={(e) => setTitle(e.target.value)}              
                     />
-                    <Button style={{width:'40%'}} variant="outlined">New Task</Button>
+                    <Button type="submit" style={{width:'40%'}} variant="outlined">New Task</Button>
                 </div>
             </form>
 

@@ -36,6 +36,11 @@ export default function CardInfo(props){
     const descStyle = { padding: '0 0 0 0', color: '#F5F5F5' }
     const descStyleModal = { padding: '0 0 0 0', color: '#F5F5F5' }
 
+
+    console.log("Props._id:")
+    console.log(props._id)
+
+
     return (
         <Grid>
             <CardContent>
@@ -61,7 +66,7 @@ export default function CardInfo(props){
                     Bring Pizza
                 </Alert>
             </CardContent>
-            <Table tasks={props.tasks}/>
+            <Table tasks={props.tasks} _id={props._id}/>   
         </Grid>
 
 
