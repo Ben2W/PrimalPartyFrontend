@@ -11,6 +11,9 @@ import '../App.css';
 import { toHaveFormValues } from '@testing-library/jest-dom/dist/matchers';
 import AssigneeDisplay from '../components/AssigneeDisplay.js';
 import { TaskAltOutlined } from '@mui/icons-material';
+import DeleteIcon from '@mui/icons-material/Delete';
+import { IconButton } from '@material-ui/core';
+import EditIcon from '@mui/icons-material/Edit';
 
 export default function Task(props){
     let assignees = [];
@@ -29,6 +32,18 @@ export default function Task(props){
             <td>
                 {assignees}
                 <Button fullWidth style={{color:'#FFFFFF', background:'#000000'}}>Add</Button>
+            </td>
+            <td>
+                <div>
+                    <IconButton aria-label="edit">
+                        <EditIcon />
+                    </IconButton>
+                </div>
+                <div>
+                    <IconButton aria-label="delete" style={{color:'#000000'}}>
+                        <DeleteIcon />
+                    </IconButton>
+                </div>
             </td>
         </>
     )

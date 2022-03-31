@@ -9,40 +9,94 @@ import Image from '../img/purple-grad.png'; // Import using relative path
 import Backdrop from '@mui/material/Backdrop';
 import '../App.css';
 import Task from './Task';
+import { IconButton } from '@material-ui/core';
+import ModeEditOutlineIcon from '@mui/icons-material/ModeEditOutline';
 
 const xBtnStyle = {background:'#FF0000', color: '#FFFFFF'}
 
 export default function Table(props){
-
     const tasks = props.tasks;
-    console.log(props.tasks)
+    console.log("Props")
+    console.log(props)
+/*
+    let navigate = useNavigate();
+
+    const newTaskSubmit = (e) => {
+        e.preventDefault();
+
+        const details = {
+          'name': title,
+          'description': description,
+        }
+    
+        var formBody = [];
+            for (var property in details) {
+                var encodedKey = encodeURIComponent(property);
+                var encodedValue = encodeURIComponent(details[property]);
+                formBody.push(encodedKey + "=" + encodedValue);
+            }
+            formBody = formBody.join("&");
+
+            fetch(process.env.REACT_APP_URL + '/events/'+ {props} + '/tasks' ,{
+              method: 'POST',
+              headers: {
+                "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"
+              },
+              credentials: 'include',
+              body: formBody
+            })
+            .then(response => {
+              console.log(response.status)
+              if(!response.ok) {
+                throw Error('could not fetch the data for that resource')
+              }
+              return response.json();
+            })
+            .then((data) => {
+              console.log(data);
+              navigate('/dashboard');
+            })
+            .catch(err => {
+              console.log(err.message);
+          })
+      }
+    */
+
     return (
-        <form>
-            <Button>New Task</Button>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Task</th>
-                        <th>Assignee</th>
-                    </tr>
-                </thead>
+        <>
+            <form>
+                <div style={{display:'flex'}}>
+                    <TextField 
+                        type="text"
+                        required                 
+                    />
+                    <Button style={{width:'40%'}} variant="outlined">New Task</Button>
+                </div>
+            </form>
 
-                <tbody>
-                {
-                    tasks.map((value, key) => {
-                    return (
-                        <tr key={key}>
-                            <Task task={value.name} assignees={value.assignees}/>
+            <form>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Task</th>
+                            <th>Assignee</th>
+                            <th></th>
                         </tr>
-                    )
-                    })
-                }
+                    </thead>
 
-                    <tr>
-                        <th colspan="2"><Button fullWidth style={{background:'#FFFFFF'}}>Add Task</Button></th>
-                    </tr>
-                </tbody>
-            </table>
-        </form>
+                    <tbody>
+                    {
+                        tasks.map((value, key) => {
+                        return (
+                            <tr key={key}>
+                                <Task task={value.name} assignees={value.assignees}/>
+                            </tr>
+                        )
+                        })
+                    }
+                    </tbody>
+                </table>
+            </form>
+        </>
     )
 }
