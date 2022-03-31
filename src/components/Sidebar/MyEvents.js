@@ -1,6 +1,4 @@
-import { Typography } from '@mui/material'
 import React, { useEffect, useState } from 'react';
-import HookedItemClass from "./HookedItemClass"
 import MyEventsHelper from "./MyEventsHelper"
 
 const MyEvents = () => {

@@ -11,19 +11,19 @@ const DisplayCard = () => {
       }, []);
 
     const fetchEvents = async() => {
-    fetch(process.env.REACT_APP_URL + '/events', {
-        method: 'GET',
-        credentials: 'include',
-    })
-    .then(response => response.json())
-    .then(data => {
-        setEvents(data.events)
-    })   
+        fetch(process.env.REACT_APP_URL + '/events', {
+            method: 'GET',
+            credentials: 'include',
+        })
+        .then(response => response.json())
+        .then(data => {
+            setEvents(data.events)
+        })   
     }
 
     return (
         <div>
-            <Typography sx={{ fontSize: '36px', fontWeight: 500}}>Upcoming Events</Typography>
+            <Typography sx={{ fontSize: '36px', fontWeight: 500}}>Your Events</Typography>
             <DisplayCardHelper props = { events }/>
         </div>
     )
