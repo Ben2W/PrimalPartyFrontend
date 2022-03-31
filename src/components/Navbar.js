@@ -4,9 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Container from '@mui/material/Container';
-
 import Logo from '../img/PartyHatDinoLogo.png';
-import { flexbox } from '@mui/system';
 
 const useStyles = makeStyles((theme) => ({
   link: {

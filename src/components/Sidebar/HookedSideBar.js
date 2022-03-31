@@ -4,8 +4,8 @@ import Drawer from '@mui/material/Drawer';
 import CssBaseline from '@mui/material/CssBaseline';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
-import defaultLogo from "./defaultLogo.png"
 import {Paper} from "@mui/material";
+import { makeStyles } from '@material-ui/core/styles';
 import {useNavigate, Link} from "react-router-dom";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
@@ -13,11 +13,29 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import IconHelper from "./IconHelper";
 import ListItemText from "@mui/material/ListItemText";
 import ShowEvents from "./ShowEvents"
+import Logo from '../../img/PartyHatDinoLogo.png';
+
+const useStyles = makeStyles((theme) => ({
+    logo: {
+      maxHeight: 70,
+      paddingRight: 15
+    },
+    SiteName: {
+        marginRight: "auto",
+        fontSize: 26,
+        fontWeight: 600,
+        alignItems: 'center',
+        color: '#17171A',
+        display: 'flex',
+        alignItems: 'center'
+      },
+  }))
 
 const drawerWidth = 240;
 
 const HookedSideBar = (props) => {
     const navigate = useNavigate();
+    const styles = useStyles();
 
     const handleClick = () => {
         navigate("/dashboard");
@@ -51,13 +69,13 @@ const HookedSideBar = (props) => {
                     }}
                 >
                     <Paper variant="outlined" sx={{width: "drawerWidth", display: "flex", padding: "5px"}}>
-                        <img src={defaultLogo} alt="PrimalJetLogo" width="25%" />
-                            <Typography variant="h5" align = "center" component={'span'}>
+                        <img src={ Logo } className={styles.logo} alt="PrimalJetLogo" width="25%" />
+                            <Typography className={styles.SiteName} variant="h5" align = "center" component={'span'}>
                                 <div
                                     style={{ marginTop: '15px', cursor:"pointer", fontSize: '23px', fontWeight: 600}}
                                     onClick={handleClick}
                                 >
-                                    &nbsp;&nbsp;&nbsp;PrimalParty</div>
+                                    PrimalParty</div>
                             </Typography>
                     </Paper>
                     <Box sx={{ overflow: 'auto', marginLeft: 1 }}>
