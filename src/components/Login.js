@@ -2,11 +2,35 @@ import React, { useState } from 'react'
 import { Grid, Paper, Avatar, TextField, Button, Typography, Link } from '@material-ui/core'
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import { useNavigate } from 'react-router-dom';
+import { makeStyles } from '@material-ui/core'
+
+const useStyles = makeStyles(() => ({
+    paper: {
+        padding: 20, 
+        minheight: '32vh', 
+        width:280, 
+        margin: "10px auto",
+        fontSize: 20,
+
+    },
+    avatar: {
+        backgroundColor:'black',
+    },
+    button: {
+        margin:'8px 0', 
+        backgroundColor: '#17171A', 
+        color: '#ffffff', 
+        fontSize: 14, 
+        fontWeight: 600,
+        '&:hover': {
+            backgroundColor: '#fff',
+            color: '#17171A'
+        }
+    }
+}))
 
 const Login = ({handleChange}) => {
-    const paperStyle={padding: 20, minheight: '32vh', width:280, margin: "10px auto"}
-    const avatarStyle={backgroundColor:'black'}
-    const btnstyle={margin:'8px 0'}
+    const styles = useStyles()
 
     //Change the value in the useState to show string in the form
     const [username, setUsername] = useState('');
@@ -58,9 +82,9 @@ const Login = ({handleChange}) => {
     return (
         <div>
             <Grid>
-                <Paper style={paperStyle}>
+                <Paper className={styles.paper}>
                     <Grid align="center" >
-                        <Avatar style={avatarStyle}><LockOutlinedIcon/></Avatar>
+                        <Avatar className={styles.avatar}><LockOutlinedIcon/></Avatar>
                         <h2>Sign In</h2> 
                     </Grid>
                     <form onSubmit={handleSubmit}>
@@ -85,9 +109,8 @@ const Login = ({handleChange}) => {
 
                         { !isPending && <Button
                             type='submit'
-                            color='primary'
                             variant='contained'
-                            style={btnstyle}
+                            className={styles.button}
                             fullWidth
                         >
                             Sign In
@@ -95,9 +118,8 @@ const Login = ({handleChange}) => {
 
                         { isPending && <Button
                             type='submit'
-                            color='primary'
                             variant='contained'
-                            style={btnstyle}
+                            className={styles.button}
                             fullWidth
                         >
                             Signing In
@@ -108,7 +130,7 @@ const Login = ({handleChange}) => {
                         component={'span'}
                     >
                         <Link
-                            href="#"
+                            href="/forgotpassword"
                         >
                             Forgot Password?
                         </Link>

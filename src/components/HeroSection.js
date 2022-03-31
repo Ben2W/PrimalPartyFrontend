@@ -11,18 +11,20 @@ const useStyles = makeStyles(() => ({
       minheight: "60vh",
       backgroundImage: "url(/HomeBackground.png)",
       backgroundSize: "cover",
-      backgroundPosition: "center"
+      backgroundPosition: "center",
+
     },
     content: {
-      height: "100%"
+      height: "100%",
+      paddingTop: 10,
     },
     container: {
       height: "100%"
     },
     h1: {
       color:"white",
-      fontSize: 80,
-      fontWeight: 700,
+      fontSize: [72, '!important'],
+      fontWeight: [900, '!important'],
     },
     h5: {
       color:"white"
@@ -33,11 +35,11 @@ function HeroSection() {
     const styles = useStyles()
   return (
     <div>
-      <Paper className={styles.section}>
+      <Paper className={styles.section} square={true}>
         <Container className={styles.container} maxWidth="lg">
           <Navbar />
           <Grid className={styles.content} container justifyContent="space-between" alignItems="center" >
-            <Grid item sm={6}>
+            <Grid item sm={8}>
               <Typography variant="h2" className={styles.h1}>Welcome to the PrimalParty</Typography>
               <Typography variant="h5" className={styles.h5}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce porta sit amet arcu et efficitur. </Typography>
             </Grid>

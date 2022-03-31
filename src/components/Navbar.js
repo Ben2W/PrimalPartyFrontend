@@ -5,20 +5,30 @@ import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Container from '@mui/material/Container';
 
-import CelebrationIcon from '@mui/icons-material/Celebration';
+import Logo from '../img/PartyHatDinoLogo.png';
+import { flexbox } from '@mui/system';
 
 const useStyles = makeStyles((theme) => ({
   link: {
     marginRight: 20,
     fontSize: 17,
+    fontWeight: 600
   },
   CelebrationIcon: {
     marginRight: 5,
   },
   SiteName: {
     marginRight: "auto",
-    fontSize: 23,
-    fontWeight: 600
+    fontSize: 26,
+    fontWeight: 600,
+    alignItems: 'center',
+    color: '#17171A',
+    display: 'flex',
+    alignItems: 'center'
+  },
+  logo: {
+    maxHeight: 70,
+    paddingRight: 15
   }
 }))
 
@@ -27,11 +37,11 @@ function Navbar() {
 
   return (
     <div>
-      <AppBar color="default" sx={{backgroundColor: 'transparent', boxShadow: 0}}>
+      <AppBar color="default" sx={{backgroundColor: 'transparent', boxShadow: 0, paddingTop: 1}}>
         <Container maxWidth="lg">
           <Toolbar disableGutters>
-            <Link button to="/" className={styles.SiteName} underline='none' color="textPrimary">
-              <CelebrationIcon className={styles.CelebrationIcon} />PrimalParty 
+            <Link button to="/" className={styles.SiteName} underline='none' >
+              <img src={ Logo } className={styles.logo} /> PrimalParty 
             </Link>
             <Link 
               className={styles.link}

@@ -40,7 +40,6 @@ const SignInOutContainer=()=>{
                 indicatorColor="primary"
                 textColor='primary'
                 onChange={handleChange}
-                aria-label="disabled tabs example"
             >
                 <Tab label="Sign In" />
                 <Tab label="Sign Up" />
