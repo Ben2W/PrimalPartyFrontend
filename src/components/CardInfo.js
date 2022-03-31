@@ -44,15 +44,14 @@ export default function CardInfo(props){
                         {props.desc}
                     </Typography>
 
-                <Alert severity="info">
-                    Bring Pizza
-                </Alert>
-            </CardContent>
+                    <Alert severity="info">
+                        Bring Pizza
+                    </Alert>
+                </CardContent>
 
-            <GuestList guests={props.guests} _id = {props._id}/>
-            <Table tasks={props.tasks} _id={props._id}/>   
-        </Grid>
-
-
+                <GuestList guests={props.guests} _id = {props._id}/>
+                <Table tasks={props.tasks} _id={props._id}/>   
+            </Grid>
+        </div>
     )
 }

@@ -53,8 +53,9 @@ export default function BasicCard(props){
       }
 
     return (
-        <Grid container alignItems="stretch">
-            <Card style={cardStyle}>
+        <div>
+            <Grid container alignItems="stretch">
+                <Card style={cardStyle}>
                     <Grid>
                         <CardContent>
                             <div className="wrapper">
@@ -62,6 +63,7 @@ export default function BasicCard(props){
                                   {props.props.name}
                                   <Button onClick={handleEventDelete} type='submit'>Delete Event</Button>
                                 </Typography>
+                            </div>
 
                             <Typography 
                                 variant="subtitle2" style={{color:'#F5F5F5'}}
