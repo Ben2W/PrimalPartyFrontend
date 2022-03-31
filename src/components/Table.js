@@ -23,6 +23,7 @@ export default function Table(props){
       }, []);
 
     const newTaskSubmit = (e) => {
+
         e.preventDefault();
 
         const details = {
@@ -47,9 +48,7 @@ export default function Table(props){
             credentials: 'include',
             body: formBody
         })
-        .then(response => {
-            return response.json();
-        })
+        .then(response => response.json())
         .then(data => {
             setTasks(data.retval.tasks);
         })
@@ -68,29 +67,27 @@ export default function Table(props){
                 </div>
             </form>
 
-            <form>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Task</th>
-                            <th>Assignee</th>
-                            <th></th>
-                        </tr>
-                    </thead>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Task</th>
+                        <th>Assignee</th>
+                        <th></th>
+                    </tr>
+                </thead>
 
-                    <tbody>
-                    {
-                        tasks.map((value, key) => {
-                        return (
-                            <tr key={key}>
-                                <Task task={value.name} assignees={value.assignees}/>
-                            </tr>
-                        )
-                        })
-                    }
-                    </tbody>
-                </table>
-            </form>
+                <tbody>
+                {
+                    tasks.map((value, key) => {
+                    return (
+                        <tr key={key}>
+                            <Task task={value.name} assignees={value.assignees} eventId={props._id} taskId={value._id}/>
+                        </tr>
+                    )
+                    })
+                }
+                </tbody>
+            </table>
         </>
     )
 }

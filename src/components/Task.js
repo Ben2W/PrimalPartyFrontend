@@ -18,6 +18,23 @@ import EditIcon from '@mui/icons-material/Edit';
 export default function Task(props){
     let assignees = [];
 
+    console.log('/events/'+ props.eventId + '/tasks/' + props.taskId);
+
+    const handleTaskDelete = (e) => {
+
+        e.preventDefault();
+
+        fetch(process.env.REACT_APP_URL + ('/events/'+ props.eventId + '/tasks/' + props.taskId) ,{
+            method: 'DELETE',
+        })
+        .then(response =>{
+            console.log("RESPONSE: " + response.status);
+        })
+        /*.then(data => {
+            console.log("Data: " + data);
+        })*/
+      }
+
     for (var i=0; i<props.assignees.length; i++) {
         assignees.push(
             <AssigneeDisplay assignees={props.assignees[i].firstName}/>
@@ -39,11 +56,11 @@ export default function Task(props){
                         <EditIcon />
                     </IconButton>
                 </div>
-                <div>
-                    <IconButton aria-label="delete" style={{color:'#000000'}}>
+                <form onSubmit={handleTaskDelete}>
+                    <IconButton type="submit" aria-label="delete" style={{color:'#000000'}}>
                         <DeleteIcon />
                     </IconButton>
-                </div>
+                </form>
             </td>
         </>
     )
