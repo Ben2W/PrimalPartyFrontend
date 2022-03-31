@@ -116,7 +116,7 @@ export default function BasicCard(props){
                                             desc={props.props.description}
                                             tasks={props.props.tasks}
                                             _id={props.props._id}
-                                            guestList={props.props.guests}
+                                            guests={props.props.guests}
                                         />
                                         </Box>
                                     </Fade>

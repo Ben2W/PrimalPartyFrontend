@@ -26,6 +26,7 @@ export default function Task(props){
 
         fetch(process.env.REACT_APP_URL + ('/events/'+ props.eventId + '/tasks/' + props.taskId) ,{
             method: 'DELETE',
+            credentials: 'include',
         })
         .then(response =>{
             console.log("RESPONSE: " + response.status);

@@ -66,7 +66,7 @@ export default function CardInfo(props){
                 </Alert>
             </CardContent>
 
-            <GuestList guestList={props.guestList}/>
+            <GuestList guests={props.guests} _id = {props._id}/>
             <Table tasks={props.tasks} _id={props._id}/>   
         </Grid>
 
