@@ -54,7 +54,7 @@ export default function BasicCard(props){
 
     return (
         <div>
-            <Grid container alignItems="stretch">
+            <Grid alignItems="stretch">
                 <Card style={cardStyle}>
                     <Grid>
                         <CardContent>
