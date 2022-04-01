@@ -5,6 +5,7 @@ import Alert from '@mui/material/Alert';
 import '../App.css';
 import Table from '../components/Table';
 import GuestList from '../components/GuestList';
+import GuestSearch from './GuestSearch';
 
 export default function CardInfo(props){
     const descStyleModal = { padding: '0 0 0 0', color: '#F5F5F5' }
