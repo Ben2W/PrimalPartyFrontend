@@ -26,6 +26,11 @@ const useStyles = makeStyles(() => ({
             backgroundColor: '#fff',
             color: '#17171A'
         }
+    },
+    error : {
+        fontSize: 14,
+        color: '#FF0000',
+        margin: '15px 0'
     }
 }))
 
@@ -41,6 +46,9 @@ const Signup = ({handleChange}) => {
     const [phone, setPhone] = useState('');
 
     const [isPending, setIsPending] = useState(false);
+
+    const [errorMessage, setErrorMessage] = useState('');
+
     let navigate = useNavigate();
 
     const handleSubmit = (e) => {
@@ -76,18 +84,32 @@ const Signup = ({handleChange}) => {
         })
         .then(response => {
             console.log(response.status);
-            if(!response.ok) {
-                throw Error('could not fetch the data for that resource')
+            switch(response.status) {
+                case 200:
+                    setIsPending(false);
+                    navigate('/verify')
+                    break;
+                case 410:
+                    setErrorMessage('Username and Email already taken.')
+                    setIsPending(false);
+                    break;
+                case 411:
+                    setErrorMessage('Email already taken.');
+                    setIsPending(false);
+                    break;
+                case 412:
+                    setErrorMessage('Username already taken.');
+                    setIsPending(false);
+                    break;
+                case 500:
+                    setErrorMessage('Issue creating account');
+                    setIsPending(false);
+                    break;
+                case 411:
+                    setErrorMessage('Email unable to be sent');
+                    setIsPending(false);
+                    break;
             }
-            return response.json();
-        })
-        .then((data) => {
-            console.log(data);
-            setIsPending(false);
-            navigate('/verify');
-        })
-        .catch(err => {
-            console.log(err.message);
         })
     }
 
@@ -99,6 +121,9 @@ const Signup = ({handleChange}) => {
                         <Avatar className={styles.avatar}><LockOutlinedIcon/></Avatar>
                         <h2>Sign Up</h2> 
                     </Grid>
+                    {errorMessage && (
+                            <p className={styles.error}> {errorMessage} </p>
+                        )}
                     <form onSubmit={handleSubmit}>
                         <TextField
                             type="text"

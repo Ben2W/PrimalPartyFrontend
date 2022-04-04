@@ -26,6 +26,11 @@ const useStyles = makeStyles(() => ({
             backgroundColor: '#fff',
             color: '#17171A'
         }
+    },
+    error : {
+        fontSize: 14,
+        color: '#FF0000',
+        margin: '15px 0'
     }
 }))
 
@@ -36,6 +41,9 @@ const Login = ({handleChange}) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [isPending, setIsPending] = useState(false);
+
+    const [errorMessage, setErrorMessage] = useState('');
+
     let navigate = useNavigate();
 
     const handleSubmit = (e) => {
@@ -65,17 +73,21 @@ const Login = ({handleChange}) => {
             body: formBody,
         })
         .then(response => {
-            if(!response.ok) {
-                throw Error('could not fetch the data for that resource')
+            console.log(response.status);
+            switch(response.status) {
+                case 200:
+                    setIsPending(false);
+                    navigate('/dashboard')
+                    break;
+                case 400:
+                    setErrorMessage('User not found or Wrong password or Email not authenticated')
+                    setIsPending(false);
+                    break;
+                case 500:
+                    setErrorMessage('Issue Logging In');
+                    setIsPending(false);
+                    break;
             }
-            return response.json();
-        })
-        .then((data) => {
-            setIsPending(false);
-            navigate('/dashboard');
-        })
-        .catch(err => {
-            console.log(err.message);
         })
     }
 
@@ -87,6 +99,9 @@ const Login = ({handleChange}) => {
                         <Avatar className={styles.avatar}><LockOutlinedIcon/></Avatar>
                         <h2>Sign In</h2> 
                     </Grid>
+                    {errorMessage && (
+                            <p className={styles.error}> {errorMessage} </p>
+                        )}
                     <form onSubmit={handleSubmit}>
                         <TextField
                             component={'span'}  
