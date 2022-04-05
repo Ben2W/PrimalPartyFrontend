@@ -10,6 +10,7 @@ import CreateParty from './pages/CreateParty';
 import Friends from './pages/Friends';
 import Invites from './pages/Invites';
 import Main from './pages/Main';
+import ResetPassword from './pages/ResetPassword'
 import Layout from './components/Layout';
 import RequireAuth from './components/RequireAuth';
 import { Routes, Route } from 'react-router-dom'
@@ -22,6 +23,7 @@ function App() {
         <Route exact path="/" element={<Main />} />
         <Route path="/about" element={<About />} />
         <Route path="/forgotpassword" element={<ForgotPassword />} />
+        <Route path="/resetpassword" element={<ResetPassword />} />
         <Route path="/verify" element={<Verify />} />
 
         {/* protected routes */}
