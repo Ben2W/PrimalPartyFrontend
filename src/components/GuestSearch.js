@@ -91,7 +91,7 @@ export default function GuestSearch(props){
                 defaultValue=""
                 onMenuOpen={(e) => setSearch(e)}
                 onKeyDown={(e) => {setSearch(e)}}
-                onChange={(e) => users = e}
+                onChange={(e) => usersToAdd = e}
                 />
             <Button variant="outlined" onClick={newGuestSubmit}>Add New Guests</Button>
         </form>

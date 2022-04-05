@@ -15,6 +15,7 @@ import { Select } from '@mui/material';
 import { MenuItem } from '@mui/material';
 import { FormControl } from 'react-bootstrap';
 import { InputLabel } from '@mui/material';
+import DisplayGuestAdmin from './DisplayGuestAdmin';
 
 const xBtnStyle = {background:'#FF0000', color: '#FFFFFF'}
 
@@ -76,12 +77,12 @@ export default function GuestList(props){
             <ul>
             {
                 props.guests.map((value, key) => {
-                return (
-                    <li key={key}>
-                        {value.firstName + " " + value.lastName}
-                    </li>
-                )
-                })
+                    return (
+                        <li key={key}>
+                            <DisplayGuestAdmin firstName = {value.firstName} lastName = {value.lastName} _id = {value._id} eventId = {props._id}/>
+                        </li>
+                    )
+                    })
             }
             </ul>
         </div>
