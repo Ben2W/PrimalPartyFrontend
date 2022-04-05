@@ -8,8 +8,8 @@ import { MenuItem } from '@mui/material';
 import { InputLabel } from '@mui/material';
 import Select from 'react-select';
 
-const users = [];
-const usersToAdd = [];
+let users = [];
+let usersToAdd = [];
 
 const options = [
     { value: '623cf1c5dcf4fdcf55f19fd3', label: "Lebron James" },
@@ -24,27 +24,27 @@ function changeSearch(e)
     this.setSearch(e.target.value);
 }
 
+function customTheme(theme)
+{
+    return {
+        ... theme,
+        colors:
+        {
+            ...theme.colors,
+            primary25: 'orange',
+            primary:'green',
+        }
+    }
+}
+
 export default function GuestSearch(props){
 
-    const [users, setUsers] = useState([]);
     const [search, setSearch] = useState('');
-    const [usersToAdd, setUsersToAdd] = useState([]);
 
     useEffect(() => {
+        console.log("Searching users");
         searchUsers();
     });
-
-    const searchUsers = async() => {
-        fetch(process.env.REACT_APP_URL + '/users?q=' + search, {
-            method: 'GET',
-            credentials: 'include',
-        })
-        .then(response => response.json())
-        .then(data => {
-            setUsers(data.users)
-            let options = [];
-        })
-    }
 
     let userId = "";
     let selectString = "";
@@ -55,17 +55,15 @@ export default function GuestSearch(props){
         options.push({value: userId, label: selectString},)
     }
 
-    function customTheme(theme)
-    {
-        return {
-            ... theme,
-            colors:
-            {
-                ...theme.colors,
-                primary25: 'orange',
-                primary:'green',
-            }
-        }
+    const searchUsers = async() => {
+        fetch(process.env.REACT_APP_URL + '/users?q=' + search, {
+            method: 'GET',
+            credentials: 'include',
+        })
+        .then(response => response.json())
+        .then(data => {
+            users = data.users
+        })
     }
 
     const newGuestSubmit = (e) => {
@@ -82,7 +80,6 @@ export default function GuestSearch(props){
         }
       }
 
-
     return(
         <form>
             <Select fullWidth 
@@ -92,10 +89,11 @@ export default function GuestSearch(props){
                 options={options} 
                 placeholder="Add User"
                 defaultValue=""
-                onInputChange={(e) => {setSearch(e)}}
-                onChange={(e) => setUsersToAdd(e)}
+                onMenuOpen={(e) => setSearch(e)}
+                onKeyDown={(e) => {setSearch(e)}}
+                onChange={(e) => users = e}
                 />
-            <Button onClick={newGuestSubmit}>Add New Guests</Button>
+            <Button variant="outlined" onClick={newGuestSubmit}>Add New Guests</Button>
         </form>
     )
 }

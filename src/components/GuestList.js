@@ -71,25 +71,8 @@ export default function GuestList(props){
       };
 
       return (
-        <>
-
-        <InputLabel id="demo-simple-select-label">User</InputLabel>
-
-            <form onSubmit={newGuestSubmit}>
-                <div style={{display:'flex'}}>
-                    <Typography variant="subtitle1">
-                        Guest List
-                    </Typography>
-
-                    <TextField 
-                        type="text"
-                        required
-                        onChange={(e) => setGuestId(e.target.value)}              
-                    />
-                    <Button type="submit" style={{width:'40%'}} variant="outlined">Add Guest</Button>
-                </div>
-            </form>
-
+        <div>
+            <InputLabel>Guests</InputLabel>
             <ul>
             {
                 props.guests.map((value, key) => {
@@ -101,6 +84,6 @@ export default function GuestList(props){
                 })
             }
             </ul>
-        </>
+        </div>
     )
 }
