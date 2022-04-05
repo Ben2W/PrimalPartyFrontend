@@ -15,6 +15,8 @@ import ListItemText from "@mui/material/ListItemText";
 import ShowEvents from "./ShowEvents"
 import Logo from '../../img/PartyHatDinoLogo.png';
 
+import useAuth from '../../hooks/useAuth';
+
 const useStyles = makeStyles((theme) => ({
     logo: {
       maxHeight: 70,
@@ -34,6 +36,7 @@ const useStyles = makeStyles((theme) => ({
 const drawerWidth = 240;
 
 const HookedSideBar = (props) => {
+    const { setAuth } = useAuth();
     const navigate = useNavigate();
     const styles = useStyles();
 
@@ -52,7 +55,8 @@ const HookedSideBar = (props) => {
           credentials: 'include'
         })
         .then(() => {
-          navigate('/');
+            setAuth({})
+            navigate('/');
         })
     }
 

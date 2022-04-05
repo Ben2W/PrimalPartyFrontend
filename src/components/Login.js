@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 import { Grid, Paper, Avatar, TextField, Button, Typography, Link } from '@material-ui/core'
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Navigate } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core'
+import useAuth from '../hooks/useAuth';
 
 const useStyles = makeStyles(() => ({
     paper: {
@@ -34,14 +35,16 @@ const useStyles = makeStyles(() => ({
     }
 }))
 
+
 const Login = ({handleChange}) => {
+    const { setAuth } = useAuth();
+
     const styles = useStyles()
 
     //Change the value in the useState to show string in the form
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [isPending, setIsPending] = useState(false);
-
     const [errorMessage, setErrorMessage] = useState('');
 
     let navigate = useNavigate();
@@ -77,7 +80,10 @@ const Login = ({handleChange}) => {
             switch(response.status) {
                 case 200:
                     setIsPending(false);
-                    navigate('/dashboard')
+                    setAuth({username, password});
+                    setUsername('');
+                    setPassword('');
+                    navigate('/dashboard', { replace : true});
                     break;
                 case 400:
                     setErrorMessage('User not found or Wrong password or Email not authenticated')
