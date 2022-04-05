@@ -49,7 +49,7 @@ export default function CardInfo(props){
                         Bring Pizza
                     </Alert>
                 </CardContent>
-                <GuestSearch />
+                <GuestSearch _id = {props._id}/>
                 <GuestList guests={props.guests} _id = {props._id}/>
                 <Table tasks={props.tasks} _id={props._id}/>   
             </Grid>

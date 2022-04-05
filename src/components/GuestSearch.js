@@ -8,6 +8,8 @@ import { MenuItem } from '@mui/material';
 import { InputLabel } from '@mui/material';
 import Select from 'react-select';
 
+const users = [];
+const usersToAdd = [];
 
 const options = [
     { value: '623cf1c5dcf4fdcf55f19fd3', label: "Lebron James" },
@@ -15,25 +17,43 @@ const options = [
     { value: "623e7c236424b98344811a8c", label: "Jonny Haldas" },
   ];
 
+
+function changeSearch(e)
+{
+    console.log("bruh");
+    this.setSearch(e.target.value);
+}
+
 export default function GuestSearch(props){
 
-    /*
-    const searchUsers = () => {
+    const [users, setUsers] = useState([]);
+    const [search, setSearch] = useState('');
+    const [usersToAdd, setUsersToAdd] = useState([]);
 
-        const [users, setUsers] = useState;
-    
-        const fetchUsers = async() => {
-            fetch(process.env.REACT_APP_URL + '/users?q=' + search, {
-                method: 'GET',
-                credentials: 'include',
-            })
-            .then(response => response.json())
-            .then(data => {
-                setUsers(data.users)
-            })   
-        }
+    useEffect(() => {
+        searchUsers();
+    });
+
+    const searchUsers = async() => {
+        fetch(process.env.REACT_APP_URL + '/users?q=' + search, {
+            method: 'GET',
+            credentials: 'include',
+        })
+        .then(response => response.json())
+        .then(data => {
+            setUsers(data.users)
+            let options = [];
+        })
     }
-    */
+
+    let userId = "";
+    let selectString = "";
+    let options = [];
+    for (var i=0; i < users.length; i++) {
+        userId = "" + users[i]._id;
+        selectString = "" + users[i].firstName + " " + users[i].lastName;
+        options.push({value: userId, label: selectString},)
+    }
 
     function customTheme(theme)
     {
@@ -48,13 +68,34 @@ export default function GuestSearch(props){
         }
     }
 
+    const newGuestSubmit = (e) => {
+        for (var i=0; i < usersToAdd.length; i++) {
+            console.log(usersToAdd[i]);
+            fetch(process.env.REACT_APP_URL + ('/events/'+ props._id + '/guests/' + usersToAdd[i].value) ,{
+                method: 'POST',
+                credentials: 'include',
+            })
+            .then(response => response.json())
+            .then(response =>{
+                console.log("RESPONSE: " + response.status);
+            })
+        }
+      }
+
+
     return(
-        <Select fullWidth 
-            isSearchable={true}
-            theme = {customTheme}
-            options={options} 
-            placeholder="Add User"
-            defaultValue=""
-            />
+        <form>
+            <Select fullWidth 
+                isSearchable={true}
+                isMulti
+                theme = {customTheme}
+                options={options} 
+                placeholder="Add User"
+                defaultValue=""
+                onInputChange={(e) => {setSearch(e)}}
+                onChange={(e) => setUsersToAdd(e)}
+                />
+            <Button onClick={newGuestSubmit}>Add New Guests</Button>
+        </form>
     )
 }

@@ -25,6 +25,7 @@ export default function GuestList(props){
     const [guestId, setGuestId] = useState();
     console.log("props:");
     console.log(props);
+
     const newGuestSubmit = (e) => {
 
         fetch(process.env.REACT_APP_URL + ('/events/'+ props._id + '/guests/' + guestId) ,{
@@ -57,8 +58,6 @@ export default function GuestList(props){
         })
       }
 
- 
-
       const [selectedOption, setSelectedOption] = useState("none");
       
       const handleTypeSelect = e => {
@@ -70,10 +69,6 @@ export default function GuestList(props){
       const handleChange = (event) => {
         setUser(event.target.value);
       };
-      
-      console.log("BRUH:");
-      console.log(bruh);
-
 
       return (
         <>
