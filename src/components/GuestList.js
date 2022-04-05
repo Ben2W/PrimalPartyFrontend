@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, Component } from 'react'
 import { Grid, Paper, Avatar, TextField, FormControlLabel, Checkbox, Button, Typography, Link } from '@material-ui/core'
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
@@ -11,8 +11,14 @@ import '../App.css';
 import Task from './Task';
 import { IconButton } from '@material-ui/core';
 import ModeEditOutlineIcon from '@mui/icons-material/ModeEditOutline';
+import { Select } from '@mui/material';
+import { MenuItem } from '@mui/material';
+import { FormControl } from 'react-bootstrap';
+import { InputLabel } from '@mui/material';
 
 const xBtnStyle = {background:'#FF0000', color: '#FFFFFF'}
+
+
 
 export default function GuestList(props){
 
@@ -34,8 +40,46 @@ export default function GuestList(props){
         })
       }
 
-    return (
+      const [q, setQ] = useState([]);
+
+      const getUsers = () => 
+      {
+        fetch(process.env.REACT_APP_URL + '/users' ,{
+            method: 'GET',
+            headers: {
+              "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"
+            },
+            credentials: 'include',
+          })
+        .then(response => response.json())
+        .then(data => {
+            setQ(data.q)
+        })
+      }
+
+ 
+
+      const [selectedOption, setSelectedOption] = useState("none");
+      
+      const handleTypeSelect = e => {
+        setSelectedOption(e.value);
+      };
+
+      const [user, setUser] = React.useState('');
+
+      const handleChange = (event) => {
+        setUser(event.target.value);
+      };
+      
+      console.log("BRUH:");
+      console.log(bruh);
+
+
+      return (
         <>
+
+        <InputLabel id="demo-simple-select-label">User</InputLabel>
+
             <form onSubmit={newGuestSubmit}>
                 <div style={{display:'flex'}}>
                     <Typography variant="subtitle1">

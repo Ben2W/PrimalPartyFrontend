@@ -10,20 +10,30 @@ import Select from 'react-select';
 
 
 const options = [
-    { value: 'none', label: "Empty" },
-    { value: "left", label: "Open Left" },
-    { value: "right", label: "Open Right" },
-    {
-      value: "tilt,left",
-      label: "Tilf and Open Left"
-    },
-    {
-      value: "tilt,right",
-      label: "Tilf and Open Right"
-    }
+    { value: '623cf1c5dcf4fdcf55f19fd3', label: "Lebron James" },
+    { value: "623be4768eed9052100532f1", label: "Dylan Piper" },
+    { value: "623e7c236424b98344811a8c", label: "Jonny Haldas" },
   ];
 
 export default function GuestSearch(props){
+
+    /*
+    const searchUsers = () => {
+
+        const [users, setUsers] = useState;
+    
+        const fetchUsers = async() => {
+            fetch(process.env.REACT_APP_URL + '/users?q=' + search, {
+                method: 'GET',
+                credentials: 'include',
+            })
+            .then(response => response.json())
+            .then(data => {
+                setUsers(data.users)
+            })   
+        }
+    }
+    */
 
     function customTheme(theme)
     {
