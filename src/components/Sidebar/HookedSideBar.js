@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
         color: '#17171A',
         display: 'flex',
         alignItems: 'center'
-    },
+    }
 }))
 
 const drawerWidth = 240;
