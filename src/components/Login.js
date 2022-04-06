@@ -1,34 +1,35 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { Grid, Paper, Avatar, TextField, Button, Typography, Link } from '@material-ui/core'
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import { useNavigate, Navigate } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core'
 import useAuth from '../hooks/useAuth';
+import { UserContext } from '../context/UserContext';
 
 const useStyles = makeStyles(() => ({
     paper: {
-        padding: 20, 
-        minheight: '32vh', 
-        width:280, 
+        padding: 20,
+        minheight: '32vh',
+        width: 280,
         margin: "10px auto",
         fontSize: 20,
 
     },
     avatar: {
-        backgroundColor:'black',
+        backgroundColor: 'black',
     },
     button: {
-        margin:'8px 0', 
-        backgroundColor: '#17171A', 
-        color: '#ffffff', 
-        fontSize: 14, 
+        margin: '8px 0',
+        backgroundColor: '#17171A',
+        color: '#ffffff',
+        fontSize: 14,
         fontWeight: 600,
         '&:hover': {
             backgroundColor: '#fff',
             color: '#17171A'
         }
     },
-    error : {
+    error: {
         fontSize: 14,
         color: '#FF0000',
         margin: '15px 0'
@@ -36,8 +37,9 @@ const useStyles = makeStyles(() => ({
 }))
 
 
-const Login = ({handleChange}) => {
+const Login = ({ handleChange }) => {
     const { setAuth } = useAuth();
+    const { user, setUser } = useContext(UserContext);
 
     const styles = useStyles()
 
@@ -75,26 +77,28 @@ const Login = ({handleChange}) => {
             credentials: 'include',
             body: formBody,
         })
-        .then(response => {
-            console.log(response.status);
-            switch(response.status) {
-                case 200:
-                    setIsPending(false);
-                    setAuth({username, password});
-                    setUsername('');
-                    setPassword('');
-                    navigate('/dashboard', { replace : true});
-                    break;
-                case 400:
-                    setErrorMessage('User not found or Wrong password or Email not authenticated')
-                    setIsPending(false);
-                    break;
-                case 500:
-                    setErrorMessage('Issue Logging In');
-                    setIsPending(false);
-                    break;
-            }
-        })
+            .then(response => {
+                switch (response.status) {
+                    case 200:
+                        response.json().then(json => {
+                            setIsPending(false);
+                            setAuth({ username, password });
+                            setUsername('');
+                            setPassword('');
+                            setUser(json.user);
+                            navigate('/dashboard', { replace: true });
+                        })
+                        break;
+                    case 400:
+                        setErrorMessage('User not found or Wrong password or Email not authenticated')
+                        setIsPending(false);
+                        break;
+                    case 500:
+                        setErrorMessage('Issue Logging In');
+                        setIsPending(false);
+                        break;
+                }
+            })
     }
 
     return (
@@ -102,49 +106,49 @@ const Login = ({handleChange}) => {
             <Grid>
                 <Paper className={styles.paper}>
                     <Grid align="center" >
-                        <Avatar className={styles.avatar}><LockOutlinedIcon/></Avatar>
-                        <h2>Sign In</h2> 
+                        <Avatar className={styles.avatar}><LockOutlinedIcon /></Avatar>
+                        <h2>Sign In</h2>
                     </Grid>
                     {errorMessage && (
-                            <p className={styles.error}> {errorMessage} </p>
-                        )}
+                        <p className={styles.error}> {errorMessage} </p>
+                    )}
                     <form onSubmit={handleSubmit}>
                         <TextField
-                            component={'span'}  
+                            component={'span'}
                             type="text"
                             required
                             fullWidth
                             label="Enter Username"
-                            value={username}    
-                            onChange={(e) => setUsername(e.target.value)}            
+                            value={username}
+                            onChange={(e) => setUsername(e.target.value)}
                         />
                         <TextField
                             component={'span'}
                             type="password"
-                            required   
+                            required
                             fullWidth
                             label="Enter Password"
-                            value={password}  
-                            onChange={(e) => setPassword(e.target.value)}             
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
                         />
 
-                        { !isPending && <Button
+                        {!isPending && <Button
                             type='submit'
                             variant='contained'
                             className={styles.button}
                             fullWidth
                         >
                             Sign In
-                        </Button> }
+                        </Button>}
 
-                        { isPending && <Button
+                        {isPending && <Button
                             type='submit'
                             variant='contained'
                             className={styles.button}
                             fullWidth
                         >
                             Signing In
-                        </Button> }
+                        </Button>}
                     </form>
 
                     <Typography
@@ -155,16 +159,16 @@ const Login = ({handleChange}) => {
                         >
                             Forgot Password?
                         </Link>
-                        <br/>
+                        <br />
                     </Typography>
                     <Typography
                         component={'span'}
                     >
                         Dont have an account? &nbsp;
                         <Link
-                            href="#" 
-                            onClick={()=>handleChange("event", 1)}
-                        > 
+                            href="#"
+                            onClick={() => handleChange("event", 1)}
+                        >
                             Sign Up
                         </Link>
                     </Typography>

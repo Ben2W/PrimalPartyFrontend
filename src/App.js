@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './App.css';
 
 import About from './pages/About';
@@ -14,28 +14,32 @@ import ResetPassword from './pages/ResetPassword'
 import Layout from './components/Layout';
 import RequireAuth from './components/RequireAuth';
 import { Routes, Route } from 'react-router-dom'
+import { UserContext } from './context/UserContext';
+
 
 function App() {
+  const [user, setUser] = useState(null);
   return (
-    <Routes>
-      <Route path='/' element={<Layout />}>
-        {/* public routes */}
-        <Route exact path="/" element={<Main />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/forgotpassword" element={<ForgotPassword />} />
-        <Route path="/resetpassword" element={<ResetPassword />} />
-        <Route path="/verify" element={<Verify />} />
-
-        {/* protected routes */}
-        <Route element={<RequireAuth />}>
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/account" element={<Account />} />
-          <Route path="/createparty" element={<CreateParty />} />
-          <Route path="/friends" element={<Friends />} />
-          <Route path="/invites" element={<Invites />} />
+    <UserContext.Provider value={{user, setUser}}>
+      <Routes>
+        <Route path='/' element={<Layout />}>
+          {/* public routes */}
+          <Route exact path="/" element={<Main />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/forgotpassword" element={<ForgotPassword />} />
+          <Route path="/resetpassword" element={<ResetPassword />} />
+          <Route path="/verify" element={<Verify />} />
+          {/* protected routes */}
+          <Route element={<RequireAuth />}>
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/account" element={<Account />} />
+            <Route path="/createparty" element={<CreateParty />} />
+            <Route path="/friends" element={<Friends />} />
+            <Route path="/invites" element={<Invites />} />
+          </Route>
         </Route>
-      </Route>
-    </Routes>
+      </Routes>      
+    </UserContext.Provider>
   );
 }
 
