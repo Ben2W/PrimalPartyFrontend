@@ -3,7 +3,6 @@ import React from 'react'
 import { Link, Outlet } from 'react-router-dom'
 import HookedSideBar from './Sidebar/HookedSideBar'
 import ArrowCircleLeftOutlinedIcon from '@mui/icons-material/ArrowCircleLeftOutlined';
-import { Scale } from '@mui/icons-material';
 import { IconButton } from '@mui/material';
 
 const useStyles = makeStyles({
@@ -17,6 +16,9 @@ const useStyles = makeStyles({
     back: {
         width: 60,
         height: 60
+    },
+    main: {
+        paddingLeft: 80
     }
 
 })
@@ -30,7 +32,9 @@ export default function Layout() {
                 <IconButton component={Link} to='/dashboard'>
                     <ArrowCircleLeftOutlinedIcon fontSize="large" />
                 </IconButton>
-                <Outlet />
+                <div className={style.main} >
+                    <Outlet />
+                </div>
             </div>
         </div>
     )

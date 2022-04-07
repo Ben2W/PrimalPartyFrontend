@@ -2,18 +2,14 @@ import React from 'react';
 import DisplayCard from '../components/DisplayCard'
 import DisplayCardGuest from '../components/DisplayCardGuest'
 
-
 const Dashboard = () => {
   return (
-    <div className="dashboard">
+    <div>
       <div>
-        <div>
-          <DisplayCardGuest />
-        </div>
-
-        <div>
-          <DisplayCard />
-        </div>
+        <DisplayCardGuest />
+      </div>
+      <div>
+        <DisplayCard />
       </div>
     </div>
   );

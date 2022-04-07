@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Grid, Paper, Avatar, TextField, Button, Typography, Link } from '@material-ui/core'
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import { useNavigate, Navigate } from 'react-router-dom';
@@ -40,6 +40,7 @@ const useStyles = makeStyles(() => ({
 const Login = ({ handleChange }) => {
     const { setAuth } = useAuth();
     const { user, setUser } = useContext(UserContext);
+    const [data, setData] = useState({})
 
     const styles = useStyles()
 
@@ -51,7 +52,30 @@ const Login = ({ handleChange }) => {
 
     let navigate = useNavigate();
 
-    const handleSubmit = (e) => {
+    async function loginUser(formBody) {
+        const response = await fetch(process.env.REACT_APP_URL + '/login', {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"
+            },
+            credentials: 'include',
+            body: formBody,
+        })
+        const data = await response.json();
+        return data;
+    }
+
+    async function loadEvents() {
+        const response = await fetch(process.env.REACT_APP_URL + '/events', {
+            method: 'GET',
+
+            credentials: 'include'
+        })
+        const data = await response.json();
+        return data;
+    }
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
         const details = {
@@ -69,36 +93,21 @@ const Login = ({ handleChange }) => {
         }
         formBody = formBody.join("&");
 
-        fetch(process.env.REACT_APP_URL + '/login', {
-            method: 'POST',
-            headers: {
-                "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"
-            },
-            credentials: 'include',
-            body: formBody,
-        })
-            .then(response => {
-                switch (response.status) {
-                    case 200:
-                        response.json().then(json => {
-                            setIsPending(false);
-                            setAuth({ username, password });
-                            setUsername('');
-                            setPassword('');
-                            setUser(json.user);
-                            navigate('/dashboard', { replace: true });
-                        })
-                        break;
-                    case 400:
-                        setErrorMessage('User not found or Wrong password or Email not authenticated')
-                        setIsPending(false);
-                        break;
-                    case 500:
-                        setErrorMessage('Issue Logging In');
-                        setIsPending(false);
-                        break;
-                }
-            })
+        const loginData = await loginUser(formBody);
+        const eventData = await loadEvents();
+
+        loginData.user.events = eventData.events
+
+        setUser(loginData.user);
+        
+        setAuth({ username, password });
+
+        setUsername('');
+        setPassword('');
+
+        setIsPending(false);
+        
+        navigate('/dashboard')
     }
 
     return (
