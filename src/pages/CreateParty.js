@@ -73,7 +73,7 @@ function CreateParty() {
   }
 
   return (
-    <div className={styles.paper}>
+    <div>
       <Typography variant='h3'>Create a New Event</Typography>
       <form onSubmit={handleSubmit} className={styles.form}>
         <Grid container spacing={2} >

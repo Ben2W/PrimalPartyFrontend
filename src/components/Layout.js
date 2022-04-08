@@ -9,7 +9,7 @@ const useStyles = makeStyles({
     page: {
         paddingTop: 20,
         paddingLeft: 20,
-        paddingRight: 30,
+        paddingRight: 80,
         width: '100%'
     },
     root: {
