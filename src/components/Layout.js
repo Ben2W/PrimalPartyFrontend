@@ -8,7 +8,9 @@ import { IconButton } from '@mui/material';
 const useStyles = makeStyles({
     page: {
         paddingTop: 20,
-        paddingLeft: 20
+        paddingLeft: 20,
+        paddingRight: 30,
+        width: '100%'
     },
     root: {
         display: 'flex'
