@@ -13,6 +13,7 @@ import Main from './pages/Main';
 import ResetPassword from './pages/ResetPassword'
 import Layout from './components/Layout';
 import RequireAuth from './components/RequireAuth';
+import EditAccount from './pages/EditAccount';
 import { Routes, Route } from 'react-router-dom'
 import { UserContext } from './context/UserContext';
 
@@ -36,6 +37,8 @@ function App() {
             <Route path="/createparty" element={<CreateParty />} />
             <Route path="/friends" element={<Friends />} />
             <Route path="/invites" element={<Invites />} />
+            <Route path="/editaccount" element={<EditAccount />} />
+
           </Route>
         </Route>
       </Routes>

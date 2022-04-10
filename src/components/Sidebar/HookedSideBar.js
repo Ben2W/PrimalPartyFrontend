@@ -39,7 +39,6 @@ const drawerWidth = 240;
 const HookedSideBar = () => {
     const { setAuth } = useAuth();
     const { user } = React.useContext(UserContext);
-    console.log(user)
 
     const navigate = useNavigate();
     const styles = useStyles();

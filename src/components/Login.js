@@ -1,7 +1,7 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { Grid, Paper, Avatar, TextField, Button, Typography, Link } from '@material-ui/core'
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import { useNavigate, Navigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core'
 import useAuth from '../hooks/useAuth';
 import { UserContext } from '../context/UserContext';
@@ -39,8 +39,7 @@ const useStyles = makeStyles(() => ({
 
 const Login = ({ handleChange }) => {
     const { setAuth } = useAuth();
-    const { user, setUser } = useContext(UserContext);
-    const [data, setData] = useState({})
+    const { setUser } = useContext(UserContext);
 
     const styles = useStyles()
 
