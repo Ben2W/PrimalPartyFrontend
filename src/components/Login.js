@@ -3,7 +3,6 @@ import { Grid, Paper, Avatar, TextField, Button, Typography, Link } from '@mater
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import { useNavigate } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core'
-import useAuth from '../hooks/useAuth';
 import { UserContext } from '../context/UserContext';
 
 const useStyles = makeStyles(() => ({
@@ -38,7 +37,6 @@ const useStyles = makeStyles(() => ({
 
 
 const Login = ({ handleChange }) => {
-    const { setAuth } = useAuth();
     const { setUser } = useContext(UserContext);
 
     const styles = useStyles()
@@ -99,8 +97,6 @@ const Login = ({ handleChange }) => {
 
         setUser(loginData.user);
         localStorage.setItem('user', JSON.stringify(loginData.user))
-
-        // setAuth({ username, password });
 
         setUsername('');
         setPassword('');
