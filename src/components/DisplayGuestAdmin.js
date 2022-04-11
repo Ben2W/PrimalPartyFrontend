@@ -2,14 +2,9 @@ import React, { useState, useEffect, Component } from 'react'
 import { Grid, Paper, Avatar, TextField, FormControlLabel, Checkbox, Button, Typography, Link } from '@material-ui/core'
 import { IconButton } from '@material-ui/core';
 import DeleteIcon from '@mui/icons-material/Delete';
-
-const xBtnStyle = {background:'#FF0000', color: '#FFFFFF'}
+import { render } from '@testing-library/react';
 
 export default function DisplayGuestAdmin(props){
-
-    const [guestId, setGuestId] = useState();
-    console.log("props:");
-    console.log(props);
 
     const handleGuestDelete = (e) => {
 
@@ -22,10 +17,10 @@ export default function DisplayGuestAdmin(props){
         .then(response =>{
             console.log("RESPONSE: " + response.status);
         })
-      }
+    }
 
-      return (
-        <form onSubmit={handleGuestDelete}>
+    return (
+        <form onSubmit={handleGuestDelete} style={{display:'flex'}}>
             <p>{props.firstName + " " + props.lastName}</p>
             <IconButton type="submit" aria-label="delete" style={{color:'#000000'}}>
                 <DeleteIcon />

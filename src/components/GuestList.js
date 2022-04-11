@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Component } from 'react'
+import React, { useState, useEffect, Component, setState } from 'react'
 import { Grid, Paper, Avatar, TextField, FormControlLabel, Checkbox, Button, Typography, Link } from '@material-ui/core'
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
@@ -24,67 +24,39 @@ const xBtnStyle = {background:'#FF0000', color: '#FFFFFF'}
 export default function GuestList(props){
 
     const [guestId, setGuestId] = useState();
-    console.log("props:");
-    console.log(props);
-
-    const newGuestSubmit = (e) => {
-
-        fetch(process.env.REACT_APP_URL + ('/events/'+ props._id + '/guests/' + guestId) ,{
-            method: 'POST',
-            headers: {
-            "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"
-            },
-            credentials: 'include',
-        })
-        .then(response => response.json())
-        .then(response =>{
-            console.log("RESPONSE: " + response.status);
-        })
-      }
-
-      const [q, setQ] = useState([]);
-
-      const getUsers = () => 
-      {
+    const [q, setQ] = useState([]);
+    const [user, setUser] = React.useState('');
+    const [selectedOption, setSelectedOption] = useState("none");
+ 
+    const getUsers = () => 
+    {
         fetch(process.env.REACT_APP_URL + '/users' ,{
             method: 'GET',
             headers: {
-              "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"
+                "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"
             },
             credentials: 'include',
-          })
+            })
         .then(response => response.json())
         .then(data => {
             setQ(data.q)
         })
-      }
-
-      const [selectedOption, setSelectedOption] = useState("none");
-      
-      const handleTypeSelect = e => {
-        setSelectedOption(e.value);
-      };
-
-      const [user, setUser] = React.useState('');
-
-      const handleChange = (event) => {
-        setUser(event.target.value);
-      };
+    }
 
       return (
         <div>
-            <InputLabel>Guests</InputLabel>
-            <ul>
+            <InputLabel>Guests List</InputLabel>
+            <p>
             {
                 props.guests.map((value, key) => {
                     return (
-                        <li key={key}>
+                        <div key={key}>
                             <DisplayGuestAdmin firstName = {value.firstName} lastName = {value.lastName} _id = {value._id} eventId = {props._id}/>
-                        </li>
+                        </div>
                     )
                     })
             }
-            </ul>
+            </p>
         </div>
     )
 }

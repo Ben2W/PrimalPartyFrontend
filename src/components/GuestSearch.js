@@ -11,7 +11,7 @@ import Select from 'react-select';
 let users = [];
 let usersToAdd = [];
 
-const options = [
+let options = [
     { value: '623cf1c5dcf4fdcf55f19fd3', label: "Lebron James" },
     { value: "623be4768eed9052100532f1", label: "Dylan Piper" },
     { value: "623e7c236424b98344811a8c", label: "Jonny Haldas" },
@@ -48,7 +48,7 @@ export default function GuestSearch(props){
 
     let userId = "";
     let selectString = "";
-    let options = [];
+    options = [];
     for (var i=0; i < users.length; i++) {
         userId = "" + users[i]._id;
         selectString = "" + users[i].firstName + " " + users[i].lastName;

@@ -51,7 +51,7 @@ export default function CardInfo(props){
                 </CardContent>
                 <GuestSearch _id = {props._id}/>
                 <GuestList guests={props.guests} _id = {props._id}/>
-                <Table tasks={props.tasks} _id={props._id}/>   
+                <Table tasks={props.tasks} _id={props._id} guests = {props.guests}/>   
             </Grid>
         </div>
     )

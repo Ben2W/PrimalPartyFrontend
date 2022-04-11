@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, setState,  Component } from 'react'
 import { Grid, Paper, Avatar, TextField, FormControlLabel, Checkbox, Button, Typography, Link } from '@material-ui/core'
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
@@ -81,7 +81,7 @@ export default function Table(props){
                     tasks.map((value, key) => {
                     return (
                         <tr key={key}>
-                            <Task task={value.name} assignees={value.assignees} eventId={props._id} taskId={value._id}/>
+                            <Task task={value.name} assignees={value.assignees} eventId={props._id} taskId={value._id} guests = {props.guests}/>
                         </tr>
                     )
                     })
