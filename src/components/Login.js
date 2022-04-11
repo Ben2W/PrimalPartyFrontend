@@ -98,14 +98,15 @@ const Login = ({ handleChange }) => {
         loginData.user.events = eventData.events
 
         setUser(loginData.user);
-        
-        setAuth({ username, password });
+        localStorage.setItem('user', JSON.stringify(loginData.user))
+
+        // setAuth({ username, password });
 
         setUsername('');
         setPassword('');
 
         setIsPending(false);
-        
+
         navigate('/dashboard')
     }
 

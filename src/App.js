@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './App.css';
 
 import About from './pages/About';
@@ -14,12 +14,21 @@ import ResetPassword from './pages/ResetPassword'
 import Layout from './components/Layout';
 import RequireAuth from './components/RequireAuth';
 import EditAccount from './pages/EditAccount';
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, useNavigate } from 'react-router-dom'
 import { UserContext } from './context/UserContext';
+import useAuth from './hooks/useAuth';
 
 
 function App() {
   const [user, setUser] = useState(null);
+  
+  if(!user) {
+    const localUser = localStorage.getItem('user')
+    if(localUser) {
+      setUser(JSON.parse(localUser))
+    }
+  }
+  
   return (
     <UserContext.Provider value={{ user, setUser }}>
       <Routes>

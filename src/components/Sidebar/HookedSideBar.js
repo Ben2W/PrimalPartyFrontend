@@ -38,7 +38,7 @@ const drawerWidth = 240;
 
 const HookedSideBar = () => {
     const { setAuth } = useAuth();
-    const { user } = React.useContext(UserContext);
+    const { user, setUser } = React.useContext(UserContext);
 
     const navigate = useNavigate();
     const styles = useStyles();
@@ -58,7 +58,8 @@ const HookedSideBar = () => {
             credentials: 'include'
         })
             .then(() => {
-                setAuth({})
+                setUser({})
+                localStorage.clear();
                 navigate('/');
             })
     }

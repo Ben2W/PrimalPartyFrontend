@@ -1,13 +1,13 @@
 import { Navigate, Outlet } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
+import { UserContext } from "../context/UserContext";
+import { useContext, useEffect } from "react";
 
 const RequireAuth = () => {
-    const { auth } = useAuth();
-    console.log('auth')
-    console.log(auth)
+    const { user } = useContext(UserContext);
 
     return (
-        auth?.username
+        user?.username
             ? <Outlet />
             : <Navigate to='/' replace />
     );

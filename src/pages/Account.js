@@ -42,7 +42,7 @@ function Account() {
 
         </Grid>
         <Grid container spacing={2} sx={{ marginTop: 4 }}>
-          <Grid item xs={3}>
+          <Grid item xs={5}>
             <Button
               sx={{ boxShadow: 3 }}
               xs={3}
@@ -53,18 +53,6 @@ function Account() {
               fullWidth
             >
               Edit Information
-            </Button>
-          </Grid>
-          <Grid item xs={3}>
-            <Button
-              sx={{ boxShadow: 3 }}
-              xs={3}
-              type='submit'
-              size='large'
-              variant='contained'
-              fullWidth
-            >
-              Change Password
             </Button>
           </Grid>
         </Grid>
