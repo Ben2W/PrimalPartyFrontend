@@ -1,5 +1,12 @@
-import React, { useState, useEffect } from 'react'
-import { TextField, Button } from '@material-ui/core'
+import React, { useState, useEffect, setState,  Component } from 'react'
+import { Grid, Paper, Avatar, TextField, FormControlLabel, Checkbox, Button, Typography, Link } from '@material-ui/core'
+import Card from '@mui/material/Card';
+import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
+import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import Image from '../img/purple-grad.png'; // Import using relative path
+import Backdrop from '@mui/material/Backdrop';
 import '../App.css';
 import Task from './Task';
 
@@ -70,7 +77,7 @@ export default function Table(props){
                     tasks.map((value, key) => {
                     return (
                         <tr key={key}>
-                            <Task task={value.name} assignees={value.assignees} eventId={props._id} taskId={value._id}/>
+                            <Task task={value.name} assignees={value.assignees} eventId={props._id} taskId={value._id} guests = {props.guests}/>
                         </tr>
                     )
                     })

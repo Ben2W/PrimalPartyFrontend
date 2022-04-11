@@ -16,7 +16,6 @@ const style = {
     left: '50%',
     transform: 'translate(-50%, -50%)',
     width: 800,
-    height: 800,
     background: 'linear-gradient(145deg, #e66465, #9198e5)',
     border: '2px solid #000',
     boxShadow: 24,
