@@ -69,46 +69,14 @@ const AdminCard = () => {
                     <Typography variant='h5' sx={{ marginTop: 3, fontWeight: 'bold' }}>About: </Typography>
                     <Typography variant='h5' sx={{ marginTop: 3, fontWeight: 'bold' }}>Guests: </Typography>
                     <Typography variant='h5' sx={{ marginTop: 3, fontWeight: 'bold' }}>Tasks: </Typography>
-                    <Typography variant='h5' sx={{ marginTop: 3, fontWeight: 'bold' }}>List: </Typography>
 
                 </Grid>
                 <Grid item xs={3}>
                     <Typography variant='h5' sx={{ marginTop: 3 }}>{event.date}</Typography>
                     <Typography variant='h5' sx={{ marginTop: 3 }}>{event.address}</Typography>
                     <Typography variant='h5' sx={{ marginTop: 3 }}>{event.description}</Typography>
-                    <GuestSearch _id={event._id} />
-                    <Table tasks={event.tasks} _id={event.id} guests={event.guests} />
-                    {/* <GuestList guests={event.guest} _id={event._id} />   */}
-
-
-                </Grid>
-                <Grid container spacing={2} sx={{ marginTop: 4 }}>
-                    <Grid item xs={3}>
-                        <Button
-                            sx={{ boxShadow: 3 }}
-                            xs={3}
-                            type='submit'
-                            size='large'
-                            variant='contained'
-                            // onClick={() => navigate('/editaccount')}
-                            fullWidth
-                        >
-                            Edit Information
-                        </Button>
-                    </Grid>
-                    <Grid item xs={3}>
-                        <Button
-                            sx={{ boxShadow: 3 }}
-                            xs={3}
-                            type='submit'
-                            size='large'
-                            variant='contained'
-                            onClick={handleDelete}
-                            fullWidth
-                        >
-                            Delete Event
-                        </Button>
-                    </Grid>
+                    <Typography variant='h5' sx={{ marginTop: 3 }}>{event.guests.length}</Typography>
+                    <Typography variant='h5' sx={{ marginTop: 3 }}>{event.tasks.length}</Typography>
                 </Grid>
             </Grid>
 

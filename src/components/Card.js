@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import { Grid, Button, Typography } from '@mui/material';
 import Card from '@mui/material/Card';
 import CardInfo from '../components/CardInfo.js';
@@ -25,13 +25,16 @@ const style = {
 };
 
 export default function BasicCard(props) {
-    const { user, setUser } = React.useContext(UserContext);
+    const { user } = React.useContext(UserContext);
+    const [ admin, setAdmin ] = useState(false);
     const navigate = useNavigate();
     const i = props.props
-    // console.log("index")
-    // console.log(i)
-    // console.log('User index')
-    // console.log(user.events)
+
+    useEffect(() => {
+        if (user.events[i].admin._id == user._id) {
+            setAdmin(true)
+        } 
+    }, [])
 
     const cardStyle = {
         width: 275, height: 315, display: 'flex', justifyContent: 'space-between', flexDirection: 'column', background: 'linear-gradient(145deg, #e66465, #9198e5)'
@@ -40,38 +43,7 @@ export default function BasicCard(props) {
     const btnStyle = { backgroundColor: "#000000", display: 'block' }
     const descStyle = { padding: '30px 0 0 0', color: '#F5F5F5' }
 
-    const [open, setOpen] = React.useState(false);
 
-    // const handleOpen = () => setOpen(true);
-    // const handleOpen = () => {
-    //     navigate('/event', { state: {
-    //         index: i
-    //     }})
-    // }
-    const handleClose = () => setOpen(false);
-
-    const handleEventDelete = (e) => {
-        e.preventDefault();
-
-
-        // fetch(process.env.REACT_APP_URL + ('/events/' + user.events[i]._id), {
-        //     method: 'DELETE',
-        //     credentials: 'include',
-        // })
-        //     .then(() => {
-        //         const temp = user;
-        //         const reducedEvents = user.events;
-        //         console.log('sad')
-        //         console.log(reducedEvents)
-
-        //         const Newarr = reducedEvents.filter((reducedEvents) => reducedEvents._id !== user.events[i]._id)
-
-        //         temp.events = Newarr;
-        //         console.log('blah')
-        //         console.log(Newarr)
-        //         setUser(temp);
-        //     })
-    }
 
     return (
         <div>
@@ -82,7 +54,6 @@ export default function BasicCard(props) {
                             <div className="wrapper">
                                 <Typography variant="h5" style={{ color: '#F5F5F5' }}>
                                     {user.events[i].name}
-                                    <Button onClick={handleEventDelete} type='submit'>Edit</Button>
                                 </Typography>
                             </div>
 
@@ -112,33 +83,10 @@ export default function BasicCard(props) {
 
                     <Grid>
                         <CardActions>
-                            <Button type='submit' onClick={() => navigate('/event/' + i)} color='primary' variant='contained' style={btnStyle} fullWidth >View More</Button>
-                            {/* <Modal
-                                aria-labelledby="transition-modal-title"
-                                aria-describedby="transition-modal-description"
-                                open={open}
-                                onClose={handleClose}
-                                closeAfterTransition
-                                BackdropComponent={Backdrop}
-                                BackdropProps={{
-                                    timeout: 500,
-                                }}
-                            >
-                                <Fade in={open}>
-                                    <Box sx={style}>
-                                        <CardInfo
-                                            title={user.events[i].title}
-                                            date={user.events[i].date}
-                                            address={user.events[i].address}
-                                            button="View More"
-                                            desc={user.events[i].description}
-                                            tasks={user.events[i].tasks}
-                                            _id={user.events[i]._id}
-                                            guests={user.events[i].guests}
-                                        />
-                                    </Box>
-                                </Fade>
-                            </Modal> */}
+                            {admin
+                                ? <Button type='submit' onClick={() => navigate('/eventadmin/' + i)} color='primary' variant='contained' style={btnStyle} fullWidth >View & Edit</Button>
+                                : <Button type='submit' onClick={() => navigate('/event/' + i)} color='primary' variant='contained' style={btnStyle} fullWidth >View More</Button>
+                            }
                         </CardActions>
                     </Grid>
                 </Card>
