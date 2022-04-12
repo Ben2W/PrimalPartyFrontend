@@ -72,6 +72,16 @@ const Login = ({ handleChange }) => {
         return data;
     }
 
+    async function loadFriends() {
+        const response = await fetch(process.env.REACT_APP_URL + '/friends', {
+            method: 'GET',
+
+            credentials: 'include'
+        })
+        const data = await response.json();
+        return data;
+    }
+
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -92,8 +102,11 @@ const Login = ({ handleChange }) => {
 
         const loginData = await loginUser(formBody);
         const eventData = await loadEvents();
+        const friendData = await loadFriends();
 
         loginData.user.events = eventData.events
+        loginData.user.friends = friendData.friends
+        console.log(loginData);
 
         setUser(loginData.user);
         localStorage.setItem('user', JSON.stringify(loginData.user))
