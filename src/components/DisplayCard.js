@@ -7,7 +7,7 @@ const DisplayCard = () => {
 
     return (
         <div>
-            <Typography sx={{ fontSize: '36px', fontWeight: 500 }}>Upcoming Events</Typography>
+            <Typography variant='h3' sx={{paddingBottom: 3, fontWeight: 'bold'}}>Upcoming Events</Typography>
             <DisplayCardHelper />
         </div>
     )

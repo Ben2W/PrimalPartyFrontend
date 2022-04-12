@@ -1,11 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
 import MyEventsItem from "./MyEventsItem"
+import { UserContext } from '../../context/UserContext'
 
-export default function MyEventsHelper(props){
-    
+export default function MyEventsHelper(props) {
+    const { user } = useContext(UserContext)
+
     let events = [];
-    for (var i=0; i<props.props.length; i++) {
-        events.push(<MyEventsItem props = { props.props[i] } key={ i } />)
+    for (var i = 0; i < props.props.length; i++) {
+        if (user.events[i].admin._id == user._id) {
+            events.push(<MyEventsItem props={props.props[i]} key={i} />)
+        }
+
     }
 
     return (

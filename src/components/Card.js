@@ -46,7 +46,7 @@ export default function BasicCard(props) {
 
 
     return (
-        <div>
+        <Box sx={{paddingRight: 4, paddingBottom: 4}}>
             <Grid container alignItems="stretch">
                 <Card style={cardStyle}>
                     <Grid>
@@ -91,6 +91,6 @@ export default function BasicCard(props) {
                     </Grid>
                 </Card>
             </Grid>
-        </div>
+        </Box>
     );
 }

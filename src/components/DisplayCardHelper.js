@@ -8,12 +8,12 @@ export default function DisplayCardHelper() {
 
     let cards = [];
     for (let i = 0; i < user.events.length; i++) {
-        cards.push(<Card props={i} key={i} />)
+        cards.push(<div><Card props={i} key={i} /></div>)
     }
 
     return (
         <>
-            <Box sx={{display: 'flex', backgroundColor: '#555555', flexWrap: 'wrap'}}>
+            <Box sx={{display: 'flex', flexWrap: 'wrap'}}>
                 {cards}
             </Box>
         </>
