@@ -9,6 +9,8 @@ import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import Fade from '@mui/material/Fade';
 import Alert from '@mui/material/Alert';
+import { UserContext } from '../context/UserContext';
+import { useNavigate } from 'react-router-dom';
 
 const style = {
     position: 'absolute',
@@ -22,13 +24,20 @@ const style = {
     p: 4,
 };
 
-export default function BasicCard(props){
+export default function BasicCard(props) {
+    const { user, setUser } = React.useContext(UserContext);
+    const navigate = useNavigate();
+    const i = props.props
+    // console.log("index")
+    // console.log(i)
+    // console.log('User index')
+    // console.log(user.events)
 
     const cardStyle = {
         width: 275, height: 315, display: 'flex', justifyContent: 'space-between', flexDirection: 'column', background: 'linear-gradient(145deg, #e66465, #9198e5)'
     }
 
-    const btnStyle={backgroundColor:"#000000", display:'block'}
+    const btnStyle = { backgroundColor: "#000000", display: 'block' }
     const descStyle = { padding: '30px 0 0 0', color: '#F5F5F5' }
 
     const [open, setOpen] = React.useState(false);
@@ -37,19 +46,26 @@ export default function BasicCard(props){
     const handleClose = () => setOpen(false);
 
     const handleEventDelete = (e) => {
-
         e.preventDefault();
 
-        console.log(props.props._id)
-
-        fetch(process.env.REACT_APP_URL + ('/events/'+ props.props._id) ,{
+        fetch(process.env.REACT_APP_URL + ('/events/' + user.events[i]._id), {
             method: 'DELETE',
             credentials: 'include',
         })
-        .then(response =>{
-            console.log("RESPONSE: " + response.status);
-        })
-      }
+            .then(() => {
+                const temp = user;
+                const reducedEvents = user.events;
+                console.log('sad')
+                console.log(reducedEvents)
+
+                const Newarr = reducedEvents.filter((reducedEvents) => reducedEvents._id !== user.events[i]._id)
+
+                temp.events = Newarr;
+                console.log('blah')
+                console.log(Newarr)
+                setUser(temp);
+            })
+    }
 
     return (
         <div>
@@ -58,28 +74,28 @@ export default function BasicCard(props){
                     <Grid>
                         <CardContent>
                             <div className="wrapper">
-                                <Typography variant="h5" style={{color:'#F5F5F5'}}>
-                                  {props.props.name}
-                                  <Button onClick={handleEventDelete} type='submit'>Delete Event</Button>
+                                <Typography variant="h5" style={{ color: '#F5F5F5' }}>
+                                    {user.events[i].name}
+                                    <Button onClick={handleEventDelete} type='submit'>Delete Event</Button>
                                 </Typography>
                             </div>
 
-                            <Typography 
-                                variant="subtitle2" style={{color:'#F5F5F5'}}
+                            <Typography
+                                variant="subtitle2" style={{ color: '#F5F5F5' }}
                             >
-                                Date: {props.props.date}
+                                Date: {user.events[i].date}
                             </Typography>
 
-                            <Typography 
-                                variant="subtitle2" style={{color:'#F5F5F5'}}
+                            <Typography
+                                variant="subtitle2" style={{ color: '#F5F5F5' }}
                             >
-                                Address: {props.props.address}
+                                Address: {user.events[i].address}
                             </Typography>
 
                             <Typography
                                 variant="body2" style={descStyle}
                             >
-                                {props.props.description}
+                                {user.events[i].description}
                             </Typography>
                         </CardContent>
                     </Grid>
@@ -105,14 +121,14 @@ export default function BasicCard(props){
                                 <Fade in={open}>
                                     <Box sx={style}>
                                         <CardInfo
-                                            title={props.props.title}
-                                            date={props.props.date}
-                                            address={props.props.address}
+                                            title={user.events[i].title}
+                                            date={user.events[i].date}
+                                            address={user.events[i].address}
                                             button="View More"
-                                            desc={props.props.description}
-                                            tasks={props.props.tasks}
-                                            _id={props.props._id}
-                                            guests={props.props.guests}
+                                            desc={user.events[i].description}
+                                            tasks={user.events[i].tasks}
+                                            _id={user.events[i]._id}
+                                            guests={user.events[i].guests}
                                         />
                                     </Box>
                                 </Fade>

@@ -19,15 +19,15 @@ import { UserContext } from './context/UserContext';
 
 
 function App() {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState();
 
-  if(!user) {
+  if (!user) {
     const localUser = localStorage.getItem('user')
-    if(localUser) {
+    if (localUser) {
       setUser(JSON.parse(localUser))
     }
   }
-  
+
   return (
     <UserContext.Provider value={{ user, setUser }}>
       <Routes>
@@ -46,7 +46,6 @@ function App() {
             <Route path="/friends" element={<Friends />} />
             <Route path="/invites" element={<Invites />} />
             <Route path="/editaccount" element={<EditAccount />} />
-
           </Route>
         </Route>
       </Routes>

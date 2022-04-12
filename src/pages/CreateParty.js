@@ -1,10 +1,11 @@
 import { Grid, TextField, Button, Typography } from '@mui/material';
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core'
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import StaticDateTimePicker from '@mui/lab/StaticDateTimePicker';
+import { UserContext } from '../context/UserContext'
 
 const useStyles = makeStyles(() => ({
   field: {
@@ -21,6 +22,7 @@ const useStyles = makeStyles(() => ({
 }))
 
 function CreateParty() {
+  const { user, setUser } = useContext(UserContext);
 
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
@@ -64,7 +66,20 @@ function CreateParty() {
         }
         return response.json();
       })
-      .then(() => {
+      .then((data) => {
+        const temp = user;
+        console.log(temp);
+        const tempEvent = user.events;
+        console.log(tempEvent);
+        tempEvent.push(data.newEvent);
+        console.log(tempEvent)
+
+        temp.events = tempEvent;
+
+        setUser(temp);
+        console.log(temp)
+  
+
         navigate('/dashboard');
       })
       .catch(err => {
