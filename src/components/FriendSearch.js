@@ -52,6 +52,8 @@ export default function FriendSearch(props){
         options.push({value: userId, label: selectString},)
     }
 
+
+
     const searchUsers = async() => {
         fetch(process.env.REACT_APP_URL + '/users?q=' + search, {
             method: 'GET',
@@ -79,19 +81,8 @@ export default function FriendSearch(props){
 
     return(
         <form>
-            <Select 
-                fullWidth
-                isSearchable={true}
-                isMulti
-                theme = {customTheme}
-                options={options} 
-                placeholder="Add User"
-                defaultValue=""
-                onMenuOpen={(e) => setSearch(e)}
-                onKeyDown={(e) => {setSearch(e)}}
-                onChange={(e) => usersToAdd = e}
-                />
-            <Button fullWidth variant="outlined" onClick={newFriendSubmit}>Add</Button>
+            <input></input>
+            <Button fullWidth variant="outlined" onClick={newFriendSubmit}>Search</Button>
         </form>
     )
 }

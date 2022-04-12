@@ -21,7 +21,6 @@ import DisplayFriend from './DisplayFriend';
 const xBtnStyle = {background:'#FF0000', color: '#FFFFFF'}
 
 export default function FriendList(props){
-
       return (
         <div>
             <InputLabel>Your Friends</InputLabel>

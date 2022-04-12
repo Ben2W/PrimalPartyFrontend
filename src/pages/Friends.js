@@ -3,9 +3,16 @@ import HookedSideBar from '../components/Sidebar/HookedSideBar';
 import FriendSearch from '../components/FriendSearch';
 import FriendList from '../components/FriendList';
 import { Box } from "@mui/material";
+import { Typography } from '@mui/material';
+import { Grid } from '@mui/material';
+import { UserContext } from './../context/UserContext'
 
 
-const Friends = () => {
+function Friends(){
+  
+  const { user } = React.useContext(UserContext);
+
+  /*
   const [user, setUser] = useState([])
   const [friendsList, setFriendsList] = useState([]);
 
@@ -39,17 +46,20 @@ const Friends = () => {
           setFriendsList(data.friends)
       })
   }
+  */
+ console.log(user)
 
   return (
     <div className="friends">
-      <HookedSideBar user = {user} />
-      <Box display="flex" 
-            justifyContent="center" 
-            alignItems='center'
-            flexDirection='column'>
-        <FriendSearch/>
-        <FriendList friendsList={friendsList}/>
-      </Box>
+        <HookedSideBar user = {user} />
+        <Grid container>
+          <Grid item xs={6}>
+            <FriendSearch/>
+          </Grid>
+          <Grid item xs={6}>
+          <FriendList friendsList={user.friends}/>
+          </Grid>
+        </Grid>
     </div>
   );
 }
