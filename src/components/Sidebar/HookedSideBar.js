@@ -104,14 +104,6 @@ const HookedSideBar = () => {
                             </ListItem>
                         </List>
                         <List>
-                            <ListItem button component={Link} to="/invites">
-                                <ListItemIcon>
-                                    {IconHelper(3)}
-                                </ListItemIcon>
-                                <ListItemText primary='Invites' />
-                            </ListItem>
-                        </List>
-                        <List>
                             <ListItem button component={Link} to="/friends">
                                 <ListItemIcon>
                                     {IconHelper(4)}

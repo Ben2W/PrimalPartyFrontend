@@ -8,7 +8,6 @@ import Dashboard from './pages/Dashboard';
 import Account from './pages/Account';
 import CreateParty from './pages/CreateParty';
 import Friends from './pages/Friends';
-import Invites from './pages/Invites';
 import Main from './pages/Main';
 import ResetPassword from './pages/ResetPassword'
 import Layout from './components/Layout';
@@ -46,7 +45,6 @@ function App() {
             <Route path="/account" element={<Account />} />
             <Route path="/createparty" element={<CreateParty />} />
             <Route path="/friends" element={<Friends />} />
-            <Route path="/invites" element={<Invites />} />
             <Route path="/editaccount" element={<EditAccount />} />
             <Route path="/eventadmin/:id" element={<AdminCard />} />
             <Route path="/event/:id" element={<GuestCard />} />
