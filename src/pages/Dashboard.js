@@ -13,12 +13,7 @@ const Dashboard = () => {
 
   return (
     <div>
-      <div>
-        <DisplayCardGuest />
-      </div>
-      <div>
-        <DisplayCard />
-      </div>
+      <DisplayCard />
     </div>
   );
 }

@@ -42,29 +42,35 @@ export default function BasicCard(props) {
 
     const [open, setOpen] = React.useState(false);
 
-    const handleOpen = () => setOpen(true);
+    // const handleOpen = () => setOpen(true);
+    // const handleOpen = () => {
+    //     navigate('/event', { state: {
+    //         index: i
+    //     }})
+    // }
     const handleClose = () => setOpen(false);
 
     const handleEventDelete = (e) => {
         e.preventDefault();
 
-        fetch(process.env.REACT_APP_URL + ('/events/' + user.events[i]._id), {
-            method: 'DELETE',
-            credentials: 'include',
-        })
-            .then(() => {
-                const temp = user;
-                const reducedEvents = user.events;
-                console.log('sad')
-                console.log(reducedEvents)
 
-                const Newarr = reducedEvents.filter((reducedEvents) => reducedEvents._id !== user.events[i]._id)
+        // fetch(process.env.REACT_APP_URL + ('/events/' + user.events[i]._id), {
+        //     method: 'DELETE',
+        //     credentials: 'include',
+        // })
+        //     .then(() => {
+        //         const temp = user;
+        //         const reducedEvents = user.events;
+        //         console.log('sad')
+        //         console.log(reducedEvents)
 
-                temp.events = Newarr;
-                console.log('blah')
-                console.log(Newarr)
-                setUser(temp);
-            })
+        //         const Newarr = reducedEvents.filter((reducedEvents) => reducedEvents._id !== user.events[i]._id)
+
+        //         temp.events = Newarr;
+        //         console.log('blah')
+        //         console.log(Newarr)
+        //         setUser(temp);
+        //     })
     }
 
     return (
@@ -76,7 +82,7 @@ export default function BasicCard(props) {
                             <div className="wrapper">
                                 <Typography variant="h5" style={{ color: '#F5F5F5' }}>
                                     {user.events[i].name}
-                                    <Button onClick={handleEventDelete} type='submit'>Delete Event</Button>
+                                    <Button onClick={handleEventDelete} type='submit'>Edit</Button>
                                 </Typography>
                             </div>
 
@@ -106,8 +112,8 @@ export default function BasicCard(props) {
 
                     <Grid>
                         <CardActions>
-                            <Button onClick={handleOpen} type='submit' color='primary' variant='contained' style={btnStyle} fullWidth >View More</Button>
-                            <Modal
+                            <Button type='submit' onClick={() => navigate('/event/' + i)} color='primary' variant='contained' style={btnStyle} fullWidth >View More</Button>
+                            {/* <Modal
                                 aria-labelledby="transition-modal-title"
                                 aria-describedby="transition-modal-description"
                                 open={open}
@@ -132,7 +138,7 @@ export default function BasicCard(props) {
                                         />
                                     </Box>
                                 </Fade>
-                            </Modal>
+                            </Modal> */}
                         </CardActions>
                     </Grid>
                 </Card>

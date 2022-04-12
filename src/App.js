@@ -14,6 +14,7 @@ import ResetPassword from './pages/ResetPassword'
 import Layout from './components/Layout';
 import RequireAuth from './components/RequireAuth';
 import EditAccount from './pages/EditAccount';
+import AdminCard from './pages/AdminCard';
 import { Routes, Route } from 'react-router-dom'
 import { UserContext } from './context/UserContext';
 
@@ -46,6 +47,7 @@ function App() {
             <Route path="/friends" element={<Friends />} />
             <Route path="/invites" element={<Invites />} />
             <Route path="/editaccount" element={<EditAccount />} />
+            <Route path="/event/:id" element={<AdminCard />} />
           </Route>
         </Route>
       </Routes>
