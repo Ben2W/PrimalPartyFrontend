@@ -1,30 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import MyEventsHelper from "./MyEventsHelper"
+import { UserContext } from '../../context/UserContext';
 
 const MyEvents = () => {
-    const [events, setEvents] = useState([])
-
-    useEffect(() => {
-        fetchEvents();
-    }, []);
-
-    const fetchEvents = async() => {
-        fetch(process.env.REACT_APP_URL + '/events', {
-            method: 'GET',
-            headers: {
-                "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"
-            },
-            credentials: 'include',
-        })
-            .then(response => response.json())
-            .then(data => {
-                setEvents(data.events)
-            })
-    }
+    const { user } = React.useContext(UserContext);
 
     return (
         <div>
-            <MyEventsHelper props = { events }/>
+            <MyEventsHelper props={user.events} />
         </div>
     )
 }

@@ -4,9 +4,9 @@ import Drawer from '@mui/material/Drawer';
 import CssBaseline from '@mui/material/CssBaseline';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
-import {Paper} from "@mui/material";
+import { Paper } from "@mui/material";
 import { makeStyles } from '@material-ui/core/styles';
-import {useNavigate, Link} from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
@@ -15,10 +15,13 @@ import ListItemText from "@mui/material/ListItemText";
 import ShowEvents from "./ShowEvents"
 import Logo from '../../img/PartyHatDinoLogo.png';
 
+import useAuth from '../../hooks/useAuth';
+import { UserContext } from '../../context/UserContext';
+
 const useStyles = makeStyles((theme) => ({
     logo: {
-      maxHeight: 70,
-      paddingRight: 15
+        maxHeight: 70,
+        paddingRight: 15
     },
     SiteName: {
         marginRight: "auto",
@@ -28,12 +31,15 @@ const useStyles = makeStyles((theme) => ({
         color: '#17171A',
         display: 'flex',
         alignItems: 'center'
-      },
-  }))
+    }
+}))
 
 const drawerWidth = 240;
 
-const HookedSideBar = (props) => {
+const HookedSideBar = () => {
+    const { setAuth } = useAuth();
+    const { user, setUser } = React.useContext(UserContext);
+
     const navigate = useNavigate();
     const styles = useStyles();
 
@@ -45,15 +51,17 @@ const HookedSideBar = (props) => {
         e.preventDefault();
 
         fetch(process.env.REACT_APP_URL + '/logout', {
-          method: 'POST',
-          headers: {
-              "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"
-          },
-          credentials: 'include'
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"
+            },
+            credentials: 'include'
         })
-        .then(() => {
-          navigate('/');
-        })
+            .then(() => {
+                setUser({})
+                localStorage.clear();
+                navigate('/');
+            })
     }
 
     return (
@@ -68,15 +76,15 @@ const HookedSideBar = (props) => {
                         [`& .MuiDrawer-paper`]: { width: drawerWidth, boxSizing: 'border-box' },
                     }}
                 >
-                    <Paper variant="outlined" sx={{width: "drawerWidth", display: "flex", padding: "5px"}}>
-                        <img src={ Logo } className={styles.logo} alt="PrimalJetLogo" width="25%" />
-                            <Typography className={styles.SiteName} variant="h5" align = "center" component={'span'}>
-                                <div
-                                    style={{ marginTop: '15px', cursor:"pointer", fontSize: '23px', fontWeight: 600}}
-                                    onClick={handleClick}
-                                >
-                                    PrimalParty</div>
-                            </Typography>
+                    <Paper variant="outlined" sx={{ width: "drawerWidth", display: "flex", padding: "5px" }}>
+                        <img src={Logo} className={styles.logo} alt="PrimalJetLogo" width="25%" />
+                        <Typography className={styles.SiteName} variant="h5" align="center" component={'span'}>
+                            <div
+                                style={{ marginTop: '15px', cursor: "pointer", fontSize: '23px', fontWeight: 600 }}
+                                onClick={handleClick}
+                            >
+                                PrimalParty</div>
+                        </Typography>
                     </Paper>
                     <Box sx={{ overflow: 'auto', marginLeft: 1 }}>
                         <List>
@@ -84,7 +92,7 @@ const HookedSideBar = (props) => {
                                 <ListItemIcon>
                                     {IconHelper(1)}
                                 </ListItemIcon>
-                                <ListItemText primary={props.user.firstName + " " + props.user.lastName}/>
+                                <ListItemText primary={user.firstName + " " + user.lastName} />
                             </ListItem>
                         </List>
                         <List>
@@ -92,15 +100,7 @@ const HookedSideBar = (props) => {
                                 <ListItemIcon>
                                     {IconHelper(2)}
                                 </ListItemIcon>
-                                <ListItemText primary='Home'/>
-                            </ListItem>
-                        </List>
-                        <List>
-                            <ListItem button component={Link} to="/invites">
-                                <ListItemIcon>
-                                    {IconHelper(3)}
-                                </ListItemIcon>
-                                <ListItemText primary='Invites'/>
+                                <ListItemText primary='Home' />
                             </ListItem>
                         </List>
                         <List>
@@ -108,14 +108,14 @@ const HookedSideBar = (props) => {
                                 <ListItemIcon>
                                     {IconHelper(4)}
                                 </ListItemIcon>
-                                <ListItemText primary='Friends'/>
+                                <ListItemText primary='Friends' />
                             </ListItem>
                         </List>
 
                         <Divider />
 
                         <List>
-                            <ShowEvents/>
+                            <ShowEvents />
                         </List>
 
                         <List>
@@ -123,7 +123,7 @@ const HookedSideBar = (props) => {
                                 <ListItemIcon>
                                     {IconHelper(6)}
                                 </ListItemIcon>
-                                <ListItemText primary='Create'/>
+                                <ListItemText primary='Create' />
                             </ListItem>
                         </List>
 
@@ -134,7 +134,7 @@ const HookedSideBar = (props) => {
                                 <ListItemIcon>
                                     {IconHelper(7)}
                                 </ListItemIcon>
-                                <ListItemText primary='Logout'/>
+                                <ListItemText primary='Logout' />
                             </ListItem>
                         </List>
                     </Box>

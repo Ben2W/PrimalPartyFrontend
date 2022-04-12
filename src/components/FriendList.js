@@ -16,42 +16,21 @@ import { MenuItem } from '@mui/material';
 import { FormControl } from 'react-bootstrap';
 import { InputLabel } from '@mui/material';
 import DisplayGuestAdmin from './DisplayGuestAdmin';
+import DisplayFriend from './DisplayFriend';
 
 const xBtnStyle = {background:'#FF0000', color: '#FFFFFF'}
 
-
-
-export default function GuestList(props){
-
-    const [guestId, setGuestId] = useState();
-    const [q, setQ] = useState([]);
-    const [user, setUser] = React.useState('');
-    const [selectedOption, setSelectedOption] = useState("none");
- 
-    const getUsers = () => 
-    {
-        fetch(process.env.REACT_APP_URL + '/users' ,{
-            method: 'GET',
-            headers: {
-                "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"
-            },
-            credentials: 'include',
-            })
-        .then(response => response.json())
-        .then(data => {
-            setQ(data.q)
-        })
-    }
+export default function FriendList(props){
 
       return (
         <div>
-            <InputLabel>Guests List</InputLabel>
+            <InputLabel>Your Friends</InputLabel>
             <p>
             {
-                props.guests.map((value, key) => {
+                props.friendsList.map((value, key) => {
                     return (
                         <div key={key}>
-                            <DisplayGuestAdmin firstName = {value.firstName} lastName = {value.lastName} _id = {value._id} eventId = {props._id}/>
+                            <DisplayFriend firstName = {value.firstName} lastName = {value.lastName} _id = {value._id}/>
                         </div>
                     )
                     })

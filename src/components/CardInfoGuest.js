@@ -1,17 +1,7 @@
 import React from 'react'
-import { Grid, Paper, Avatar, TextField, FormControlLabel, Checkbox, Button, Typography, Link } from '@material-ui/core'
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
+import { Grid, Typography } from '@material-ui/core'
 import CardContent from '@mui/material/CardContent';
-import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import Image from '../img/purple-grad.png'; // Import using relative path
-import Backdrop from '@mui/material/Backdrop';
-import Box from '@mui/material/Box';
-import Modal from '@mui/material/Modal';
-import Fade from '@mui/material/Fade';
 import Alert from '@mui/material/Alert';
-import AlertTitle from '@mui/material/Alert';
 import '../App.css';
 import TableGuest from '../components/TableGuest.js';
 

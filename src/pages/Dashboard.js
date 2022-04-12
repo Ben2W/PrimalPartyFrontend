@@ -1,38 +1,19 @@
-import React, { useEffect, useState } from 'react';
-import { Box } from '@mui/system';
-
-import HookedSideBar from '../components/Sidebar/HookedSideBar';
+import React, { useContext, useEffect } from 'react';
 import DisplayCard from '../components/DisplayCard'
 import DisplayCardGuest from '../components/DisplayCardGuest'
+import { UserContext } from '../context/UserContext'
 
 const Dashboard = () => {
-  const [user, setUser] = useState([])
+  const { user } = useContext(UserContext)
 
   useEffect(() => {
-    fetchAccount();
-  }, []);
-
-  const fetchAccount = async() => {
-     fetch(process.env.REACT_APP_URL + '/account', {
-      method: 'GET',
-      credentials: 'include',
-    })
-    .then(response => response.json())
-    .then(data => {
-      setUser(data.user)
-    })   
-  }
+    console.log('test')
+    console.log(user)
+  }, [user])
 
   return (
-    <div className="dashboard">
-      <HookedSideBar user = {user} />
-      <Box sx={{ marginLeft: 35, marginTop: 5 }}>
-        <DisplayCardGuest />
-      </Box>
-
-      <Box sx={{ marginLeft: 35, marginTop: 5 }}>
-        <DisplayCard />
-      </Box>
+    <div>
+      <DisplayCard />
     </div>
   );
 }

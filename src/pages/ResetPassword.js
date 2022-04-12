@@ -34,9 +34,11 @@ const useStyles = makeStyles(() => ({
   }
 }))
 
-const ForgotPassword = () => {
-  const [email, setEmail] = useState('');
+const ResetPassword = () => {
+  const [password, setPassword] = useState('');
+  const [token, setToken] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
+
   let navigate = useNavigate();
   const styles = useStyles()
 
@@ -44,7 +46,7 @@ const ForgotPassword = () => {
     e.preventDefault();
 
     const details = {
-        'email': email
+        'password': password
     };
 
     var formBody = [];
@@ -55,8 +57,8 @@ const ForgotPassword = () => {
     }
     formBody = formBody.join("&");
 
-    fetch(process.env.REACT_APP_URL + '/forgot', {
-        method: 'PUT',
+    fetch(process.env.REACT_APP_URL + '/reset/' + token , {
+        method: 'POST',
         headers: {
             "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"
         },
@@ -65,28 +67,19 @@ const ForgotPassword = () => {
     })
     .then(response => {
         switch(response.status) {
-          case 200:
-              navigate('/resetpassword', { replace : true});
+            case 200:
+                navigate('/', { replace : true});
+                break;
+            case 404:
+                setErrorMessage('User does not exist');
+                break;
+            case 410:
+              setErrorMessage('Reset token expired.');
               break;
-          case 403:
-              setErrorMessage('Cannot reset password while logged in.')
+            case 500:
+              setErrorMessage('Unexpected error.');
               break;
-          case 404:
-              setErrorMessage('Email not associated with account.');
-              break;
-          case 409:
-            setErrorMessage('Please wait longer than 15 seconds to reset password.');
-            break;
-          case 412:
-            setErrorMessage('Invalid email syntax.');
-            break;
-          case 500:
-            setErrorMessage('Unexpected error.');
-            break;
-          case 503:
-            setErrorMessage('Email service unavailable');
-            break;
-      }
+        }
     })
   }
 
@@ -96,34 +89,44 @@ const ForgotPassword = () => {
           <Paper className={styles.paper}>
               <Grid align="center" >
                   <Avatar className={styles.avatar}><QuestionMarkIcon/></Avatar>
-                  <h2>Forgot Password?</h2> 
+                  <h2>Reset Password</h2>
+                  <p>Check your email for reset token</p>
               </Grid>
               {errorMessage && (
                       <p className={styles.error}> {errorMessage} </p>
                   )}
               <form onSubmit={handleSubmit}>
-                  <TextField
+                    <TextField
                       component={'span'}  
                       type="text"
                       required
                       fullWidth
-                      label="Enter Email"
-                      value={email}    
-                      onChange={(e) => setEmail(e.target.value)}            
-                  />
-                  <Button
-                      type='submit'
-                      variant='contained'
-                      className={styles.button}
+                      label="Enter Reset Token"
+                      value={token}    
+                      onChange={(e) => setToken(e.target.value)}            
+                    />
+                    <TextField
+                      component={'span'}  
+                      type="text"
+                      required
                       fullWidth
-                  >
-                      Send Email
-                  </Button>
-              </form>
-          </Paper>
-      </Grid>
+                      label="Enter New Password"
+                      value={password}    
+                      onChange={(e) => setPassword(e.target.value)}            
+                     />
+                    <Button
+                        type='submit'
+                        variant='contained'
+                        className={styles.button}
+                        fullWidth
+                    >
+                        Reset Password
+                    </Button>
+                </form>
+            </Paper>
+        </Grid>
     </div>
   );
 }
 
-export default ForgotPassword;
+export default ResetPassword;
