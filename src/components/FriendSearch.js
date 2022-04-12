@@ -9,10 +9,13 @@ import { InputLabel } from '@mui/material';
 import Select from 'react-select';
 import { Box } from "@mui/material";
 
+import UserSearchResult from "../components/UserSearchResult.js"
+
 let users = [];
 let usersToAdd = [];
 
 let options = [];
+let usersToDisplay = [];
 
 
 function changeSearch(e)
@@ -37,11 +40,17 @@ function customTheme(theme)
 export default function FriendSearch(props){
 
     const [search, setSearch] = useState('');
+    const [newUserResults, setNewUserResults] = useState([]);
+
 
     useEffect(() => {
-        console.log("Searching users");
+        console.log("Searching users: " + search);
         searchUsers();
-    });
+    }, [search]);
+
+    useEffect(() => {
+        console.log("Setting users: " + newUserResults);
+    }, [newUserResults]);
 
     let userId = "";
     let selectString = "";
@@ -61,7 +70,18 @@ export default function FriendSearch(props){
         })
         .then(response => response.json())
         .then(data => {
-            users = data.users
+            console.log("RESPONSE: ");
+            console.log(data.users);
+            usersToDisplay = [];
+            for(let i = 0; i < data.users.length;i++)
+            {
+                usersToDisplay.push(<UserSearchResult 
+                    firstName = {data.users[i].firstName} 
+                    lastName = {data.users[i].lastName}
+                    username = {data.users[i].username}
+                    />);
+            }
+            setNewUserResults(usersToDisplay);
         })
     }
 
@@ -80,9 +100,15 @@ export default function FriendSearch(props){
       }
 
     return(
-        <form>
-            <input></input>
-            <Button fullWidth variant="outlined" onClick={newFriendSubmit}>Search</Button>
-        </form>
+        <div>
+            <label/>Search 
+            <input onChange = {(e) => setSearch(e.target.value)}></input>
+
+            <div>
+                {newUserResults}
+            </div>
+            
+            <Button fullWidth variant="outlined" onClick={newFriendSubmit}>Add</Button>
+        </div>
     )
 }

@@ -29,7 +29,7 @@ export default function FriendList(props){
                 props.friendsList.map((value, key) => {
                     return (
                         <div key={key}>
-                            <DisplayFriend firstName = {value.firstName} lastName = {value.lastName} _id = {value._id}/>
+                            <DisplayFriend firstName = {value.firstName} lastName = {value.lastName} _id = {value._id} index = {key}/>
                         </div>
                     )
                     })
