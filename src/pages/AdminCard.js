@@ -64,21 +64,21 @@ const AdminCard = () => {
 
     return (
         <div className={styles.page}>
-            <Typography variant='h3'>{event.name}</Typography>
+            <Typography variant='h3' sx={{ color: '#ffffff'}}>{event.name}</Typography>
             <Grid container>
                 <Grid item xs={1}>
-                    <Typography variant='h5' sx={{ marginTop: 3, fontWeight: 'bold' }}>Date: </Typography>
-                    <Typography variant='h5' sx={{ marginTop: 3, fontWeight: 'bold' }}>Place: </Typography>
-                    <Typography variant='h5' sx={{ marginTop: 3, fontWeight: 'bold' }}>About: </Typography>
-                    <Typography variant='h5' sx={{ marginTop: 3, fontWeight: 'bold' }}>Guests: </Typography>
-                    <Typography variant='h5' sx={{ marginTop: 3, fontWeight: 'bold' }}>Tasks: </Typography>
-                    <Typography variant='h5' sx={{ marginTop: 3, fontWeight: 'bold' }}>List: </Typography>
+                    <Typography variant='h5' sx={{ marginTop: 3, fontWeight: 'bold', color: '#ffffff' }}>Date: </Typography>
+                    <Typography variant='h5' sx={{ marginTop: 3, fontWeight: 'bold', color: '#ffffff' }}>Place: </Typography>
+                    <Typography variant='h5' sx={{ marginTop: 3, fontWeight: 'bold', color: '#ffffff' }}>About: </Typography>
+                    <Typography variant='h5' sx={{ marginTop: 3, fontWeight: 'bold', color: '#ffffff' }}>Guests: </Typography>
+                    <Typography variant='h5' sx={{ marginTop: 3, fontWeight: 'bold', color: '#ffffff' }}>Tasks: </Typography>
+                    <Typography variant='h5' sx={{ marginTop: 3, fontWeight: 'bold', color: '#ffffff' }}>List: </Typography>
 
                 </Grid>
                 <Grid item xs={3}>
-                    <Typography variant='h5' sx={{ marginTop: 3 }}>{event.date}</Typography>
-                    <Typography variant='h5' sx={{ marginTop: 3 }}>{event.address}</Typography>
-                    <Typography variant='h5' sx={{ marginTop: 3 }}>{event.description}</Typography>
+                    <Typography variant='h5' sx={{ marginTop: 3, color: '#ffffff' }}>{event.date}</Typography>
+                    <Typography variant='h5' sx={{ marginTop: 3, color: '#ffffff' }}>{event.address}</Typography>
+                    <Typography variant='h5' sx={{ marginTop: 3, color: '#ffffff' }}>{event.description}</Typography>
                     <GuestSearch _id={event._id} />
                     <Table tasks={event.tasks} _id={event.id} guests={event.guests} />
                     {/* <GuestList guests={event.guest} _id={event._id} />   */}
