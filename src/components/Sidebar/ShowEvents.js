@@ -17,9 +17,8 @@ const ShowEvents = () => {
             <ListItem 
                 button 
                 onClick={() => setChecked(prev => !prev)}
-                sx={{ borderBottom: 1, borderColor: '#e0e0e0' }}
             >
-                <ListItemIcon>
+                <ListItemIcon sx={{ color: '#ffffff' }}>
                     {IconHelper(5)}
                 </ListItemIcon>
                 <ListItemText primary='My Events'/>
@@ -30,7 +29,6 @@ const ShowEvents = () => {
             </ListItem>
             <Collapse
                 in={checked}
-                sx={{ borderBottom: 1, borderColor: '#e0e0e0', }}
             >
                 {bruh}
             </Collapse>

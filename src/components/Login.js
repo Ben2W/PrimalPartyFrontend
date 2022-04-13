@@ -7,12 +7,11 @@ import { UserContext } from '../context/UserContext';
 
 const useStyles = makeStyles(() => ({
     paper: {
-        padding: 20,
+        padding: 15,
         minheight: '32vh',
         width: 280,
         margin: "10px auto",
-        fontSize: 20,
-
+        fontSize: 20
     },
     avatar: {
         backgroundColor: 'black',
@@ -72,6 +71,16 @@ const Login = ({ handleChange }) => {
         return data;
     }
 
+    async function loadFriends() {
+        const response = await fetch(process.env.REACT_APP_URL + '/friends', {
+            method: 'GET',
+
+            credentials: 'include'
+        })
+        const data = await response.json();
+        return data;
+    }
+
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -92,8 +101,11 @@ const Login = ({ handleChange }) => {
 
         const loginData = await loginUser(formBody);
         const eventData = await loadEvents();
+        const friendData = await loadFriends();
 
         loginData.user.events = eventData.events
+        loginData.user.friends = friendData.friends
+        console.log(loginData);
 
         setUser(loginData.user);
         localStorage.setItem('user', JSON.stringify(loginData.user))
@@ -109,7 +121,7 @@ const Login = ({ handleChange }) => {
     return (
         <div>
             <Grid>
-                <Paper className={styles.paper}>
+                <Paper className={styles.paper} elevation={0}>
                     <Grid align="center" >
                         <Avatar className={styles.avatar}><LockOutlinedIcon /></Avatar>
                         <h2>Sign In</h2>

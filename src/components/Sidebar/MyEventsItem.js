@@ -10,10 +10,10 @@ const MyEventsItem = (props) => {
         <div>
             <List>
                 <ListItem button>
-                    <ListItemIcon sx={{marginLeft: "50px", }}>
+                    <ListItemIcon sx={{marginLeft: "50px", color:'#ffffff' }}>
                         {IconHelper(8)}
                     </ListItemIcon>
-                    <ListItemText primary={props.props.name} sx={{marginLeft: '-23px'}}/>
+                    <ListItemText primary={props.props.name} sx={{ marginLeft: '-23px', color: '#ffffff'}}/>
                 </ListItem>
             </List>
         </div>

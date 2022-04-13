@@ -6,7 +6,7 @@ import { makeStyles } from '@material-ui/core'
 
 const useStyles = makeStyles(() => ({
     paper: {
-        padding: 20, 
+        padding: 15, 
         minheight: '32vh', 
         width:280, 
         margin: "10px auto",
@@ -116,7 +116,7 @@ const Signup = ({handleChange}) => {
     return (
         <div>
             <Grid>
-                <Paper className={styles.paper}>
+                <Paper className={styles.paper} elevation={0}>
                     <Grid align="center" >
                         <Avatar className={styles.avatar}><LockOutlinedIcon/></Avatar>
                         <h2>Sign Up</h2> 

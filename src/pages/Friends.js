@@ -3,53 +3,34 @@ import HookedSideBar from '../components/Sidebar/HookedSideBar';
 import FriendSearch from '../components/FriendSearch';
 import FriendList from '../components/FriendList';
 import { Box } from "@mui/material";
+import { Typography } from '@mui/material';
+import { Grid } from '@mui/material';
+import { UserContext } from './../context/UserContext'
+import { Button } from '@material-ui/core';
 
 
-const Friends = () => {
-  const [user, setUser] = useState([])
-  const [friendsList, setFriendsList] = useState([]);
 
-  useEffect(() => {
-    fetchAccount();
-    getFriends();
-  }, []);
 
-  const fetchAccount = async() => {
-     fetch(process.env.REACT_APP_URL + '/account', {
-      method: 'GET',
-      credentials: 'include',
-    })
-    .then(response => response.json())
-    .then(data => {
-      setUser(data.user)
-    })   
-  }
- 
-  const getFriends = () => 
-  {
-      fetch(process.env.REACT_APP_URL + '/friends' ,{
-          method: 'GET',
-          headers: {
-              "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"
-          },
-          credentials: 'include',
-          })
-      .then(response => response.json())
-      .then(data => {
-          setFriendsList(data.friends)
-      })
+function Friends(){
+  const forceUpdate = useForceUpdate();
+  const { user } = React.useContext(UserContext);
+
+  const [value, setValue] = useState(0); // integer state
+
+  function useForceUpdate(){
+    return () => setValue(value => value + 1); // update the state to force render
   }
 
   return (
     <div className="friends">
-      <HookedSideBar user = {user} />
-      <Box display="flex" 
-            justifyContent="center" 
-            alignItems='center'
-            flexDirection='column'>
-        <FriendSearch/>
-        <FriendList friendsList={friendsList}/>
-      </Box>
+        <Grid container>
+          <Grid item xs={6}>
+            <FriendSearch update={useForceUpdate()}/>
+          </Grid>
+          <Grid item xs={6}>
+          <FriendList friendsList={user.friends} update={useForceUpdate()}/>
+          </Grid>
+        </Grid>
     </div>
   );
 }

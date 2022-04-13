@@ -24,21 +24,21 @@ function Account() {
   const { user } = React.useContext(UserContext);
   return (
     <div className={styles.page}>
-      <Typography variant='h3'>Welcome, {user.firstName}</Typography>
-      <Typography variant='h4' sx={{ marginTop: 3 }}>Your Profile</Typography>
+      <Typography variant='h3'sx={{ color: '#ffffff'}}>Welcome, {user.firstName}</Typography>
+      <Typography variant='h4' sx={{ marginTop: 3, color: '#ffffff' }}>Your Profile</Typography>
       <Grid container>
         <Grid item xs={1}>
-          <Typography variant='h5' sx={{ marginTop: 3, fontWeight: 'bold' }}>Name: </Typography>
-          <Typography variant='h5' sx={{ marginTop: 3, fontWeight: 'bold' }}>User: </Typography>
-          <Typography variant='h5' sx={{ marginTop: 3, fontWeight: 'bold' }}>Email: </Typography>
-          <Typography variant='h5' sx={{ marginTop: 3, fontWeight: 'bold' }}>Phone: </Typography>
+          <Typography variant='h5' sx={{ marginTop: 3, fontWeight: 'bold', color: '#ffffff' }}>Name: </Typography>
+          <Typography variant='h5' sx={{ marginTop: 3, fontWeight: 'bold', color: '#ffffff' }}>User: </Typography>
+          <Typography variant='h5' sx={{ marginTop: 3, fontWeight: 'bold', color: '#ffffff' }}>Email: </Typography>
+          <Typography variant='h5' sx={{ marginTop: 3, fontWeight: 'bold', color: '#ffffff' }}>Phone: </Typography>
 
         </Grid>
         <Grid item xs={2}>
-          <Typography variant='h5' sx={{ marginTop: 3 }}>{user.firstName} {user.lastName}</Typography>
-          <Typography variant='h5' sx={{ marginTop: 3 }}>{user.username}</Typography>
-          <Typography variant='h5' sx={{ marginTop: 3 }}>{user.email}</Typography>
-          <Typography variant='h5' sx={{ marginTop: 3 }}>{user.phone}</Typography>
+          <Typography variant='h5' sx={{ marginTop: 3, color: '#ffffff' }}>{user.firstName} {user.lastName}</Typography>
+          <Typography variant='h5' sx={{ marginTop: 3, color: '#ffffff' }}>{user.username}</Typography>
+          <Typography variant='h5' sx={{ marginTop: 3, color: '#ffffff' }}>{user.email}</Typography>
+          <Typography variant='h5' sx={{ marginTop: 3, color: '#ffffff' }}>{user.phone}</Typography>
 
         </Grid>
         <Grid container spacing={2} sx={{ marginTop: 4 }}>

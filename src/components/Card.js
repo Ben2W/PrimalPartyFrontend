@@ -37,7 +37,7 @@ export default function BasicCard(props) {
     }, [])
 
     const cardStyle = {
-        width: 275, height: 315, display: 'flex', justifyContent: 'space-between', flexDirection: 'column', background: 'linear-gradient(145deg, #e66465, #9198e5)'
+        width: 275, height: 315, display: 'flex', justifyContent: 'space-between', flexDirection: 'column', background: 'linear-gradient(350deg, rgba(45,189,253,1) 0%, rgba(65,68,223,1) 65%)'
     }
 
     const btnStyle = { backgroundColor: "#000000", display: 'block' }

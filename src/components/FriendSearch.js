@@ -9,10 +9,13 @@ import { InputLabel } from '@mui/material';
 import Select from 'react-select';
 import { Box } from "@mui/material";
 
+import UserSearchResult from "../components/UserSearchResult.js"
+
 let users = [];
 let usersToAdd = [];
 
 let options = [];
+let usersToDisplay = [];
 
 
 function changeSearch(e)
@@ -37,11 +40,24 @@ function customTheme(theme)
 export default function FriendSearch(props){
 
     const [search, setSearch] = useState('');
+    const [newUserResults, setNewUserResults] = useState([]);
+
 
     useEffect(() => {
-        console.log("Searching users");
-        searchUsers();
-    });
+        console.log("Searching users: " + search);
+        if(search != "")
+        {
+            searchUsers();
+        }else
+        {
+            setNewUserResults([]);
+        }
+        
+    }, [search]);
+
+    useEffect(() => {
+        console.log("Setting users: " + newUserResults);
+    }, [newUserResults]);
 
     let userId = "";
     let selectString = "";
@@ -59,39 +75,34 @@ export default function FriendSearch(props){
         })
         .then(response => response.json())
         .then(data => {
-            users = data.users
+            console.log("RESPONSE: ");
+            console.log(data.users);
+            usersToDisplay = [];
+            for(let i = 0; i < data.users.length;i++)
+            {
+                console.log(data.users[i]._id);
+                usersToDisplay.push(<UserSearchResult 
+                    firstName = {data.users[i].firstName} 
+                    lastName = {data.users[i].lastName}
+                    username = {data.users[i].username}
+                    _id = {data.users[i]._id}
+                    userInfo = {data.users[i]}
+                    update = {props.update}
+                    />);
+                
+            }
+            setNewUserResults(usersToDisplay);
         })
     }
 
-    const newFriendSubmit = (e) => {
-        for (var i=0; i < usersToAdd.length; i++) {
-            console.log(usersToAdd[i]);
-            fetch(process.env.REACT_APP_URL + ('/friends/'+ usersToAdd[i].value) ,{
-                method: 'POST',
-                credentials: 'include',
-            })
-            .then(response => response.json())
-            .then(response =>{
-                console.log("RESPONSE: " + response.status);
-            })
-        }
-      }
-
     return(
-        <form>
-            <Select 
-                fullWidth
-                isSearchable={true}
-                isMulti
-                theme = {customTheme}
-                options={options} 
-                placeholder="Add User"
-                defaultValue=""
-                onMenuOpen={(e) => setSearch(e)}
-                onKeyDown={(e) => {setSearch(e)}}
-                onChange={(e) => usersToAdd = e}
-                />
-            <Button fullWidth variant="outlined" onClick={newFriendSubmit}>Add</Button>
-        </form>
+        <div>
+            <label style={{ color: '#ffffff' }} >Search </label>
+            <input onChange = {(e) => setSearch(e.target.value)}></input>
+
+            <Grid container>
+                {newUserResults}
+            </Grid>
+        </div>
     )
 }

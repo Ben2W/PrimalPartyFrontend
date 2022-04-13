@@ -6,7 +6,8 @@ import { UserContext } from '../context/UserContext';
 
 const useStyles = makeStyles(() => ({
     field: {
-        margin: '5px 0 5px'
+        margin: '5px 0 5px',
+        backgroundColor: '#ffffff'
     },
     error: {
         fontSize: 14,
@@ -64,11 +65,11 @@ function EditAccount() {
 
     return (
         <div>
-            <Typography variant='h3'>Edit Account Information</Typography>
+            <Typography variant='h3' sx={{ color: '#ffffff'}}>Edit Account Information</Typography>
             <form onSubmit={handleSubmit} className={styles.form}>
                 <Grid container spacing={2} >
                     <Grid item xs={6} >
-                        <Typography variant='h5' sx={{ fontWeight: 'bold', margin: '15px 0 5px' }}>First Name</Typography>
+                        <Typography variant='h5' sx={{ fontWeight: 'bold', margin: '15px 0 5px', color: '#ffffff' }}>First Name</Typography>
                         <TextField
                             className={styles.field}
                             type="text"
@@ -77,29 +78,7 @@ function EditAccount() {
                             value={fname}
                             onChange={(e) => setFname(e.target.value)}
                         />
-                        <Typography variant='h5' sx={{ fontWeight: 'bold', margin: '15px 0 5px' }}>Username</Typography>
-                        <TextField
-                            className={styles.field}
-                            type="text"
-                            required
-                            fullWidth
-                            value={username}
-                            onChange={(e) => setUsername(e.target.value)}
-                        />
-
-
-                    </Grid>
-                    <Grid item xs={6} >
-                        <Typography variant='h5' sx={{ fontWeight: 'bold', margin: '15px 0 5px' }}>Last Name</Typography>
-                        <TextField
-                            className={styles.field}
-                            type="text"
-                            required
-                            fullWidth
-                            value={lname}
-                            onChange={(e) => setLname(e.target.value)}
-                        />
-                        <Typography variant='h5' sx={{ fontWeight: 'bold', margin: '15px 0 5px' }}>Phone</Typography>
+                        <Typography variant='h5' sx={{ fontWeight: 'bold', margin: '15px 0 5px', color: '#ffffff' }}>Phone</Typography>
                         <TextField
                             className={styles.field}
                             type="text"
@@ -108,6 +87,19 @@ function EditAccount() {
                             value={phone}
                             onChange={(e) => setPhone(e.target.value)}
                         />
+
+                    </Grid>
+                    <Grid item xs={6} >
+                        <Typography variant='h5' sx={{ fontWeight: 'bold', margin: '15px 0 5px', color: '#ffffff' }}>Last Name</Typography>
+                        <TextField
+                            className={styles.field}
+                            type="text"
+                            required
+                            fullWidth
+                            value={lname}
+                            onChange={(e) => setLname(e.target.value)}
+                        />
+
                         <Button
                             sx={{ boxShadow: 3, marginTop: 6 }}
                             type='submit'

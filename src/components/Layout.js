@@ -13,7 +13,9 @@ const useStyles = makeStyles({
         width: '100%'
     },
     root: {
-        display: 'flex'
+        display: 'flex',
+        backgroundColor: '#17171A',
+        minHeight: '100vh'
     },
     back: {
         width: 60,
@@ -31,7 +33,7 @@ export default function Layout() {
         <div className={style.root}>
             <HookedSideBar />
             <div className={style.page}>
-                <IconButton component={Link} to='/dashboard'>
+                <IconButton component={Link} to='/dashboard' sx={{ color: '#ffffff'}}>
                     <ArrowCircleLeftOutlinedIcon fontSize="large" />
                 </IconButton>
                 <div className={style.main} >

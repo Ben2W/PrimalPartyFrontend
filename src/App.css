@@ -1,12 +1,27 @@
 .App {
     font-family: Arial, Helvetica, sans-serif;
+    background-color: black;
 }
 
+h1 {
+    font-family: 'Permanent Marker', cursive;
+    color: white;
+    font-size: 80px;
+    font-weight: 900;
+    text-shadow: 2px 4px 11px rgba(0, 0, 0, 0.62);
+}
+
+body {
+    font-family: 'Poppins',sans-serif;
+}
+
+
+
 table {
-    width:100%;
+    width: 100%;
     border: 2px solid black;
-    background:white;
-    border-collapse:collapse;
+    background: white;
+    border-collapse: collapse;
 }
 
 th {
