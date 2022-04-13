@@ -53,8 +53,8 @@ export default function DisplayFriend(props){
 
     return (
         <form onSubmit={handleFriendDelete} style={{display:'flex'}}>
-            <Typography>{props.firstName + " " + props.lastName}</Typography>
-            <IconButton type="submit" aria-label="delete" style={{color:'#000000'}}>
+            <Typography style={{color: '#ffffff'}}>{props.firstName + " " + props.lastName}</Typography>
+            <IconButton type="submit" aria-label="delete" style={{color:'#ffffff'}}>
                 <DeleteIcon />
             </IconButton>
         </form>

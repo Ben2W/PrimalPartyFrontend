@@ -13,7 +13,7 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import IconHelper from "./IconHelper";
 import ListItemText from "@mui/material/ListItemText";
 import ShowEvents from "./ShowEvents"
-import Logo from '../../img/PartyHatDinoLogo.png';
+import Logo from '../../img/PartyHatDinoLogo-white.png';
 
 import useAuth from '../../hooks/useAuth';
 import { UserContext } from '../../context/UserContext';
@@ -31,6 +31,9 @@ const useStyles = makeStyles((theme) => ({
         color: '#17171A',
         display: 'flex',
         alignItems: 'center'
+    },
+    root: {
+        backgroundColor: '#17171A'
     }
 }))
 
@@ -65,31 +68,30 @@ const HookedSideBar = () => {
     }
 
     return (
-        <div>
+        <div className={styles.root}>
             <Box sx={{ display: 'flex' }}>
-                <CssBaseline />
                 <Drawer
                     variant="permanent"
                     sx={{
                         width: drawerWidth,
                         flexShrink: 0,
-                        [`& .MuiDrawer-paper`]: { width: drawerWidth, boxSizing: 'border-box' },
+                        [`& .MuiDrawer-paper`]: { width: drawerWidth, boxSizing: 'border-box', backgroundColor: '#242528' },
                     }}
                 >
-                    <Paper variant="outlined" sx={{ width: "drawerWidth", display: "flex", padding: "5px" }}>
+                    <Paper square={true} elevation={0} sx={{ width: "drawerWidth", display: "flex", padding: "5px", backgroundColor: '#242528' }}>
                         <img src={Logo} className={styles.logo} alt="PrimalJetLogo" width="25%" />
                         <Typography className={styles.SiteName} variant="h5" align="center" component={'span'}>
                             <div
-                                style={{ marginTop: '15px', cursor: "pointer", fontSize: '23px', fontWeight: 600 }}
+                                style={{ marginTop: '15px', cursor: "pointer", fontSize: '23px', fontWeight: 600, color: '#ffffff' }}
                                 onClick={handleClick}
                             >
                                 PrimalParty</div>
                         </Typography>
                     </Paper>
-                    <Box sx={{ overflow: 'auto', marginLeft: 1 }}>
+                    <Box sx={{ overflow: 'auto', marginLeft: 1, color: '#ffffff' }}>
                         <List>
                             <ListItem button component={Link} to='/account'>
-                                <ListItemIcon>
+                                <ListItemIcon sx={{ color: '#ffffff'}}>
                                     {IconHelper(1)}
                                 </ListItemIcon>
                                 <ListItemText primary={user.firstName + " " + user.lastName} />
@@ -97,7 +99,7 @@ const HookedSideBar = () => {
                         </List>
                         <List>
                             <ListItem button component={Link} to='/dashboard'>
-                                <ListItemIcon>
+                                <ListItemIcon sx={{ color: '#ffffff' }}>
                                     {IconHelper(2)}
                                 </ListItemIcon>
                                 <ListItemText primary='Home' />
@@ -105,14 +107,12 @@ const HookedSideBar = () => {
                         </List>
                         <List>
                             <ListItem button component={Link} to="/friends">
-                                <ListItemIcon>
+                                <ListItemIcon sx={{ color: '#ffffff' }}>
                                     {IconHelper(4)}
                                 </ListItemIcon>
                                 <ListItemText primary='Friends' />
                             </ListItem>
                         </List>
-
-                        <Divider />
 
                         <List>
                             <ShowEvents />
@@ -120,7 +120,7 @@ const HookedSideBar = () => {
 
                         <List>
                             <ListItem button component={Link} to='/createparty'>
-                                <ListItemIcon>
+                                <ListItemIcon sx={{ color: '#ffffff' }}>
                                     {IconHelper(6)}
                                 </ListItemIcon>
                                 <ListItemText primary='Create' />
@@ -131,7 +131,7 @@ const HookedSideBar = () => {
                             <ListItem button
                                 onClick={handleSubmit}
                             >
-                                <ListItemIcon>
+                                <ListItemIcon sx={{ color: '#ffffff' }}>
                                     {IconHelper(7)}
                                 </ListItemIcon>
                                 <ListItemText primary='Logout' />

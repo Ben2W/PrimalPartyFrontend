@@ -23,7 +23,6 @@ function Friends(){
 
   return (
     <div className="friends">
-        <HookedSideBar user = {user} />
         <Grid container>
           <Grid item xs={6}>
             <FriendSearch update={useForceUpdate()}/>

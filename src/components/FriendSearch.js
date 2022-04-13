@@ -97,7 +97,7 @@ export default function FriendSearch(props){
 
     return(
         <div>
-            <label/>Search 
+            <label style={{ color: '#ffffff' }} >Search </label>
             <input onChange = {(e) => setSearch(e.target.value)}></input>
 
             <Grid container>

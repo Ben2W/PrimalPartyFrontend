@@ -50,10 +50,10 @@ export default function UserSearchResult(props){
     return(
         <Grid container>
             <Grid item>
-                <Typography>{props.firstName + " " + props.lastName + " (" + props.username + ")"}</Typography>
+                <Typography style={{ color: '#ffffff' }}>{props.firstName + " " + props.lastName + " (" + props.username + ")"}</Typography>
             </Grid>
             <Grid item>
-                <Button onClick={newFriendSubmit}>Add</Button>
+                <Button style={{ color: '#ffffff' }} onClick={newFriendSubmit}>Add</Button>
             </Grid>
         </Grid>
     )

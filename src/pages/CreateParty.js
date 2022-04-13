@@ -9,7 +9,8 @@ import { UserContext } from '../context/UserContext'
 
 const useStyles = makeStyles(() => ({
   field: {
-    margin: '5px 0 5px'
+    margin: '5px 0 5px',
+    backgroundColor: '#ffffff'
   },
   error: {
     fontSize: 14,
@@ -78,7 +79,7 @@ function CreateParty() {
 
         setUser(temp);
         console.log(temp)
-  
+
         localStorage.setItem('user', JSON.stringify(temp))
 
         navigate('/dashboard');
@@ -90,11 +91,11 @@ function CreateParty() {
 
   return (
     <div>
-      <Typography variant='h3'>Create a New Event</Typography>
+      <Typography variant='h3' sx={{ color: '#ffffff' }}>Create a New Event</Typography>
       <form onSubmit={handleSubmit} className={styles.form}>
         <Grid container spacing={2} >
           <Grid item xs={6} >
-            <Typography variant='h5' sx={{ fontWeight: 'bold', margin: '15px 0 5px' }}>Title</Typography>
+            <Typography variant='h5' sx={{ fontWeight: 'bold', margin: '15px 0 5px', color: '#ffffff' }}>Title</Typography>
             <TextField
               className={styles.field}
               type="text"
@@ -104,7 +105,7 @@ function CreateParty() {
               value={title}
               onChange={(e) => setTitle(e.target.value)}
             />
-            <Typography variant='h5' sx={{ fontWeight: 'bold', margin: '15px 0 5px' }}>Description</Typography>
+            <Typography variant='h5' sx={{ fontWeight: 'bold', margin: '15px 0 5px', color: '#ffffff' }}>Description</Typography>
             <TextField
               className={styles.field}
               type="text"
@@ -117,7 +118,7 @@ function CreateParty() {
               inputProps={{ maxLength: CHARACTER_LIMIT }}
               onChange={(e) => setDescription(e.target.value)}
             />
-            <Typography variant='h5' sx={{ fontWeight: 'bold', margin: '15px 0 5px' }}>Place</Typography>
+            <Typography variant='h5' sx={{ fontWeight: 'bold', margin: '15px 0 5px', color: '#ffffff' }}>Place</Typography>
             <TextField
               className={styles.field}
               type="text"
@@ -129,10 +130,11 @@ function CreateParty() {
 
           </Grid>
           <Grid item xs={6}>
-            <Typography variant='h5' sx={{ fontWeight: 'bold', margin: '15px 0 5px' }}>Date and Time</Typography>
+            <Typography variant='h5' sx={{ fontWeight: 'bold', margin: '15px 0 5px', color: '#ffffff' }}>Date and Time</Typography>
             <LocalizationProvider dateAdapter={AdapterDateFns}>
               <StaticDateTimePicker
                 renderInput={(props) => <TextField {...props} />}
+
                 label=' '
                 value={value}
                 onChange={(newValue) => {

@@ -37,7 +37,7 @@ function FriendList(props){
     console.log(props.friendsList)
       return (
         <div>
-            <InputLabel>Your Friends</InputLabel>
+            <InputLabel style={{color: '#ffffff'}}>Your Friends</InputLabel>
             <p>
             {friendsListDisplay}
             </p>
