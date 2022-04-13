@@ -40,8 +40,8 @@ function HeroSection() {
           <Navbar />
           <Grid className={styles.content} container justifyContent="space-between" alignItems="center" >
             <Grid item sm={7}>
-              <Typography variant="h2" className={styles.h1}>Welcome to the PrimalParty</Typography>
-              <Typography variant="h5" className={styles.h5}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce porta sit amet arcu et efficitur. </Typography>
+              <h1>Welcome to the PrimalParty</h1>
+              <Typography variant="h5" className={styles.h5}>Event planning and originazation can be a nightmare without the proper tools at your disposal. PrimalParty is here to help.</Typography>
             </Grid>
             <Grid item><SignInOutContainer/></Grid>
           </Grid>

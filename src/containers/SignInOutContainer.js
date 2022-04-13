@@ -34,7 +34,7 @@ const SignInOutContainer=()=>{
 
     return (
       <div>
-        <Paper style={paperStyle} elevation={10}>
+        <Paper style={paperStyle} elevation={24}>
           <Tabs
                 value={value}
                 indicatorColor="primary"

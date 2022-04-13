@@ -7,12 +7,11 @@ import { UserContext } from '../context/UserContext';
 
 const useStyles = makeStyles(() => ({
     paper: {
-        padding: 20,
+        padding: 15,
         minheight: '32vh',
         width: 280,
         margin: "10px auto",
-        fontSize: 20,
-
+        fontSize: 20
     },
     avatar: {
         backgroundColor: 'black',
@@ -122,7 +121,7 @@ const Login = ({ handleChange }) => {
     return (
         <div>
             <Grid>
-                <Paper className={styles.paper}>
+                <Paper className={styles.paper} elevation={0}>
                     <Grid align="center" >
                         <Avatar className={styles.avatar}><LockOutlinedIcon /></Avatar>
                         <h2>Sign In</h2>
