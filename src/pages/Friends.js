@@ -6,58 +6,30 @@ import { Box } from "@mui/material";
 import { Typography } from '@mui/material';
 import { Grid } from '@mui/material';
 import { UserContext } from './../context/UserContext'
+import { Button } from '@material-ui/core';
+
+
 
 
 function Friends(){
-  
+  const forceUpdate = useForceUpdate();
   const { user } = React.useContext(UserContext);
 
-  /*
-  const [user, setUser] = useState([])
-  const [friendsList, setFriendsList] = useState([]);
+  const [value, setValue] = useState(0); // integer state
 
-  useEffect(() => {
-    fetchAccount();
-    getFriends();
-  }, []);
-
-  const fetchAccount = async() => {
-     fetch(process.env.REACT_APP_URL + '/account', {
-      method: 'GET',
-      credentials: 'include',
-    })
-    .then(response => response.json())
-    .then(data => {
-      setUser(data.user)
-    })   
+  function useForceUpdate(){
+    return () => setValue(value => value + 1); // update the state to force render
   }
- 
-  const getFriends = () => 
-  {
-      fetch(process.env.REACT_APP_URL + '/friends' ,{
-          method: 'GET',
-          headers: {
-              "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"
-          },
-          credentials: 'include',
-          })
-      .then(response => response.json())
-      .then(data => {
-          setFriendsList(data.friends)
-      })
-  }
-  */
- console.log(user)
 
   return (
     <div className="friends">
         <HookedSideBar user = {user} />
         <Grid container>
           <Grid item xs={6}>
-            <FriendSearch/>
+            <FriendSearch update={useForceUpdate()}/>
           </Grid>
           <Grid item xs={6}>
-          <FriendList friendsList={user.friends}/>
+          <FriendList friendsList={user.friends} update={useForceUpdate()}/>
           </Grid>
         </Grid>
     </div>

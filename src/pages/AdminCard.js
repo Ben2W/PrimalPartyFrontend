@@ -1,5 +1,5 @@
 import { Grid, TextField, Button, Typography } from '@mui/material';
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core'
 import GuestSearch from '../components/GuestSearch';
@@ -32,6 +32,8 @@ const AdminCard = () => {
     const event = user.events[id];
     console.log(event);
 
+    
+
     const handleDelete = () => {
 
         fetch(process.env.REACT_APP_URL + ('/events/' + event._id), {
@@ -54,6 +56,7 @@ const AdminCard = () => {
                 console.log(temp)
 
                 setUser(temp)
+                localStorage.setItem('user', JSON.stringify(temp))
 
                 navigate('/dashboard')
             })

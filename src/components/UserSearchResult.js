@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Component } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Grid, Paper, Avatar, TextField, FormControlLabel, Checkbox, Button, Typography, Link } from '@material-ui/core'
 import '../App.css';
 import Task from './Task';
@@ -8,24 +8,53 @@ import { MenuItem } from '@mui/material';
 import { InputLabel } from '@mui/material';
 import Select from 'react-select';
 import { Box } from "@mui/material";
+import { UserContext } from '../context/UserContext';
 
 let users = [];
-let usersToAdd = [];
-
-let options = [];
-
-
-function changeSearch(e)
-{
-    console.log("bruh");
-    this.setSearch(e.target.value);
-}
+let userToAdd = '';
 
 export default function UserSearchResult(props){
 
+    const { user, setUser } = useContext(UserContext);
+    const friend = user.friends[props.index];
+
+    const newFriendSubmit = async() => {
+        fetch(process.env.REACT_APP_URL + ('/friends/'+ props._id) ,{
+            method: 'POST',
+            credentials: 'include',
+        })
+        .then(response => response.json())
+        .then((data) => {
+            if(data.error == ""){
+                console.log(data)
+                console.log(user.friends)
+                const temp = user;
+
+                //console.log(temp);
+                const tempFriend = user.friends;
+                //console.log(tempEvent);
+                tempFriend.push(props.userInfo);
+                //console.log(tempEvent)
+        
+                temp.friends = tempFriend;
+        
+                setUser(temp);
+                //console.log(temp)
+                localStorage.setItem('user', JSON.stringify(temp))
+
+                props.update()
+            }
+          })
+      }
+
     return(
-        <div>
-            <Typography>{props.firstName + " " + props.lastName + " (" + props.username + ")"}</Typography>
-        </div>
+        <Grid container>
+            <Grid item>
+                <Typography>{props.firstName + " " + props.lastName + " (" + props.username + ")"}</Typography>
+            </Grid>
+            <Grid item>
+                <Button onClick={newFriendSubmit}>Add</Button>
+            </Grid>
+        </Grid>
     )
 }

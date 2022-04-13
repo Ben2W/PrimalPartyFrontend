@@ -17,24 +17,31 @@ import { FormControl } from 'react-bootstrap';
 import { InputLabel } from '@mui/material';
 import DisplayGuestAdmin from './DisplayGuestAdmin';
 import DisplayFriend from './DisplayFriend';
+import Friends from '../pages/Friends';
 
 const xBtnStyle = {background:'#FF0000', color: '#FFFFFF'}
 
-export default function FriendList(props){
+function FriendList(props){
+
+    let friendsListDisplay = []
+    for(let i = 0; i < props.friendsList.length;i++)
+    {
+        friendsListDisplay.push(<DisplayFriend 
+            firstName = {props.friendsList[i].firstName} 
+            lastName = {props.friendsList[i].lastName} 
+            _id = {props.friendsList[i]._id} 
+            index = {i}
+            update = {props.update}/>);
+    }
+
+    console.log(props.friendsList)
       return (
         <div>
             <InputLabel>Your Friends</InputLabel>
             <p>
-            {
-                props.friendsList.map((value, key) => {
-                    return (
-                        <div key={key}>
-                            <DisplayFriend firstName = {value.firstName} lastName = {value.lastName} _id = {value._id} index = {key}/>
-                        </div>
-                    )
-                    })
-            }
+            {friendsListDisplay}
             </p>
         </div>
     )
 }
+export default FriendList;

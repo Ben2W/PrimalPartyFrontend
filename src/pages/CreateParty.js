@@ -79,6 +79,7 @@ function CreateParty() {
         setUser(temp);
         console.log(temp)
   
+        localStorage.setItem('user', JSON.stringify(temp))
 
         navigate('/dashboard');
       })

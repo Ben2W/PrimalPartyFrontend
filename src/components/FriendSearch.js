@@ -45,7 +45,14 @@ export default function FriendSearch(props){
 
     useEffect(() => {
         console.log("Searching users: " + search);
-        searchUsers();
+        if(search != "")
+        {
+            searchUsers();
+        }else
+        {
+            setNewUserResults([]);
+        }
+        
     }, [search]);
 
     useEffect(() => {
@@ -61,8 +68,6 @@ export default function FriendSearch(props){
         options.push({value: userId, label: selectString},)
     }
 
-
-
     const searchUsers = async() => {
         fetch(process.env.REACT_APP_URL + '/users?q=' + search, {
             method: 'GET',
@@ -75,40 +80,29 @@ export default function FriendSearch(props){
             usersToDisplay = [];
             for(let i = 0; i < data.users.length;i++)
             {
+                console.log(data.users[i]._id);
                 usersToDisplay.push(<UserSearchResult 
                     firstName = {data.users[i].firstName} 
                     lastName = {data.users[i].lastName}
                     username = {data.users[i].username}
+                    _id = {data.users[i]._id}
+                    userInfo = {data.users[i]}
+                    update = {props.update}
                     />);
+                
             }
             setNewUserResults(usersToDisplay);
         })
     }
-
-    const newFriendSubmit = (e) => {
-        for (var i=0; i < usersToAdd.length; i++) {
-            console.log(usersToAdd[i]);
-            fetch(process.env.REACT_APP_URL + ('/friends/'+ usersToAdd[i].value) ,{
-                method: 'POST',
-                credentials: 'include',
-            })
-            .then(response => response.json())
-            .then(response =>{
-                console.log("RESPONSE: " + response.status);
-            })
-        }
-      }
 
     return(
         <div>
             <label/>Search 
             <input onChange = {(e) => setSearch(e.target.value)}></input>
 
-            <div>
+            <Grid container>
                 {newUserResults}
-            </div>
-            
-            <Button fullWidth variant="outlined" onClick={newFriendSubmit}>Add</Button>
+            </Grid>
         </div>
     )
 }
