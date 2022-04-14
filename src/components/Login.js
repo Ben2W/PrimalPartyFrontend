@@ -78,7 +78,7 @@ const Login = ({ handleChange }) => {
             credentials: 'include'
         })
         const data = await response.json();
-        return response;
+        return data;
     }
 
     const handleSubmit = async (e) => {
