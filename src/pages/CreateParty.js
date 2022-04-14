@@ -122,6 +122,7 @@ function CreateParty() {
             <TextField
               className={styles.field}
               type="text"
+              required
               fullWidth
               label="Enter your events location"
               value={address}

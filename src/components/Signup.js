@@ -90,15 +90,23 @@ const Signup = ({handleChange}) => {
                     navigate('/verify')
                     break;
                 case 410:
-                    setErrorMessage('Username and Email already taken.')
+                    setErrorMessage('Username and Email already taken')
                     setIsPending(false);
                     break;
                 case 411:
-                    setErrorMessage('Email already taken.');
+                    setErrorMessage('Email already taken');
                     setIsPending(false);
                     break;
                 case 412:
-                    setErrorMessage('Username already taken.');
+                    setErrorMessage('Username already taken');
+                    setIsPending(false);
+                    break;
+                case 413:
+                    setErrorMessage('Invalid phone number');
+                    setIsPending(false);
+                    break;
+                case 414:
+                    setErrorMessage('Invalid email address');
                     setIsPending(false);
                     break;
                 case 500:
