@@ -57,8 +57,8 @@ const Login = ({ handleChange }) => {
             credentials: 'include',
             body: formBody,
         })
-        const data = await response.json();
-        return data;
+        // const data = await response.json();
+        return response;
     }
 
     async function loadEvents() {
@@ -78,7 +78,7 @@ const Login = ({ handleChange }) => {
             credentials: 'include'
         })
         const data = await response.json();
-        return data;
+        return response;
     }
 
     const handleSubmit = async (e) => {
@@ -99,23 +99,36 @@ const Login = ({ handleChange }) => {
         }
         formBody = formBody.join("&");
 
-        const loginData = await loginUser(formBody);
-        const eventData = await loadEvents();
-        const friendData = await loadFriends();
+        const loginResponse = await loginUser(formBody);
+        switch (loginResponse.status) {
+            case 200:
+                const loginData = await loginResponse.json();
+                const eventData = await loadEvents();
+                const friendData = await loadFriends();
 
-        loginData.user.events = eventData.events
-        loginData.user.friends = friendData.friends
-        console.log(loginData);
+                loginData.user.events = eventData.events
+                loginData.user.friends = friendData.friends
+                console.log(loginData);
 
-        setUser(loginData.user);
-        localStorage.setItem('user', JSON.stringify(loginData.user))
+                setUser(loginData.user);
+                localStorage.setItem('user', JSON.stringify(loginData.user))
 
-        setUsername('');
-        setPassword('');
+                setUsername('');
+                setPassword('');
 
-        setIsPending(false);
+                setIsPending(false);
 
-        navigate('/dashboard')
+                navigate('/dashboard')
+            case 400:
+                setErrorMessage('User not found OR Wrong Password OR Email not authenticated')
+                break;
+            case 500:
+                setErrorMessage('Issue logging in')
+                break;
+        }
+
+
+
     }
 
     return (

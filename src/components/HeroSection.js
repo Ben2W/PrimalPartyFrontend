@@ -8,7 +8,7 @@ import Navbar from './Navbar'
 
 const useStyles = makeStyles(() => ({
     section: {
-      minheight: "60vh",
+      minheight: "50vh",
       backgroundImage: "url(/HomeBackground.png)",
       backgroundSize: "cover",
       backgroundPosition: "center",
@@ -16,7 +16,7 @@ const useStyles = makeStyles(() => ({
     },
     content: {
       height: "100%",
-      paddingTop: 10,
+      paddingTop: 30
     },
     container: {
       height: "100%"
@@ -37,11 +37,11 @@ function HeroSection() {
     <div>
       <Paper className={styles.section} square={true}>
         <Container className={styles.container} maxWidth="lg">
-          <Navbar />
+          
           <Grid className={styles.content} container justifyContent="space-between" alignItems="center" >
             <Grid item sm={7}>
               <h1>Welcome to the PrimalParty</h1>
-              <Typography variant="h5" className={styles.h5}>Event planning and originazation can be a nightmare without the proper tools at your disposal. PrimalParty is here to help.</Typography>
+              <Typography variant="h5" className={styles.h5}>Event planning and originization can be a nightmare without the proper tools at your disposal. PrimalParty is here to help.</Typography>
             </Grid>
             <Grid item><SignInOutContainer/></Grid>
           </Grid>
