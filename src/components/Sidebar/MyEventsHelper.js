@@ -8,7 +8,7 @@ export default function MyEventsHelper(props) {
     let events = [];
     for (var i = 0; i < props.props.length; i++) {
         if (user.events[i].admin._id == user._id) {
-            events.push(<MyEventsItem props={props.props[i]} key={i} />)
+            events.push(<MyEventsItem props={i} key={i} />)
         }
 
     }

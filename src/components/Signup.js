@@ -6,35 +6,35 @@ import { makeStyles } from '@material-ui/core'
 
 const useStyles = makeStyles(() => ({
     paper: {
-        padding: 15, 
-        minheight: '32vh', 
-        width:280, 
+        padding: 15,
+        minheight: '32vh',
+        width: 280,
         margin: "10px auto",
         fontSize: 20,
 
     },
     avatar: {
-        backgroundColor:'black',
+        backgroundColor: 'black',
     },
     button: {
-        margin:'8px 0', 
-        backgroundColor: '#17171A', 
-        color: '#ffffff', 
-        fontSize: 14, 
+        margin: '8px 0',
+        backgroundColor: '#17171A',
+        color: '#ffffff',
+        fontSize: 14,
         fontWeight: 600,
         '&:hover': {
             backgroundColor: '#fff',
             color: '#17171A'
         }
     },
-    error : {
+    error: {
         fontSize: 14,
         color: '#FF0000',
         margin: '15px 0'
     }
 }))
 
-const Signup = ({handleChange}) => {
+const Signup = ({ handleChange }) => {
     const styles = useStyles()
 
     //Change the value in the useState to show string in the form
@@ -53,6 +53,7 @@ const Signup = ({handleChange}) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        setErrorMessage('')
 
         const details = {
             'username': username,
@@ -82,43 +83,39 @@ const Signup = ({handleChange}) => {
             credentials: 'include',
             body: formBody,
         })
-        .then(response => {
-            console.log(response.status);
-            switch(response.status) {
-                case 200:
-                    setIsPending(false);
-                    navigate('/verify')
-                    break;
-                case 410:
-                    setErrorMessage('Username and Email already taken')
-                    setIsPending(false);
-                    break;
-                case 411:
-                    setErrorMessage('Email already taken');
-                    setIsPending(false);
-                    break;
-                case 412:
-                    setErrorMessage('Username already taken');
-                    setIsPending(false);
-                    break;
-                case 413:
-                    setErrorMessage('Invalid phone number');
-                    setIsPending(false);
-                    break;
-                case 414:
-                    setErrorMessage('Invalid email address');
-                    setIsPending(false);
-                    break;
-                case 500:
-                    setErrorMessage('Issue creating account');
-                    setIsPending(false);
-                    break;
-                case 411:
-                    setErrorMessage('Email unable to be sent');
-                    setIsPending(false);
-                    break;
-            }
-        })
+            .then(response => {
+                console.log(response.status);
+                switch (response.status) {
+                    case 200:
+                        setIsPending(false);
+                        navigate('/verify')
+                        break;
+                    case 410:
+                        setErrorMessage('Username and Email already taken')
+                        setIsPending(false);
+                        break;
+                    case 411:
+                        setErrorMessage('Email already taken');
+                        setIsPending(false);
+                        break;
+                    case 412:
+                        setErrorMessage('Username already taken');
+                        setIsPending(false);
+                        break;
+                    case 413:
+                        setErrorMessage('Invalid phone number');
+                        setIsPending(false);
+                        break;
+                    case 414:
+                        setErrorMessage('Invalid email address');
+                        setIsPending(false);
+                        break;
+                    case 500:
+                        setErrorMessage('Issue creating account');
+                        setIsPending(false);
+                        break;
+                }
+            })
     }
 
     return (
@@ -126,63 +123,63 @@ const Signup = ({handleChange}) => {
             <Grid>
                 <Paper className={styles.paper} elevation={0}>
                     <Grid align="center" >
-                        <Avatar className={styles.avatar}><LockOutlinedIcon/></Avatar>
-                        <h2>Sign Up</h2> 
+                        <Avatar className={styles.avatar}><LockOutlinedIcon /></Avatar>
+                        <h2>Sign Up</h2>
                     </Grid>
                     {errorMessage && (
-                            <p className={styles.error}> {errorMessage} </p>
-                        )}
+                        <p className={styles.error}> {errorMessage} </p>
+                    )}
                     <form onSubmit={handleSubmit}>
                         <TextField
                             type="text"
                             required
                             fullWidth
                             label="Enter Username"
-                            value={username}    
-                            onChange={(e) => setUsername(e.target.value)}            
-                        /><br/>
+                            value={username}
+                            onChange={(e) => setUsername(e.target.value)}
+                        /><br />
                         <TextField
                             type="password"
-                            required   
+                            required
                             fullWidth
                             label="Enter Password"
-                            value={password}  
-                            onChange={(e) => setPassword(e.target.value)}             
-                        /><br/>
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                        /><br />
                         <TextField
                             type="text"
-                            required   
+                            required
                             fullWidth
                             label="Enter Email Address"
-                            value={email}  
-                            onChange={(e) => setEmail(e.target.value)}             
-                        /><br/>
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                        /><br />
                         <TextField
                             type="text"
-                            required   
+                            required
                             fullWidth
                             label="Enter First Name"
-                            value={fname}  
-                            onChange={(e) => setFname(e.target.value)}             
-                        /><br/>
+                            value={fname}
+                            onChange={(e) => setFname(e.target.value)}
+                        /><br />
                         <TextField
                             type="text"
-                            required   
+                            required
                             fullWidth
                             label="Enter Last Name"
-                            value={lname}  
-                            onChange={(e) => setLname(e.target.value)}             
-                        /><br/>
+                            value={lname}
+                            onChange={(e) => setLname(e.target.value)}
+                        /><br />
                         <TextField
                             type="text"
-                            required   
+                            required
                             fullWidth
                             label="Enter Phone Number"
-                            value={phone}  
-                            onChange={(e) => setPhone(e.target.value)}             
-                        /><br/>
+                            value={phone}
+                            onChange={(e) => setPhone(e.target.value)}
+                        /><br />
 
-                        { !isPending && <Button
+                        {!isPending && <Button
                             type='submit'
                             color='primary'
                             variant='contained'
@@ -190,9 +187,9 @@ const Signup = ({handleChange}) => {
                             fullWidth
                         >
                             Sign In
-                        </Button> }
+                        </Button>}
 
-                        { isPending && <Button
+                        {isPending && <Button
                             type='submit'
                             color='primary'
                             variant='contained'
@@ -200,7 +197,7 @@ const Signup = ({handleChange}) => {
                             fullWidth
                         >
                             Signing In
-                        </Button> }
+                        </Button>}
                     </form>
 
                     <Typography
@@ -209,8 +206,8 @@ const Signup = ({handleChange}) => {
                         Already have an account? &nbsp;
                         <Link
                             href="#"
-                            onClick={()=>handleChange("event", 0)}
-                        > 
+                            onClick={() => handleChange("event", 0)}
+                        >
                             Sign In
                         </Link>
                     </Typography>
