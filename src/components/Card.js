@@ -12,6 +12,7 @@ import Alert from '@mui/material/Alert';
 import { UserContext } from '../context/UserContext';
 import { useNavigate } from 'react-router-dom';
 import { color } from '@mui/system';
+import Moment from 'react-moment'
 
 const style = {
     position: 'absolute',
@@ -57,7 +58,7 @@ export default function BasicCard(props) {
 
 
     const cardStyle = {
-        width: 275, height: 315, display: 'flex', justifyContent: 'space-between', flexDirection: 'column', background: color
+        width: 275, height: 330, display: 'flex', justifyContent: 'space-between', flexDirection: 'column', background: color
     }
 
     const btnStyle = { backgroundColor: "#000000", display: 'block' }
@@ -72,28 +73,33 @@ export default function BasicCard(props) {
                     <Grid>
                         <CardContent>
                             <div className="wrapper">
-                                <Typography variant="h5" style={{ color: '#F5F5F5' }}>
+                                <Typography variant='h5' sx={{ fontWeight: 'bold', color: '#ffffff' }} style={{marginBottom: '10px'}}>
                                     {user.events[i].name}
                                 </Typography>
                             </div>
-
-                            <Typography
-                                variant="subtitle2" style={{ color: '#F5F5F5' }}
-                            >
-                                Date: {user.events[i].date}
-                            </Typography>
-
-                            <Typography
-                                variant="subtitle2" style={{ color: '#F5F5F5' }}
-                            >
-                                Address: {user.events[i].address}
-                            </Typography>
-
-                            <Typography
-                                variant="body2" style={descStyle}
-                            >
-                                {user.events[i].description}
-                            </Typography>
+                            <div>
+                                <Typography
+                                    variant='p' sx={{ fontWeight: 300, color: '#ffffff' }}
+                                >
+                                    <Moment format='MMMM Do YYYY, h:mm'>
+                                        {user.events[i].date}
+                                    </Moment>
+                                </Typography>
+                            </div>
+                            <div>
+                                <Typography
+                                    variant='p' sx={{ fontWeight: 300, color: '#ffffff' }} style={{ paddingTop: '10px' }}
+                                >
+                                    Address: {user.events[i].address}
+                                </Typography>
+                            </div>
+                            <div>
+                                <Typography
+                                    variant='body2' sx={{ fontWeight: 300, color: '#ffffff' }} style={{paddingTop: '25px'}}
+                                >
+                                    {user.events[i].description}
+                                </Typography>
+                            </div>
                         </CardContent>
                     </Grid>
                     <Grid>
