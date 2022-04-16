@@ -68,13 +68,15 @@ function EditAccount() {
             <Typography variant='h3' sx={{ color: '#ffffff'}}>Edit Account Information</Typography>
             <form onSubmit={handleSubmit} className={styles.form}>
                 <Grid container spacing={2} >
-                    <Grid item xs={6} >
+                    <Grid item xs={3} >
                         <Typography variant='h5' sx={{ fontWeight: 'bold', margin: '15px 0 5px', color: '#ffffff' }}>First Name</Typography>
                         <TextField
                             className={styles.field}
                             type="text"
+                            label="First Name"
                             required
                             fullWidth
+                            variant="filled"
                             value={fname}
                             onChange={(e) => setFname(e.target.value)}
                         />
@@ -82,26 +84,30 @@ function EditAccount() {
                         <TextField
                             className={styles.field}
                             type="text"
+                            label="Phone"
                             required
+                            variant="filled"
                             fullWidth
                             value={phone}
                             onChange={(e) => setPhone(e.target.value)}
                         />
 
                     </Grid>
-                    <Grid item xs={6} >
+                    <Grid item xs={3} >
                         <Typography variant='h5' sx={{ fontWeight: 'bold', margin: '15px 0 5px', color: '#ffffff' }}>Last Name</Typography>
                         <TextField
                             className={styles.field}
                             type="text"
+                            label="Last Name"
                             required
+                            variant="filled"
                             fullWidth
                             value={lname}
                             onChange={(e) => setLname(e.target.value)}
                         />
 
                         <Button
-                            sx={{ boxShadow: 3, marginTop: 6 }}
+                            sx={{ fontSize: '18px', fontWeight: 600, boxShadow: 3, marginTop: 6, paddingTop: 1.75, paddingBottom: 1.75 }}
                             type='submit'
                             size='large'
                             variant='contained'

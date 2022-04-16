@@ -6,6 +6,7 @@ import GuestSearch from '../components/GuestSearch';
 import Table from '../components/Table';
 import GuestList from '../components/GuestList';
 import { UserContext } from '../context/UserContext'
+import Moment from 'react-moment'
 
 const useStyles = makeStyles(() => ({
     field: {
@@ -72,7 +73,11 @@ const AdminCard = () => {
 
                 </Grid>
                 <Grid item xs={3}>
-                    <Typography variant='h5' sx={{ marginTop: 3, color: '#ffffff' }}>{event.date}</Typography>
+                    <Typography variant='h5' sx={{ marginTop: 3, color: '#ffffff' }}>
+                        <Moment format='MMMM Do YYYY, h:mm'>
+                            {event.date}
+                        </Moment>
+                    </Typography>
                     <Typography variant='h5' sx={{ marginTop: 3, color: '#ffffff' }}>{event.address}</Typography>
                     <Typography variant='h5' sx={{ marginTop: 3, color: '#ffffff' }}>{event.description}</Typography>
                     <Typography variant='h5' sx={{ marginTop: 3, color: '#ffffff' }}>{event.guests.length}</Typography>

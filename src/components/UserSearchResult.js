@@ -30,16 +30,14 @@ export default function UserSearchResult(props){
                 console.log(user.friends)
                 const temp = user;
 
-                //console.log(temp);
                 const tempFriend = user.friends;
-                //console.log(tempEvent);
+
                 tempFriend.push(props.userInfo);
-                //console.log(tempEvent)
         
                 temp.friends = tempFriend;
         
                 setUser(temp);
-                //console.log(temp)
+
                 localStorage.setItem('user', JSON.stringify(temp))
 
                 props.update()

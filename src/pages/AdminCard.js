@@ -6,6 +6,7 @@ import GuestSearch from '../components/GuestSearch';
 import Table from '../components/Table';
 import GuestList from '../components/GuestList';
 import { UserContext } from '../context/UserContext'
+import Moment from 'react-moment'
 
 const useStyles = makeStyles(() => ({
     field: {
@@ -30,9 +31,12 @@ const AdminCard = () => {
     let { id } = useParams();
     const { user, setUser } = useContext(UserContext);
     const event = user.events[id];
-    console.log(event);
 
-    
+    const [value, setValue] = useState(0); // integer state
+
+    function useForceUpdate() {
+        return () => setValue(value => value + 1); // update the state to force render
+    }
 
     const handleDelete = () => {
 
@@ -43,17 +47,12 @@ const AdminCard = () => {
             .then(() => {
                 const temp = user;
                 const reducedEvents = user.events;
-                console.log('reducedEvents')
-                console.log(reducedEvents)
 
                 const Newarr = reducedEvents.filter((reducedEvents) => reducedEvents !== event)
 
                 temp.events = Newarr;
-                console.log('NewArr')
-                console.log(Newarr)
 
                 temp.events = Newarr
-                console.log(temp)
 
                 setUser(temp)
                 localStorage.setItem('user', JSON.stringify(temp))
@@ -64,56 +63,70 @@ const AdminCard = () => {
 
     return (
         <div className={styles.page}>
-            <Typography variant='h3' sx={{ color: '#ffffff'}}>{event.name}</Typography>
+            <Grid container spacing={2} justifyContent='space-between'>
+                <Grid item sx={8}>
+                    <Typography variant='h3' sx={{ color: '#ffffff' }}>{event.name}</Typography>
+                </Grid>
+                <Grid item xs={4}>
+                    <Grid container spacing={3} justifyContent="flex-end">
+                        <Grid item sx={6}>
+                            <Button
+                                sx={{ fontSize: '18px', fontWeight: 600, paddingRight: 5, paddingLeft: 5 }}
+                                type='submit'
+                                size='large'
+                                variant='contained'
+                                // onClick={() => navigate('/editaccount')}
+                                fullWidth
+                            >
+                                Edit
+                            </Button>
+                        </Grid>
+                        <Grid item sx={6}>
+                            <Button
+                                sx={{fontSize: '18px', fontWeight: 600, paddingRight: 5, paddingLeft: 5}}
+                                type='submit'
+                                size='large'
+                                variant='contained'
+                                onClick={handleDelete}
+                                color="error"
+                                fullWidth
+                            >
+                                Delete
+                            </Button>
+                        </Grid>
+                    </Grid>
+                </Grid>
+
+            </Grid>
             <Grid container>
                 <Grid item xs={1}>
                     <Typography variant='h5' sx={{ marginTop: 3, fontWeight: 'bold', color: '#ffffff' }}>Date: </Typography>
                     <Typography variant='h5' sx={{ marginTop: 3, fontWeight: 'bold', color: '#ffffff' }}>Place: </Typography>
                     <Typography variant='h5' sx={{ marginTop: 3, fontWeight: 'bold', color: '#ffffff' }}>About: </Typography>
+
                     <Typography variant='h5' sx={{ marginTop: 3, fontWeight: 'bold', color: '#ffffff' }}>Guests: </Typography>
-                    <Typography variant='h5' sx={{ marginTop: 3, fontWeight: 'bold', color: '#ffffff' }}>Tasks: </Typography>
-                    <Typography variant='h5' sx={{ marginTop: 3, fontWeight: 'bold', color: '#ffffff' }}>List: </Typography>
 
                 </Grid>
-                <Grid item xs={3}>
-                    <Typography variant='h5' sx={{ marginTop: 3, color: '#ffffff' }}>{event.date}</Typography>
+                <Grid item xs={3} sx={{ marginLeft: 2 }}>
+                    <Typography variant='h5' sx={{ marginTop: 3, color: '#ffffff' }}>                                    <Moment format='MMMM Do YYYY, h:mm'>
+                        {event.date}
+                    </Moment></Typography>
                     <Typography variant='h5' sx={{ marginTop: 3, color: '#ffffff' }}>{event.address}</Typography>
-                    <Typography variant='h5' sx={{ marginTop: 3, color: '#ffffff' }}>{event.description}</Typography>
-                    <GuestSearch _id={event._id} />
-                    <Table tasks={event.tasks} _id={event.id} guests={event.guests} />
-                    {/* <GuestList guests={event.guest} _id={event._id} />   */}
+                    <Typography variant='h5' sx={{ marginTop: 3, marginBottom: 3, color: '#ffffff' }}>{event.description}</Typography>
+                    <GuestSearch _id={event._id} index={id} update={useForceUpdate()} />
+                </Grid>
+                <Grid item xs={2} sx={{ paddingLeft: 5 }}>
+                    <Typography variant='h5' sx={{ marginTop: 3, fontWeight: 'bold', color: '#ffffff' }}>Guests List: {event.guests.length} </Typography>
+                    <GuestList guests={event.guests} index={id} _id={event._id} update={useForceUpdate()} />
+                </Grid>
+                <Grid item xs={4} sx={{ paddingLeft: 5 }}>
+                    <Typography variant='h5' sx={{ marginTop: 3, fontWeight: 'bold', color: '#ffffff' }}>Tasks: </Typography>
+                    <Table tasks={event.tasks} index={id} _id={event._id} guests={event.guests} update={useForceUpdate()} />
+                </Grid>
 
 
-                </Grid>
-                <Grid container spacing={2} sx={{ marginTop: 4 }}>
-                    <Grid item xs={3}>
-                        <Button
-                            sx={{ boxShadow: 3 }}
-                            xs={3}
-                            type='submit'
-                            size='large'
-                            variant='contained'
-                            // onClick={() => navigate('/editaccount')}
-                            fullWidth
-                        >
-                            Edit Information
-                        </Button>
-                    </Grid>
-                    <Grid item xs={3}>
-                        <Button
-                            sx={{ boxShadow: 3 }}
-                            xs={3}
-                            type='submit'
-                            size='large'
-                            variant='contained'
-                            onClick={handleDelete}
-                            fullWidth
-                        >
-                            Delete Event
-                        </Button>
-                    </Grid>
-                </Grid>
             </Grid>
+
 
         </div >
     );

@@ -78,6 +78,7 @@ function CreateParty() {
         temp.events = tempEvent;
 
         setUser(temp);
+        console.log("CREATING PARTY HERE")
         console.log(temp)
 
         localStorage.setItem('user', JSON.stringify(temp))
@@ -101,6 +102,7 @@ function CreateParty() {
               type="text"
               required
               fullWidth
+              variant="filled"
               label="Give your event a title"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
@@ -111,6 +113,7 @@ function CreateParty() {
               type="text"
               fullWidth
               multiline
+              variant="filled"
               rows={3}
               label="Give your event a description"
               value={description}
@@ -123,6 +126,7 @@ function CreateParty() {
               className={styles.field}
               type="text"
               required
+              variant="filled"
               fullWidth
               label="Enter your events location"
               value={address}

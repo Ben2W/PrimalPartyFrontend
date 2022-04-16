@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import { Button } from '@material-ui/core'
+import { Button, Typography } from '@mui/material'
 import '../App.css';
 import AssigneeDisplay from '../components/AssigneeDisplay.js';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -8,19 +8,19 @@ import EditIcon from '@mui/icons-material/Edit';
 import Select from 'react-select';
 
 export default function Task(props){
+
     let assignees = [];
     let usersToAssign = [];
+    let options = []
 
     const [title, setTitle] = useState('');
     const [assigneesToAdd, setAssigneesToAdd] = useState([]);
-
-    console.log('/events/'+ props.eventId + '/tasks/' + props.taskId);
 
     const handleTaskDelete = (e) => {
 
         e.preventDefault();
 
-        fetch(process.env.REACT_APP_URL + ('/events/'+ props.eventId + '/tasks/' + props.taskId) ,{
+        fetch(process.env.REACT_APP_URL + ('/events/'+ props.event + '/tasks/' + props._id) ,{
             method: 'DELETE',
             credentials: 'include',
         })
@@ -48,7 +48,7 @@ export default function Task(props){
 
         for (var i=0; i < usersToAssign.length; i++) {
             console.log(usersToAssign[i]);
-            fetch(process.env.REACT_APP_URL + ('/events/'+ props._id + '/tasks/' + props.taskId) ,{
+            fetch(process.env.REACT_APP_URL + ('/events/'+ props.taskInfo._id + '/tasks/' + props.taskId) ,{
                 method: 'PUT',
                 credentials: 'include',
             })
@@ -59,16 +59,19 @@ export default function Task(props){
         }
     }
 
-
-    for (var i=0; i<props.assignees.length; i++) {
-        assignees.push(
-            <AssigneeDisplay assignees={props.assignees[i].firstName}/>
-        )
+    if(props.taskInfo.assignees.length > 0){
+        for (var i=0; i<props.taskInfo.assignees.length; i++) {
+            console.log(props.taskInfo.assignees[i])
+            assignees.push(
+                <AssigneeDisplay assignees={props.taskInfo.assignees[i].firstName}/>
+            )
+        }
     }
 
+    
+    console.log()
     let userId = "";
     let selectString = "";
-    let options = [];
     for (var i=0; i < props.guests.length; i++) {
         userId = "" + props.guests[i]._id;
         selectString = "" + props.guests[i].firstName + " " + props.guests[i].lastName;
@@ -78,10 +81,11 @@ export default function Task(props){
     console.log(options)
 
     return (
-        <>
-            <td>{props.task}</td>
+
+        <tr>
+            <td><Typography variant='h5' sx={{ fontWeight: 'bold', color: '#000000' }}>{props.taskInfo.name}</Typography></td>
             <td>
-                {assignees}
+                <Typography variant='h5' sx={{ fontWeight: 'bold', color: '#000000' }}>{assignees}</Typography>
                 <Select fullWidth 
                 isSearchable={true}
                 isMulti
@@ -90,7 +94,7 @@ export default function Task(props){
                 defaultValue=""
                 onChange={(e) => usersToAssign = e}
                 />
-                <Button fullWidth onClick={handleAddAssignee} style={{color:'#FFFFFF', background:'#000000'}}>Add</Button>
+                <Button fullWidth variant="contained" onClick={handleAddAssignee} sx={{ fontSize: '18px', fontWeight: 600, paddingRight: 5, paddingLeft: 5 }}>Add</Button>
             </td>
             <td>
                 <div>
@@ -104,6 +108,6 @@ export default function Task(props){
                     </IconButton>
                 </form>
             </td>
-        </>
+        </tr>
     )
 }

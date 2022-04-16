@@ -43,7 +43,6 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     color: '#ffffff',
     display: 'flex',
-    alignItems: 'center'
   },
   logo2: {
     maxHeight: 70,
@@ -57,7 +56,7 @@ function Navbar() {
   const [navbar, setNavbar] = useState(false);
 
   const changeBackground = () => {
-    if (window.scrollY >= 80) {
+    if (window.scrollY >= 70) {
       setNavbar(true);
     } else {
       setNavbar(false);

@@ -10,7 +10,7 @@ import GuestSearch from './GuestSearch';
 export default function CardInfo(props){
     const descStyleModal = { padding: '0 0 0 0', color: '#F5F5F5' }
 
-    console.log(props.guestList);
+    console.log(props);
 
 
     return (
