@@ -1,4 +1,4 @@
-import React, { useState, useEffect, setState,  Component } from 'react'
+import React, { useState, useEffect, setState,  useContext } from 'react'
 import { Grid, Paper, Avatar, TextField, FormControlLabel, Checkbox, Button, Typography, Link } from '@material-ui/core'
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
@@ -9,16 +9,49 @@ import Image from '../img/purple-grad.png'; // Import using relative path
 import Backdrop from '@mui/material/Backdrop';
 import '../App.css';
 import Task from './Task';
+import { UserContext } from '../context/UserContext';
 
 export default function Table(props){
     const [tasks, setTasks] = useState([]);
     const [title, setTitle] = useState('');
+    const { user, setUser } = useContext(UserContext);
+
+    console.log("tassks");
+
+    console.log(props.tasks);
 
     useEffect(() => {
-        setTasks(props.tasks);
+        setTasks(props.tasks)
       }, []);
 
-    const newTaskSubmit = (e) => {
+    async function postTask(id, formBody) {
+        const response = await fetch(process.env.REACT_APP_URL + ('/events/'+ id + '/tasks') ,{
+            method: 'POST',
+            headers: {
+            "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"
+            },
+            credentials: 'include',
+            body: formBody
+        })
+        return response;
+    }
+
+    let tasksArr = []
+    console.log("props.tasks")
+    console.log(props.tasks[0])
+    for (let i = 0 ; i < props.tasks.length ; i++)
+    {
+        tasksArr.push(
+        <tr>
+            <Task taskInfo={props.tasks[i]} friends={user.friends}/>
+        </tr>
+        )
+    }
+
+    //console.log("t array")
+    //console.log(tasksArr[0])
+
+    const newTaskSubmit = async (e) => {
 
         e.preventDefault();
 
@@ -34,21 +67,31 @@ export default function Table(props){
         }
         formBody = formBody.join("&");
 
-        console.log("Form Body: " + formBody)
+        const taskResponse = await postTask(props._id, formBody);
+        
+        const data = await taskResponse.json();
 
-        fetch(process.env.REACT_APP_URL + ('/events/'+ props._id + '/tasks') ,{
-            method: 'POST',
-            headers: {
-            "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"
-            },
-            credentials: 'include',
-            body: formBody
-        })
-        .then(response => response.json())
-        .then(data => {
-            setTasks(data.retval.tasks);
-        })
+        const temp = user;
+
+        const tempTasks = temp.events[props.index].tasks;
+
+        console.log(data.retval)
+
+        tempTasks.push(data.retval.tasks);
+
+        temp.events[props.index].tasks = tempTasks;
+
+        console.log("temp")
+        console.log(temp)
+
+        setUser(temp);
+
+        localStorage.setItem('user', JSON.stringify(temp))
+
+        props.update()
       }
+
+
 
     return (
         <>
@@ -73,15 +116,7 @@ export default function Table(props){
                 </thead>
 
                 <tbody>
-                {
-                    tasks.map((value, key) => {
-                    return (
-                        <tr key={key}>
-                            <Task task={value.name} assignees={value.assignees} eventId={props._id} taskId={value._id} guests = {props.guests}/>
-                        </tr>
-                    )
-                    })
-                }
+                    {tasksArr}
                 </tbody>
             </table>
         </>

@@ -31,6 +31,9 @@ const AdminCard = () => {
     const { user, setUser } = useContext(UserContext);
     const event = user.events[id];
 
+    console.log("event")
+    console.log(event)
+
     const [value, setValue] = useState(0); // integer state
 
     function useForceUpdate(){
@@ -78,10 +81,8 @@ const AdminCard = () => {
                     <Typography variant='h5' sx={{ marginTop: 3, color: '#ffffff' }}>{event.address}</Typography>
                     <Typography variant='h5' sx={{ marginTop: 3, color: '#ffffff' }}>{event.description}</Typography>
                     <GuestSearch _id={event._id} index={id} update={useForceUpdate()}/>
-                    <Table tasks={event.tasks} index = {id} _id={event.id} guests={event.guests} />
                     <GuestList guests={event.guests} index={id} _id={event._id} update={useForceUpdate()}/>
-
-
+                    <Table tasks={event.tasks} index = {id} _id={event._id} guests={event.guests} update={useForceUpdate()}/>
                 </Grid>
                 <Grid container spacing={2} sx={{ marginTop: 4 }}>
                     <Grid item xs={3}>

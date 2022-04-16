@@ -14,13 +14,14 @@ export default function Task(props){
     const [title, setTitle] = useState('');
     const [assigneesToAdd, setAssigneesToAdd] = useState([]);
 
-    console.log('/events/'+ props.eventId + '/tasks/' + props.taskId);
+    console.log('/props/');
+    console.log(props.taskInfo);
 
     const handleTaskDelete = (e) => {
 
         e.preventDefault();
 
-        fetch(process.env.REACT_APP_URL + ('/events/'+ props.eventId + '/tasks/' + props.taskId) ,{
+        fetch(process.env.REACT_APP_URL + ('/events/'+ props.event + '/tasks/' + props._id) ,{
             method: 'DELETE',
             credentials: 'include',
         })
@@ -48,7 +49,7 @@ export default function Task(props){
 
         for (var i=0; i < usersToAssign.length; i++) {
             console.log(usersToAssign[i]);
-            fetch(process.env.REACT_APP_URL + ('/events/'+ props._id + '/tasks/' + props.taskId) ,{
+            fetch(process.env.REACT_APP_URL + ('/events/'+ props.taskInfo._id + '/tasks/' + props.taskId) ,{
                 method: 'PUT',
                 credentials: 'include',
             })
@@ -59,10 +60,13 @@ export default function Task(props){
         }
     }
 
+    
+    console.log("bruh")
+    console.log(props.taskInfo)
 
-    for (var i=0; i<props.assignees.length; i++) {
+    for (var i=0; i<props.taskInfo.length; i++) {
         assignees.push(
-            <AssigneeDisplay assignees={props.assignees[i].firstName}/>
+            <AssigneeDisplay assignees={props.taskInfo[i].firstName}/>
         )
     }
 
