@@ -1,10 +1,14 @@
-import React, { useState, useEffect, Component } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Grid, Paper, Avatar, TextField, FormControlLabel, Checkbox, Button, Typography, Link } from '@material-ui/core'
 import { IconButton } from '@material-ui/core';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { render } from '@testing-library/react';
+import { UserContext } from '../context/UserContext';
 
 export default function DisplayGuestAdmin(props){
+
+    const { user, setUser } = useContext(UserContext);
+    const guest = props.value;
 
     const handleGuestDelete = (e) => {
 
@@ -14,9 +18,21 @@ export default function DisplayGuestAdmin(props){
             method: 'DELETE',
             credentials: 'include',
         })
-        .then(response =>{
-            console.log("RESPONSE: " + response.status);
-            
+        .then(() => {
+            const temp = user;
+
+            const reducedGuests = temp.events[props.index].guests;
+
+            const Newarr = reducedGuests.filter((reducedGuests) => reducedGuests !== guest)
+
+            temp.events[props.index].guests = Newarr;
+
+            console.log("guest")
+            console.log(props.value)
+
+            setUser(temp)
+            localStorage.setItem('user', JSON.stringify(temp))
+
             props.update()
         })
     }

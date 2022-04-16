@@ -33,16 +33,9 @@ export default function DisplayFriend(props){
         .then(() => {
             const temp = user;
             const reducedFriends = user.friends;
-            console.log('reducedFriends')
-            console.log(reducedFriends)
-
-            console.log(friend)
-
             const Newarr = reducedFriends.filter((reducedFriends) => reducedFriends !== friend)
 
             temp.friends = Newarr;
-            console.log('NewArr')
-            console.log(Newarr)
 
             setUser(temp)
             localStorage.setItem('user', JSON.stringify(temp))

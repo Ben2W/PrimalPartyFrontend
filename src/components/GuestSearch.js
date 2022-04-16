@@ -45,8 +45,7 @@ export default function GuestSearch(props){
     const [usersToAdd, setUsersToAdd] = useState();
 
     useEffect(() => {
-        //console.log("Users to add:");
-        console.log(usersToAdd);
+
     });
 
     let userId = "";
@@ -80,9 +79,6 @@ export default function GuestSearch(props){
 
     const newGuestSubmit = async (e) => {
 
-        console.log("PREPARING TO SEND:")
-        console.log(usersToAdd)
-        
         for (let i=0; i < usersToAdd.length; i++) {
 
             console.log("TO: " + '/events/'+ props._id + '/guests/' + usersToAdd[i].value)

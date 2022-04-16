@@ -44,20 +44,23 @@ export default function GuestList(props){
             setQ(data.q)
         })
     }
-    console.log("here")
-    console.log(user.events);
-
       return (
         <div>
             <InputLabel sx={{ color: '#ffffff'}}>Guests List</InputLabel>
             <p>
             {
                 user.events[props.index].guests.map((value, key) => {
-                    console.log("asddddadadsa")
-                    console.log(user.events[props.index])
                     return (
                         <div key={key}>
-                            <DisplayGuestAdmin firstName = {value.firstName} lastName = {value.lastName} _id = {value._id} eventId = {props._id} update={props.update}/>
+                            <DisplayGuestAdmin 
+                                firstName = {value.firstName} 
+                                lastName = {value.lastName} 
+                                _id = {value._id} 
+                                eventId = {props._id} 
+                                update={props.update} 
+                                index={props.index}
+                                value={value}
+                                />
                         </div>
                     )
                     })                    

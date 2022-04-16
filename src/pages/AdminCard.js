@@ -30,13 +30,10 @@ const AdminCard = () => {
     let { id } = useParams();
     const { user, setUser } = useContext(UserContext);
     const event = user.events[id];
-    console.log(event);
 
     const [value, setValue] = useState(0); // integer state
 
     function useForceUpdate(){
-        console.log("Fucking user")
-        console.log(user);
         return () => setValue(value => value + 1); // update the state to force render
     }
 
@@ -49,17 +46,12 @@ const AdminCard = () => {
             .then(() => {
                 const temp = user;
                 const reducedEvents = user.events;
-                console.log('reducedEvents')
-                console.log(reducedEvents)
 
                 const Newarr = reducedEvents.filter((reducedEvents) => reducedEvents !== event)
 
                 temp.events = Newarr;
-                console.log('NewArr')
-                console.log(Newarr)
 
                 temp.events = Newarr
-                console.log(temp)
 
                 setUser(temp)
                 localStorage.setItem('user', JSON.stringify(temp))
