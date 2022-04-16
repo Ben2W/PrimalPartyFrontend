@@ -33,7 +33,7 @@ const AdminCard = () => {
 
     const [value, setValue] = useState(0); // integer state
 
-    function useForceUpdate(){
+    function useForceUpdate() {
         return () => setValue(value => value + 1); // update the state to force render
     }
 
@@ -62,27 +62,34 @@ const AdminCard = () => {
 
     return (
         <div className={styles.page}>
-            <Typography variant='h3' sx={{ color: '#ffffff'}}>{event.name}</Typography>
+            <Typography variant='h3' sx={{ color: '#ffffff' }}>{event.name}</Typography>
             <Grid container>
                 <Grid item xs={1}>
                     <Typography variant='h5' sx={{ marginTop: 3, fontWeight: 'bold', color: '#ffffff' }}>Date: </Typography>
                     <Typography variant='h5' sx={{ marginTop: 3, fontWeight: 'bold', color: '#ffffff' }}>Place: </Typography>
                     <Typography variant='h5' sx={{ marginTop: 3, fontWeight: 'bold', color: '#ffffff' }}>About: </Typography>
+
                     <Typography variant='h5' sx={{ marginTop: 3, fontWeight: 'bold', color: '#ffffff' }}>Guests: </Typography>
                     <Typography variant='h5' sx={{ marginTop: 3, fontWeight: 'bold', color: '#ffffff' }}>Tasks: </Typography>
-                    <Typography variant='h5' sx={{ marginTop: 3, fontWeight: 'bold', color: '#ffffff' }}>List: </Typography>
 
                 </Grid>
-                <Grid item xs={3}>
+                <Grid item xs={3} sx={{ marginLeft: 2 }}>
                     <Typography variant='h5' sx={{ marginTop: 3, color: '#ffffff' }}>{event.date}</Typography>
                     <Typography variant='h5' sx={{ marginTop: 3, color: '#ffffff' }}>{event.address}</Typography>
-                    <Typography variant='h5' sx={{ marginTop: 3, color: '#ffffff' }}>{event.description}</Typography>
-                    <GuestSearch _id={event._id} index={id} update={useForceUpdate()}/>
-                    <GuestList guests={event.guests} index={id} _id={event._id} update={useForceUpdate()}/>
-                    <Table tasks={event.tasks} index = {id} _id={event._id} guests={event.guests} update={useForceUpdate()}/>
+                    <Typography variant='h5' sx={{ marginTop: 3, marginBottom: 3, color: '#ffffff' }}>{event.description}</Typography>
+                    <GuestSearch _id={event._id} index={id} update={useForceUpdate()} />
+                    {/* <Table tasks={event.tasks} index={id} _id={event._id} guests={event.guests} update={useForceUpdate()} /> */}
                 </Grid>
+                <Grid item xs={2} sx={{ paddingLeft: 5 }}>
+                    <Typography variant='h5' sx={{ marginTop: 3, fontWeight: 'bold', color: '#ffffff' }}>Guests List: {event.guests.length} </Typography>
+                    <GuestList guests={event.guests} index={id} _id={event._id} update={useForceUpdate()} />
+                </Grid>
+                <Grid item xs={4} sx={{ paddingLeft: 5 }}>
+                    <Typography variant='h5' sx={{ marginTop: 3, fontWeight: 'bold', color: '#ffffff' }}>Tasks: </Typography>
+                </Grid>
+
                 <Grid container spacing={2} sx={{ marginTop: 4 }}>
-                    <Grid item xs={3}>
+                    <Grid item xs={2}>
                         <Button
                             sx={{ boxShadow: 3 }}
                             xs={3}
@@ -95,7 +102,7 @@ const AdminCard = () => {
                             Edit Information
                         </Button>
                     </Grid>
-                    <Grid item xs={3}>
+                    <Grid item xs={2}>
                         <Button
                             sx={{ boxShadow: 3 }}
                             xs={3}
@@ -110,6 +117,7 @@ const AdminCard = () => {
                     </Grid>
                 </Grid>
             </Grid>
+
 
         </div >
     );

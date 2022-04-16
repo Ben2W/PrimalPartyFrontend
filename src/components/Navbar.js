@@ -43,7 +43,6 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     color: '#ffffff',
     display: 'flex',
-    alignItems: 'center'
   },
   logo2: {
     maxHeight: 70,

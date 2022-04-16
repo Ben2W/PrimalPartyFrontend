@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { Grid, Paper, Avatar, TextField, FormControlLabel, Checkbox, Button, Typography, Link } from '@material-ui/core'
-import '../App.css';
 import Task from './Task';
 import { IconButton } from '@material-ui/core';
 import ModeEditOutlineIcon from '@mui/icons-material/ModeEditOutline';
@@ -8,68 +7,59 @@ import { MenuItem } from '@mui/material';
 import { InputLabel } from '@mui/material';
 import Select from 'react-select';
 import { UserContext } from '../context/UserContext';
+import { makeStyles } from '@material-ui/core'
 import { convertLength } from '@mui/material/styles/cssUtils';
 
 let users = [];
 
-let options = [
-    { value: '623cf1c5dcf4fdcf55f19fd3', label: "Lebron James" },
-    { value: "623be4768eed9052100532f1", label: "Dylan Piper" },
-    { value: "623e7c236424b98344811a8c", label: "Jonny Haldas" },
-  ];
+let options = [];
 
 
-function changeSearch(e)
-{
+function changeSearch(e) {
     console.log("bruh");
     this.setSearch(e.target.value);
 }
 
-function customTheme(theme)
-{
+function customTheme(theme) {
     return {
-        ... theme,
+        ...theme,
         colors:
         {
             ...theme.colors,
             primary25: 'orange',
-            primary:'green',
+            primary: 'green',
         }
     }
 }
 
-export default function GuestSearch(props){
-
+export default function GuestSearch(props) {
     const [search, setSearch] = useState('');
     const { user, setUser } = useContext(UserContext);
     const [usersToAdd, setUsersToAdd] = useState();
 
-    useEffect(() => {
-
-    });
 
     let userId = "";
     let selectString = "";
     options = [];
-    for (var i=0; i < user.friends.length; i++) {
+    for (var i = 0; i < user.friends.length; i++) {
         userId = "" + user.friends[i]._id;
         selectString = "" + user.friends[i].firstName + " " + user.friends[i].lastName;
-        options.push({value: userId, label: selectString},)
+        options.push({ value: userId, label: selectString },)
     }
 
-    const searchUsers = async() => {
+    const searchUsers = async () => {
         fetch(process.env.REACT_APP_URL + '/users?q=' + search, {
             method: 'GET',
             credentials: 'include',
         })
-        .then(response => response.json())
-        .then(data => {
-            users = data.users
-        })
+            .then(response => response.json())
+            .then(data => {
+                users = data.users
+            })
     }
 
     async function postGuests(id, val) {
-        const response = await fetch(process.env.REACT_APP_URL + ('/events/'+ id + '/guests/' + val), {
+        const response = await fetch(process.env.REACT_APP_URL + ('/events/' + id + '/guests/' + val), {
             method: 'POST',
 
             credentials: 'include'
@@ -79,22 +69,21 @@ export default function GuestSearch(props){
 
     const newGuestSubmit = async (e) => {
 
-        for (let i=0; i < usersToAdd.length; i++) {
+        for (let i = 0; i < usersToAdd.length; i++) {
 
-            console.log("TO: " + '/events/'+ props._id + '/guests/' + usersToAdd[i].value)
-            
+            console.log("TO: " + '/events/' + props._id + '/guests/' + usersToAdd[i].value)
+
             const guestResponse = await postGuests(props._id, usersToAdd[i].value)
 
-            if(guestResponse.status == 200)
-            {
+            if (guestResponse.status == 200) {
                 const data = await guestResponse.json();
-                
+
                 const temp = user;
 
                 const tempGuests = temp.events[props.index].guests;
 
                 tempGuests.push(data.newGuest);
-        
+
                 temp.events[props.index].guests = tempGuests;
 
                 setUser(temp);
@@ -103,20 +92,36 @@ export default function GuestSearch(props){
             }
         }
         props.update()
-      }
+    }
 
-    return(
-        <form>
-            <Select fullWidth 
-                isSearchable={true}
-                isMulti
-                theme = {customTheme}
-                options={options} 
-                placeholder="Add User"
-                defaultValue=""
-                onChange={(e) => setUsersToAdd(e)}
-                />
-            <Button variant="outlined" onClick={newGuestSubmit}>Add New Guests</Button>
+    return (
+        <form >
+            <Grid container>
+                <Grid item xs={8} >
+                    <Select
+                        fullWidth
+                        isSearchable={true}
+                        isMulti
+                        theme={customTheme}
+                        options={options}
+                        placeholder="Add User"
+                        defaultValue=""
+                        onChange={(e) => setUsersToAdd(e)}
+                    />
+                </Grid>
+                <Grid item xs={2}>
+                    <Button
+                        onClick={newGuestSubmit}
+                        xs={3}
+                        size='large'
+                        variant='contained'
+                        fullWidth
+                    >
+                        Add
+                    </Button>
+                </Grid>
+            </Grid>
+
         </form>
     )
 }

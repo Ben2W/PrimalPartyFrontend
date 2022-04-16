@@ -46,7 +46,6 @@ export default function GuestList(props){
     }
       return (
         <div>
-            <InputLabel sx={{ color: '#ffffff'}}>Guests List</InputLabel>
             <p>
             {
                 user.events[props.index].guests.map((value, key) => {
