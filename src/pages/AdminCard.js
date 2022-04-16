@@ -31,9 +31,6 @@ const AdminCard = () => {
     const { user, setUser } = useContext(UserContext);
     const event = user.events[id];
 
-    console.log("event")
-    console.log(event)
-
     const [value, setValue] = useState(0); // integer state
 
     function useForceUpdate(){

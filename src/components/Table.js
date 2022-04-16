@@ -10,18 +10,16 @@ import Backdrop from '@mui/material/Backdrop';
 import '../App.css';
 import Task from './Task';
 import { UserContext } from '../context/UserContext';
+import { ControlCamera } from '@material-ui/icons';
+import { isValidDateValue } from '@testing-library/user-event/dist/utils';
 
 export default function Table(props){
     const [tasks, setTasks] = useState([]);
     const [title, setTitle] = useState('');
     const { user, setUser } = useContext(UserContext);
 
-    console.log("tassks");
-
-    console.log(props.tasks);
-
     useEffect(() => {
-        setTasks(props.tasks)
+        //setTasks(props.tasks)
       }, []);
 
     async function postTask(id, formBody) {
@@ -37,19 +35,14 @@ export default function Table(props){
     }
 
     let tasksArr = []
-    console.log("props.tasks")
-    console.log(props.tasks[0])
     for (let i = 0 ; i < props.tasks.length ; i++)
     {
+        let temp = props.tasks[i]
+        
         tasksArr.push(
-        <tr>
-            <Task taskInfo={props.tasks[i]} friends={user.friends}/>
-        </tr>
+            <Task taskInfo={temp} guests={props.guests} key={i}/>
         )
     }
-
-    //console.log("t array")
-    //console.log(tasksArr[0])
 
     const newTaskSubmit = async (e) => {
 
@@ -73,17 +66,8 @@ export default function Table(props){
 
         const temp = user;
 
-        const tempTasks = temp.events[props.index].tasks;
-
-        console.log(data.retval)
-
-        tempTasks.push(data.retval.tasks);
-
-        temp.events[props.index].tasks = tempTasks;
-
-        console.log("temp")
-        console.log(temp)
-
+        temp.events[props.index].tasks = data.retval.tasks;
+        
         setUser(temp);
 
         localStorage.setItem('user', JSON.stringify(temp))

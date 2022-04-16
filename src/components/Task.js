@@ -8,14 +8,13 @@ import EditIcon from '@mui/icons-material/Edit';
 import Select from 'react-select';
 
 export default function Task(props){
+
     let assignees = [];
     let usersToAssign = [];
+    let options = []
 
     const [title, setTitle] = useState('');
     const [assigneesToAdd, setAssigneesToAdd] = useState([]);
-
-    console.log('/props/');
-    console.log(props.taskInfo);
 
     const handleTaskDelete = (e) => {
 
@@ -60,19 +59,19 @@ export default function Task(props){
         }
     }
 
-    
-    console.log("bruh")
-    console.log(props.taskInfo)
-
-    for (var i=0; i<props.taskInfo.length; i++) {
-        assignees.push(
-            <AssigneeDisplay assignees={props.taskInfo[i].firstName}/>
-        )
+    if(props.taskInfo.assignees.length > 0){
+        for (var i=0; i<props.taskInfo.assignees.length; i++) {
+            console.log(props.taskInfo.assignees[i])
+            assignees.push(
+                <AssigneeDisplay assignees={props.taskInfo.assignees[i].firstName}/>
+            )
+        }
     }
 
+    
+    console.log()
     let userId = "";
     let selectString = "";
-    let options = [];
     for (var i=0; i < props.guests.length; i++) {
         userId = "" + props.guests[i]._id;
         selectString = "" + props.guests[i].firstName + " " + props.guests[i].lastName;
@@ -82,8 +81,9 @@ export default function Task(props){
     console.log(options)
 
     return (
-        <>
-            <td>{props.task}</td>
+
+        <tr>
+            <td>{props.taskInfo.name}</td>
             <td>
                 {assignees}
                 <Select fullWidth 
@@ -108,6 +108,6 @@ export default function Task(props){
                     </IconButton>
                 </form>
             </td>
-        </>
+        </tr>
     )
 }
