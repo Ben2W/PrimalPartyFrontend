@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React, { useEffect, useState } from 'react'
 import { Grid, Button, Typography } from '@mui/material';
 import Card from '@mui/material/Card';
 import CardInfo from '../components/CardInfo.js';
@@ -11,6 +11,7 @@ import Fade from '@mui/material/Fade';
 import Alert from '@mui/material/Alert';
 import { UserContext } from '../context/UserContext';
 import { useNavigate } from 'react-router-dom';
+import { color } from '@mui/system';
 
 const style = {
     position: 'absolute',
@@ -26,18 +27,37 @@ const style = {
 
 export default function BasicCard(props) {
     const { user } = React.useContext(UserContext);
-    const [ admin, setAdmin ] = useState(false);
+    const [admin, setAdmin] = useState(false);
+    const [color, setColor] = useState('');
     const navigate = useNavigate();
     const i = props.props
+
+    function getBackground() {
+        const colors = [
+            'linear-gradient(350deg, rgba(45,189,253,1) 0%, rgba(65,68,223,1) 65%)',
+            'linear-gradient(350deg, rgba(91,144,168,1) 0%, rgba(18,21,139,1) 70%)',
+            'linear-gradient(350deg, rgba(91,124,168,1) 0%, rgba(62,18,139,1) 70%)',
+            'linear-gradient(350deg, rgba(91,168,161,1) 0%, rgba(18,110,139,1) 70%)',
+            'linear-gradient(350deg, rgba(91,109,168,1) 0%, rgba(69,18,139,1) 70%)',
+            'linear-gradient(350deg, rgba(153,91,168,1) 0%, rgba(62,18,139,1) 70%)',
+            'linear-gradient(348deg, rgba(168,91,91,1) 0%, rgba(48,18,139,1) 70%)',
+            'linear-gradient(348deg, rgba(168,91,91,1) 0%, rgba(154,91,162,1) 3%, rgba(18,81,139,1) 70%)'
+        ]
+        return colors[Math.floor(Math.random() * colors.length)]
+    }
 
     useEffect(() => {
         if (user.events[i].admin._id == user._id) {
             setAdmin(true)
-        } 
+        }
+        setColor(getBackground());
+
     }, [])
 
+
+
     const cardStyle = {
-        width: 275, height: 315, display: 'flex', justifyContent: 'space-between', flexDirection: 'column', background: 'linear-gradient(350deg, rgba(45,189,253,1) 0%, rgba(65,68,223,1) 65%)'
+        width: 275, height: 315, display: 'flex', justifyContent: 'space-between', flexDirection: 'column', background: color
     }
 
     const btnStyle = { backgroundColor: "#000000", display: 'block' }
@@ -46,7 +66,7 @@ export default function BasicCard(props) {
 
 
     return (
-        <Box sx={{paddingRight: 4, paddingBottom: 4}}>
+        <Box sx={{ paddingRight: 4, paddingBottom: 4 }}>
             <Grid container alignItems="stretch">
                 <Card style={cardStyle}>
                     <Grid>
