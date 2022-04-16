@@ -78,6 +78,7 @@ function CreateParty() {
         temp.events = tempEvent;
 
         setUser(temp);
+        console.log("CREATING PARTY HERE")
         console.log(temp)
 
         localStorage.setItem('user', JSON.stringify(temp))

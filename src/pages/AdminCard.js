@@ -32,7 +32,13 @@ const AdminCard = () => {
     const event = user.events[id];
     console.log(event);
 
-    
+    const [value, setValue] = useState(0); // integer state
+
+    function useForceUpdate(){
+        console.log("Fucking user")
+        console.log(user);
+        return () => setValue(value => value + 1); // update the state to force render
+    }
 
     const handleDelete = () => {
 
@@ -79,9 +85,9 @@ const AdminCard = () => {
                     <Typography variant='h5' sx={{ marginTop: 3, color: '#ffffff' }}>{event.date}</Typography>
                     <Typography variant='h5' sx={{ marginTop: 3, color: '#ffffff' }}>{event.address}</Typography>
                     <Typography variant='h5' sx={{ marginTop: 3, color: '#ffffff' }}>{event.description}</Typography>
-                    <GuestSearch _id={event._id} />
-                    <Table tasks={event.tasks} _id={event.id} guests={event.guests} />
-                    {/* <GuestList guests={event.guest} _id={event._id} />   */}
+                    <GuestSearch _id={event._id} index={id} update={useForceUpdate()}/>
+                    <Table tasks={event.tasks} index = {id} _id={event.id} guests={event.guests} />
+                    <GuestList guests={event.guests} index={id} _id={event._id} update={useForceUpdate()}/>
 
 
                 </Grid>

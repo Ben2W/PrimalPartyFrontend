@@ -16,13 +16,15 @@ export default function DisplayGuestAdmin(props){
         })
         .then(response =>{
             console.log("RESPONSE: " + response.status);
+            
+            props.update()
         })
     }
 
     return (
         <form onSubmit={handleGuestDelete} style={{display:'flex'}}>
-            <p>{props.firstName + " " + props.lastName}</p>
-            <IconButton type="submit" aria-label="delete" style={{color:'#000000'}}>
+            <Typography sx={{ color: '#ffffff'}}>{props.firstName + " " + props.lastName}</Typography>
+            <IconButton sx={{ color: '#ffffff'}} type="submit" aria-label="delete" style={{color:'#000000'}}>
                 <DeleteIcon />
             </IconButton>
         </form>

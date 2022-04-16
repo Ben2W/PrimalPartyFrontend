@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Component, setState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Grid, Paper, Avatar, TextField, FormControlLabel, Checkbox, Button, Typography, Link } from '@material-ui/core'
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
@@ -16,6 +16,8 @@ import { MenuItem } from '@mui/material';
 import { FormControl } from 'react-bootstrap';
 import { InputLabel } from '@mui/material';
 import DisplayGuestAdmin from './DisplayGuestAdmin';
+import { UserContext } from '../context/UserContext';
+
 
 const xBtnStyle = {background:'#FF0000', color: '#FFFFFF'}
 
@@ -25,7 +27,7 @@ export default function GuestList(props){
 
     const [guestId, setGuestId] = useState();
     const [q, setQ] = useState([]);
-    const [user, setUser] = React.useState('');
+    const { user, setUser } = useContext(UserContext);
     const [selectedOption, setSelectedOption] = useState("none");
  
     const getUsers = () => 
@@ -42,19 +44,23 @@ export default function GuestList(props){
             setQ(data.q)
         })
     }
+    console.log("here")
+    console.log(user.events);
 
       return (
         <div>
-            <InputLabel>Guests List</InputLabel>
+            <InputLabel sx={{ color: '#ffffff'}}>Guests List</InputLabel>
             <p>
             {
-                props.guests.map((value, key) => {
+                user.events[props.index].guests.map((value, key) => {
+                    console.log("asddddadadsa")
+                    console.log(user.events[props.index])
                     return (
                         <div key={key}>
-                            <DisplayGuestAdmin firstName = {value.firstName} lastName = {value.lastName} _id = {value._id} eventId = {props._id}/>
+                            <DisplayGuestAdmin firstName = {value.firstName} lastName = {value.lastName} _id = {value._id} eventId = {props._id} update={props.update}/>
                         </div>
                     )
-                    })
+                    })                    
             }
             </p>
         </div>
