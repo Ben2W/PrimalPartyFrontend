@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { Grid, Paper, Avatar, TextField, FormControlLabel, Checkbox, Button, Typography, Link } from '@material-ui/core'
+import { Grid, TextField, Button, Typography } from '@mui/material';
 import Task from './Task';
 import { IconButton } from '@material-ui/core';
 import ModeEditOutlineIcon from '@mui/icons-material/ModeEditOutline';
@@ -111,9 +111,9 @@ export default function GuestSearch(props) {
                 </Grid>
                 <Grid item xs={2}>
                     <Button
+                        style={{ fontSize: '18px', fontWeight: 600, paddingRight: 5, paddingLeft: 5 }}
                         onClick={newGuestSubmit}
-                        xs={3}
-                        size='large'
+                        size='small'
                         variant='contained'
                         fullWidth
                     >

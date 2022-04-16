@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import { Button } from '@material-ui/core'
+import { Button, Typography } from '@mui/material'
 import '../App.css';
 import AssigneeDisplay from '../components/AssigneeDisplay.js';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -83,9 +83,9 @@ export default function Task(props){
     return (
 
         <tr>
-            <td>{props.taskInfo.name}</td>
+            <td><Typography variant='h5' sx={{ fontWeight: 'bold', color: '#000000' }}>{props.taskInfo.name}</Typography></td>
             <td>
-                {assignees}
+                <Typography variant='h5' sx={{ fontWeight: 'bold', color: '#000000' }}>{assignees}</Typography>
                 <Select fullWidth 
                 isSearchable={true}
                 isMulti
@@ -94,7 +94,7 @@ export default function Task(props){
                 defaultValue=""
                 onChange={(e) => usersToAssign = e}
                 />
-                <Button fullWidth onClick={handleAddAssignee} style={{color:'#FFFFFF', background:'#000000'}}>Add</Button>
+                <Button fullWidth variant="contained" onClick={handleAddAssignee} sx={{ fontSize: '18px', fontWeight: 600, paddingRight: 5, paddingLeft: 5 }}>Add</Button>
             </td>
             <td>
                 <div>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, setState,  useContext } from 'react'
-import { Grid, Paper, Avatar, TextField, FormControlLabel, Checkbox, Button, Typography, Link } from '@material-ui/core'
+import { Grid, Paper, Avatar, TextField, FormControlLabel, Checkbox, Button, Typography, Link } from '@mui/material'
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
@@ -80,22 +80,39 @@ export default function Table(props){
     return (
         <>
             <form onSubmit={newTaskSubmit}>
-                <div style={{display:'flex'}}>
-                    <TextField 
-                        type="text"
-                        required
-                        onChange={(e) => setTitle(e.target.value)}              
-                    />
-                    <Button type="submit" style={{width:'40%'}} variant="outlined">New Task</Button>
-                </div>
+                <Grid container spacing={1} display='flex' justifyContent='center' alignItems='center'>
+                    <Grid item xs={5}>
+                            <TextField
+                                style={{ backgroundColor: '#ffffff', color: '#ffffff' }}
+                                type="text"
+                                label="Add New Task"
+                                variant="filled"
+                                size="small"
+                                required
+                                fullWidth
+                                onChange={(e) => setTitle(e.target.value)}
+                            />  
+                    </Grid>
+                    <Grid item sx={3}>
+                            <Button 
+                                sx={{ fontSize: '18px', fontWeight: 600, paddingRight: 5, paddingLeft: 5 }}
+                                type="submit" 
+                                variant="contained"
+                                size='large'
+                            >
+                                New Task
+                            </Button>
+
+                    </Grid>
+                </Grid>
             </form>
 
             <table>
                 <thead>
                     <tr>
-                        <th>Task</th>
-                        <th>Assignee</th>
-                        <th></th>
+                        <th><Typography variant='h5' sx={{ fontWeight: 'bold', color: '#000000' }}>Task </Typography></th>
+                        <th><Typography variant='h5' sx={{ fontWeight: 'bold', color: '#000000' }}>Assignee </Typography></th>
+                        <th><Typography variant='h5' sx={{ fontWeight: 'bold', color: '#000000' }}>Edit </Typography></th>
                     </tr>
                 </thead>
 

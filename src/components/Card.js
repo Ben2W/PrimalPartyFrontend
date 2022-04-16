@@ -76,11 +76,6 @@ export default function BasicCard(props) {
                             </Typography>
                         </CardContent>
                     </Grid>
-
-                    <Grid>
-                        <Alert severity="info" style={{ margin: '0 15px 0 15px' }}>You have # task(s)</Alert>
-                    </Grid>
-
                     <Grid>
                         <CardActions>
                             {admin
