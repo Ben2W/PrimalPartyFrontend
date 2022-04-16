@@ -27,9 +27,6 @@ export default function DisplayGuestAdmin(props){
 
             temp.events[props.index].guests = Newarr;
 
-            console.log("guest")
-            console.log(props.value)
-
             setUser(temp)
             localStorage.setItem('user', JSON.stringify(temp))
 
