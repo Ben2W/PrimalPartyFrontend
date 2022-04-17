@@ -40,7 +40,7 @@ export default function Table(props){
         let temp = props.tasks[i]
         
         tasksArr.push(
-            <Task taskInfo={temp} guests={props.guests} key={i}/>
+            <Task taskInfo={temp} guests={props.guests} key={i} index={props.index} update={props.update} i={i}/>
         )
     }
 
@@ -63,6 +63,9 @@ export default function Table(props){
         const taskResponse = await postTask(props._id, formBody);
         
         const data = await taskResponse.json();
+
+        console.log("data")
+        console.log(data)
 
         const temp = user;
 

@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, { useState, useEffect, setState,  useContext } from 'react'
 import { Button, Typography } from '@mui/material'
 import '../App.css';
 import AssigneeDisplay from '../components/AssigneeDisplay.js';
@@ -6,6 +6,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import { IconButton } from '@material-ui/core';
 import EditIcon from '@mui/icons-material/Edit';
 import Select from 'react-select';
+import { UserContext } from '../context/UserContext';
 
 export default function Task(props){
 
@@ -15,21 +16,38 @@ export default function Task(props){
 
     const [title, setTitle] = useState('');
     const [assigneesToAdd, setAssigneesToAdd] = useState([]);
+    const { user, setUser } = useContext(UserContext);
 
-    const handleTaskDelete = (e) => {
-
-        e.preventDefault();
-
-        fetch(process.env.REACT_APP_URL + ('/events/'+ props.event + '/tasks/' + props._id) ,{
+    async function deleteTask(eventId, taskId) {
+        const response = await fetch(process.env.REACT_APP_URL + ('/events/'+ props.taskInfo.event + '/tasks/' + props.taskInfo._id) ,{
             method: 'DELETE',
             credentials: 'include',
         })
-        .then(response =>{
-            console.log("RESPONSE: " + response.status);
-        })
-        /*.then(data => {
-            console.log("Data: " + data);
-        })*/
+        return response;
+    }
+
+    const handleTaskDelete = async (e) => {
+
+        e.preventDefault();
+
+        const taskResponse = await deleteTask(props.taskInfo.event, props.taskInfo._id);
+
+        const data = await taskResponse.json();
+
+        const temp = user;
+
+        temp.events[props.index].tasks.splice(props.key, 1)
+
+        for(let i = 0; i < data.tasks.length; i++)
+        {
+            temp.events[props.index].tasks[i]._id = data.tasks[i]._id
+        }
+        
+        setUser(temp);
+
+        localStorage.setItem('user', JSON.stringify(temp))
+
+        props.update()
       }
 
     const handleAddAssignee = (e) => {
@@ -47,7 +65,7 @@ export default function Task(props){
         }
 
         for (var i=0; i < usersToAssign.length; i++) {
-            console.log(usersToAssign[i]);
+            //console.log(usersToAssign[i]);
             fetch(process.env.REACT_APP_URL + ('/events/'+ props.taskInfo._id + '/tasks/' + props.taskId) ,{
                 method: 'PUT',
                 credentials: 'include',
@@ -59,17 +77,17 @@ export default function Task(props){
         }
     }
 
+    /*
     if(props.taskInfo.assignees.length > 0){
         for (var i=0; i<props.taskInfo.assignees.length; i++) {
-            console.log(props.taskInfo.assignees[i])
+            //console.log(props.taskInfo.assignees[i])
             assignees.push(
                 <AssigneeDisplay assignees={props.taskInfo.assignees[i].firstName}/>
             )
         }
     }
+    */
 
-    
-    console.log()
     let userId = "";
     let selectString = "";
     for (var i=0; i < props.guests.length; i++) {
@@ -78,7 +96,6 @@ export default function Task(props){
         options.push({value: userId, label: selectString},)
     }
 
-    console.log(options)
 
     return (
 
