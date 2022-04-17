@@ -64,9 +64,6 @@ export default function Table(props){
         
         const data = await taskResponse.json();
 
-        console.log("data")
-        console.log(data)
-
         const temp = user;
 
         temp.events[props.index].tasks = data.retval.tasks;

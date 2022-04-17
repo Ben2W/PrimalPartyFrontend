@@ -19,7 +19,7 @@ export default function Task(props){
     const { user, setUser } = useContext(UserContext);
 
     async function deleteTask(eventId, taskId) {
-        const response = await fetch(process.env.REACT_APP_URL + ('/events/'+ props.taskInfo.event + '/tasks/' + props.taskInfo._id) ,{
+        const response = await fetch(process.env.REACT_APP_URL + ('/events/'+ eventId + '/tasks/' + taskId) ,{
             method: 'DELETE',
             credentials: 'include',
         })
@@ -36,11 +36,11 @@ export default function Task(props){
 
         const temp = user;
 
-        temp.events[props.index].tasks.splice(props.key, 1)
+        temp.events[props.index].tasks.splice(props.i, 1)
 
         for(let i = 0; i < data.tasks.length; i++)
         {
-            temp.events[props.index].tasks[i]._id = data.tasks[i]._id
+            temp.events[props.index].tasks[i]._id = data.tasks[i]
         }
         
         setUser(temp);
