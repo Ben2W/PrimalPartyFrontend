@@ -51,42 +51,76 @@ export default function Task(props){
       }
 
     const handleAddAssignee = (e) => {
-        
-        const details = {
-            'name': title,
-            'assignees': assigneesToAdd,
+
+        console.log(usersToAssign)
+
+        let tempUsersToAssign = ""
+        for (let i = 0; i < usersToAssign.length;i++)
+        {
+            if(i == usersToAssign.length-1){
+                tempUsersToAssign += (usersToAssign[i].value)
+            }else
+            {
+                tempUsersToAssign += (usersToAssign[i].value + ',')
+            }
         }
+
+        const details = {
+            'name' : props.taskInfo.name,
+            'description' : "none",
+            'assignees': tempUsersToAssign,
+            'done' : false,
+        }
+
+        console.log("tempUsersToAssign")
+        console.log(tempUsersToAssign)
+
+        //console.log("users to assign")
+        //console.log(usersToAssign)
 
         var formBody = [];
         for (var property in details) {
-            var encodedKey = encodeURIComponent(property);
-            var encodedValue = encodeURIComponent(details[property]);
-            formBody.push(encodedKey + "=" + encodedValue);
+            if(property == "assignees")
+            {
+                formBody.push(tempUsersToAssign);
+            }
+            else
+            {
+                console.log(property)
+                var encodedKey = encodeURIComponent(property);
+                var encodedValue = encodeURIComponent(details[property]);
+                formBody.push(encodedKey + "=" + encodedValue);
+            }
         }
+        console.log("Form Body")
+        console.log(formBody)
 
-        for (var i=0; i < usersToAssign.length; i++) {
-            //console.log(usersToAssign[i]);
-            fetch(process.env.REACT_APP_URL + ('/events/'+ props.taskInfo._id + '/tasks/' + props.taskId) ,{
-                method: 'PUT',
-                credentials: 'include',
-            })
-            .then(response => response.json())
-            .then(response =>{
-                console.log("RESPONSE: " + response.status);
-            })
-        }
+        formBody = formBody.join("&");
+
+        console.log("Form Body")
+        console.log(formBody)
+
+        fetch(process.env.REACT_APP_URL + ('/events/'+ props.taskInfo.event + '/tasks/' + props.taskInfo._id) ,{
+            method: 'PUT',
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"
+            },
+            credentials: 'include',
+            body: formBody
+        })
+        .then(response =>{
+            console.log("response");
+            console.log(response);
+        })
     }
 
-    /*
     if(props.taskInfo.assignees.length > 0){
         for (var i=0; i<props.taskInfo.assignees.length; i++) {
-            //console.log(props.taskInfo.assignees[i])
             assignees.push(
-                <AssigneeDisplay assignees={props.taskInfo.assignees[i].firstName}/>
+                <AssigneeDisplay assigneeInfo={props.taskInfo.assignees[i]}/>
             )
         }
     }
-    */
 
     let userId = "";
     let selectString = "";
@@ -111,7 +145,11 @@ export default function Task(props){
                 defaultValue=""
                 onChange={(e) => usersToAssign = e}
                 />
-                <Button fullWidth variant="contained" onClick={handleAddAssignee} sx={{ fontSize: '18px', fontWeight: 600, paddingRight: 5, paddingLeft: 5 }}>Add</Button>
+                <Button fullWidth 
+                        variant="contained" 
+                        onClick={handleAddAssignee} 
+                        sx={{ fontSize: '18px', fontWeight: 600, paddingRight: 5, paddingLeft: 5 }}
+                >Add</Button>
             </td>
             <td>
                 <div>
