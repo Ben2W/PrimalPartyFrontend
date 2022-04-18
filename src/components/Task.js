@@ -26,6 +26,19 @@ export default function Task(props){
         return response;
     }
 
+    async function putAssignees(eventId, taskId, formBody) {
+        const response = fetch(process.env.REACT_APP_URL + ('/events/'+ eventId + '/tasks/' + taskId) ,{
+            method: 'PUT',
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
+                'Accept': 'application/json'
+            },
+            credentials: 'include',
+            body: formBody
+        })
+        return response;
+    }
+
     const handleTaskDelete = async (e) => {
 
         e.preventDefault();
@@ -50,11 +63,24 @@ export default function Task(props){
         props.update()
       }
 
-    const handleAddAssignee = (e) => {
+    const handleAddAssignee = async (e) => {
 
         console.log(usersToAssign)
 
         let tempUsersToAssign = ""
+
+        /*
+        for(let i = 0; i < user.events[props.index].tasks[i].assignees.length;i++)
+        {
+            tempUsersToAssign += user.events[props.index].tasks[i].assignees[i]
+            if(usersToAssign > 0)
+            {
+                tempUsersToAssign += ",";
+            }
+
+        }
+
+        */
         for (let i = 0; i < usersToAssign.length;i++)
         {
             if(i == usersToAssign.length-1){
@@ -80,26 +106,47 @@ export default function Task(props){
 
         var formBody = [];
         for (var property in details) {
-            if(property == "assignees")
+            if(property == 'assignees')
             {
-                formBody.push(tempUsersToAssign);
+                var encodedKey = encodeURIComponent(property);
+                formBody.push(encodedKey + "=" + tempUsersToAssign);
             }
             else
             {
-                console.log(property)
                 var encodedKey = encodeURIComponent(property);
                 var encodedValue = encodeURIComponent(details[property]);
                 formBody.push(encodedKey + "=" + encodedValue);
             }
         }
-        console.log("Form Body")
-        console.log(formBody)
 
         formBody = formBody.join("&");
 
         console.log("Form Body")
         console.log(formBody)
 
+        const put = await putAssignees(props.taskInfo.event, props.taskInfo._id, formBody)
+
+        const data = await put.json();
+
+        console.log(data)
+
+        if(putAssignees.status == 200)
+        {
+            const temp = user;
+
+            temp.events[props.index].tasks[props.i] = data.retval.tasks;
+
+            //tempUsersToAssign += user.events[props.index].tasks[i].assignees = ;
+            
+            setUser(temp);
+
+            localStorage.setItem('user', JSON.stringify(temp))
+
+            props.update()
+            
+        }
+
+        /*
         fetch(process.env.REACT_APP_URL + ('/events/'+ props.taskInfo.event + '/tasks/' + props.taskInfo._id) ,{
             method: 'PUT',
             headers: {
@@ -110,16 +157,15 @@ export default function Task(props){
         })
         .then(response =>{
             console.log("response");
-            console.log(response);
+            console.log(response.json());
         })
+        */
     }
 
-    if(props.taskInfo.assignees.length > 0){
-        for (var i=0; i<props.taskInfo.assignees.length; i++) {
-            assignees.push(
-                <AssigneeDisplay assigneeInfo={props.taskInfo.assignees[i]}/>
-            )
-        }
+    for (var i=0; i<props.taskInfo.assignees.length; i++) {
+        assignees.push(
+            <AssigneeDisplay assigneeInfo={props.taskInfo.assignees[i]}/>
+        )
     }
 
     let userId = "";
@@ -129,7 +175,6 @@ export default function Task(props){
         selectString = "" + props.guests[i].firstName + " " + props.guests[i].lastName;
         options.push({value: userId, label: selectString},)
     }
-
 
     return (
 
