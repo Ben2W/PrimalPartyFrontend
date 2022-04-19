@@ -108,7 +108,6 @@ const Login = ({ handleChange }) => {
 
                 loginData.user.events = eventData.events
                 loginData.user.friends = friendData.friends
-                console.log(loginData);
 
                 setUser(loginData.user);
                 localStorage.setItem('user', JSON.stringify(loginData.user))

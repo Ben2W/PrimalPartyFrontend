@@ -61,7 +61,6 @@ export default function Task(props){
 
     if(props.taskInfo.assignees.length > 0){
         for (var i=0; i<props.taskInfo.assignees.length; i++) {
-            console.log(props.taskInfo.assignees[i])
             assignees.push(
                 <AssigneeDisplay assignees={props.taskInfo.assignees[i].firstName}/>
             )
@@ -77,8 +76,6 @@ export default function Task(props){
         selectString = "" + props.guests[i].firstName + " " + props.guests[i].lastName;
         options.push({value: userId, label: selectString},)
     }
-
-    console.log(options)
 
     return (
 
