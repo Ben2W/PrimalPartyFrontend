@@ -75,7 +75,7 @@ function Navbar() {
               <img src={Logo2} className={styles.logo2} /> PrimalParty
             </Link>
 
-            <Link
+            {/* <Link
               className={styles.link2}
               color="textPrimary"
               variant="button"
@@ -83,7 +83,7 @@ function Navbar() {
               href="/about"
             >
               About
-            </Link>
+            </Link> */}
           </Toolbar>
         </Container>
         :
@@ -93,7 +93,7 @@ function Navbar() {
               <img src={Logo} className={styles.logo} /> PrimalParty
             </Link>
 
-            <Link
+            {/* <Link
               className={styles.link}
               color="textPrimary"
               variant="button"
@@ -101,7 +101,7 @@ function Navbar() {
               href="/about"
             >
               About
-            </Link>
+            </Link> */}
           </Toolbar>
         </Container>
       }
