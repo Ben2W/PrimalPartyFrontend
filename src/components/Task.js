@@ -20,13 +20,20 @@ export default function Task(props){
     const [assigneesToAdd, setAssigneesToAdd] = useState([]);
     const { user, setUser } = useContext(UserContext);
     const [assignedUsers, setAssignedUsers] = useState([])
-    const [usersToAssign, setUsersToAssign] = useState([]);
+    const [usersToAssign, setUsersToAssign] = useState(user.events[props.index].tasks[props.i].assignees);
+
+
+    console.log("BRUH")
+    console.log(user.events[props.index].tasks[props.i].assignees)
 
     //setUsersToAssign(user.events[props.index].tasks[props.i].assignees)
 
+    console.log("usersToAssign")
+    console.log(usersToAssign)
+
     function assigneeAdd(e){
         let temp = usersToAssign
-        temp.push(e)
+        temp.push(e.value)
         setUsersToAssign(temp)
         handleAddAssignee()
     }
@@ -92,8 +99,9 @@ export default function Task(props){
 
         for (let i = 0; i < usersToAssign.length;i++)
         {
-            tempUsersToAssign.push(usersToAssign[i].value._id)
-            tempUsersToAssign2.push(usersToAssign[i].value)
+            console.log(usersToAssign)
+            tempUsersToAssign.push(usersToAssign[i]._id)
+            tempUsersToAssign2.push(usersToAssign[i])
         }
 
         const details = {
