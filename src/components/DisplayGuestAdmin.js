@@ -43,7 +43,7 @@ export default function DisplayGuestAdmin(props){
                         <HighlightOffIcon />
                     </IconButton>
                 </Grid>
-                <Grid item xs={5}>
+                <Grid item xs={7}>
                     <Typography style={{ color: '#ffffff', marginTop: 11}}>{props.firstName + " " + props.lastName}</Typography>
                 </Grid>
             </Grid>

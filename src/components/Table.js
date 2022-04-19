@@ -81,7 +81,7 @@ export default function Table(props){
         <>
             <form onSubmit={newTaskSubmit}>
                 <Grid container spacing={1} display='flex' justifyContent='center' alignItems='center' sx={{marginBottom: 7}}>
-                    <Grid item xs={5} sx={{marginLeft: 12}}>
+                    <Grid item xs={5} sx={{marginLeft: 6}}>
                             <TextField
                                 style={{ backgroundColor: '#ffffff', color: '#ffffff', marginLeft: 15 }}
                                 type="text"
