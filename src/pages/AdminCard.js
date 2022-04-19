@@ -116,12 +116,12 @@ const AdminCard = () => {
                     <Typography variant='h5' sx={{ marginTop: 3, marginBottom: 3, color: '#ffffff' }}>{event.description}</Typography>
                     <GuestSearch _id={event._id} index={id} update={useForceUpdate()} />
                 </Grid>
-                <Grid item xs={7}>
+                <Grid item xs={9}>
                     <Typography variant='h5' sx={{ marginTop: 3, fontWeight: 'bold', color: '#ffffff' }}>Tasks: </Typography>
                     <Table tasks={event.tasks} index={id} _id={event._id} guests={event.guests} update={useForceUpdate()} />
                 </Grid>
-                <Grid item xs={4}>
-                    <Typography variant='h5' sx={{ fontWeight: 'bold', color: '#ffffff' }}>Guests List: {event.guests.length} </Typography>
+                <Grid item xs={3}>
+                    <Typography variant='h5' sx={{ marginTop: 3, fontWeight: 'bold', color: '#ffffff' }}>Guests List: {event.guests.length} </Typography>
                     <GuestList guests={event.guests} index={id} _id={event._id} update={useForceUpdate()} />
                 </Grid>
             </Grid>

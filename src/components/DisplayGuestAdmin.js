@@ -37,7 +37,7 @@ export default function DisplayGuestAdmin(props){
 
     return (
         <form onSubmit={handleGuestDelete}>
-            <Grid container>
+            <Grid container >
                 <Grid item xs={7}>
                     <Typography style={{ color: '#ffffff', marginTop: 11}}>{props.firstName + " " + props.lastName}</Typography>
                 </Grid>

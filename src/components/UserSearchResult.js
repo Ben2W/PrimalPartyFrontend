@@ -72,12 +72,12 @@ export default function UserSearchResult(props){
       }
 
     return(
-        <Grid container>
-            <Grid item>
-                <Typography style={{ color: '#ffffff' }}>{props.firstName + " " + props.lastName + " (" + props.username + ")"}</Typography>
-            </Grid>
+        <Grid container spacing={3}>
             <Grid item>
                 <Button className={styles.button} onClick={buttonPress}>Add</Button>
+            </Grid>
+            <Grid item>
+                <Typography style={{ color: '#ffffff', marginTop: 11 }}>{props.firstName + " " + props.lastName + " (" + props.username + ")"}</Typography>
             </Grid>
         </Grid>
     )
