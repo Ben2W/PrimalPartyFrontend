@@ -106,11 +106,11 @@ export default function Task(props){
 
         var formBody = [];
         for (var property in details) {
-            if(property == 'assignees')
-            {
-                var encodedKey = encodeURIComponent(property);
-                formBody.push(encodedKey + "=" + tempUsersToAssign);
-            }
+             if(property == 'assignees')
+             {
+                 var encodedKey = encodeURIComponent(property);
+                 formBody.push(encodedKey + "=" + tempUsersToAssign);
+             }
             else
             {
                 var encodedKey = encodeURIComponent(property);
@@ -128,13 +128,14 @@ export default function Task(props){
 
         const data = await put.json();
 
+        console.log("data")
         console.log(data)
 
         if(putAssignees.status == 200)
         {
             const temp = user;
 
-            temp.events[props.index].tasks[props.i] = data.retval.tasks;
+            //temp.events[props.index].tasks[props.i] = data.retval.tasks;
 
             //tempUsersToAssign += user.events[props.index].tasks[i].assignees = ;
             
@@ -177,7 +178,6 @@ export default function Task(props){
     }
 
     return (
-
         <tr>
             <td><Typography variant='h5' sx={{ fontWeight: 'bold', color: '#000000' }}>{props.taskInfo.name}</Typography></td>
             <td>
