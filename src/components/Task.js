@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, { useState, useEffect, setState,  useContext } from 'react'
 import { Button, Typography } from '@mui/material'
 import '../App.css';
 import AssigneeDisplay from '../components/AssigneeDisplay.js';
@@ -6,101 +6,196 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import { IconButton } from '@material-ui/core';
 import EditIcon from '@mui/icons-material/Edit';
 import Select from 'react-select';
+import { UserContext } from '../context/UserContext';
+import { PriceChange } from '@mui/icons-material';
 
 export default function Task(props){
 
     let assignees = [];
-    let usersToAssign = [];
     let options = []
+
+    console.log(props)
 
     const [title, setTitle] = useState('');
     const [assigneesToAdd, setAssigneesToAdd] = useState([]);
+    const { user, setUser } = useContext(UserContext);
+    const [assignedUsers, setAssignedUsers] = useState([])
+    const [usersToAssign, setUsersToAssign] = useState(user.events[props.index].tasks[props.i].assignees);
 
-    const handleTaskDelete = (e) => {
 
-        e.preventDefault();
+    console.log("BRUH")
+    console.log(user.events[props.index].tasks[props.i].assignees)
 
-        fetch(process.env.REACT_APP_URL + ('/events/'+ props.event + '/tasks/' + props._id) ,{
+    //setUsersToAssign(user.events[props.index].tasks[props.i].assignees)
+
+    console.log("usersToAssign")
+    console.log(usersToAssign)
+
+    function assigneeAdd(e){
+        let temp = usersToAssign
+        temp.push(e.value)
+        setUsersToAssign(temp)
+        handleAddAssignee()
+    }
+
+    function assigneeRemove(i)
+    {
+        console.log("INSIDE ASSIGNEE REMOVE")
+        let temp = usersToAssign
+        temp.splice(i, 1)
+        setUsersToAssign(temp)
+        handleAddAssignee()
+    }
+
+    async function deleteTask(eventId, taskId) {
+        const response = await fetch(process.env.REACT_APP_URL + ('/events/'+ eventId + '/tasks/' + taskId) ,{
             method: 'DELETE',
             credentials: 'include',
         })
-        .then(response =>{
-            console.log("RESPONSE: " + response.status);
+        return response;
+    }
+
+    async function putAssignees(eventId, taskId, formBody) {
+        const response = await fetch(process.env.REACT_APP_URL + ('/events/'+ eventId + '/tasks/' + taskId) ,{
+            method: 'PUT',
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
+                'Accept': 'application/json'
+            },
+            credentials: 'include',
+            body: formBody
         })
-        /*.then(data => {
-            console.log("Data: " + data);
-        })*/
+        return response;
+    }
+
+    const handleTaskDelete = async (e) => {
+
+        e.preventDefault();
+
+        const taskResponse = await deleteTask(props.taskInfo.event, props.taskInfo._id);
+
+        const data = await taskResponse.json();
+
+        const temp = user;
+
+        temp.events[props.index].tasks.splice(props.i, 1)
+
+        for(let i = 0; i < data.tasks.length; i++)
+        {
+            temp.events[props.index].tasks[i]._id = data.tasks[i]
+        }
+        
+        setUser(temp);
+
+        localStorage.setItem('user', JSON.stringify(temp))
+
+        props.update()
       }
 
-    const handleAddAssignee = (e) => {
+    const handleAddAssignee = async (e) => {
         
+        let tempUsersToAssign = []
+        let tempUsersToAssign2 = []
+
+        for (let i = 0; i < usersToAssign.length;i++)
+        {
+            console.log(usersToAssign)
+            tempUsersToAssign.push(usersToAssign[i]._id)
+            tempUsersToAssign2.push(usersToAssign[i])
+        }
+
         const details = {
-            'name': title,
-            'assignees': assigneesToAdd,
+            name : props.taskInfo.name,
+            description : "none",
+            done : false,
+            assignees: tempUsersToAssign,
         }
 
         var formBody = [];
-        for (var property in details) {
-            var encodedKey = encodeURIComponent(property);
-            var encodedValue = encodeURIComponent(details[property]);
-            formBody.push(encodedKey + "=" + encodedValue);
+
+        for (let property in details) {
+            if(property == 'assignees')
+            {
+            for (let i = 0; i < details.assignees.length; i++){
+                let encodedKey = encodeURIComponent(`assignees[${i}]`);
+                let encodedValue = encodeURIComponent(details.assignees[i]);
+                formBody.push(encodedKey + "=" + encodedValue);
+            }
+                break;
+            }
+            else
+            {
+                let encodedKey = encodeURIComponent(property);
+                let encodedValue = encodeURIComponent(details[property]);
+                formBody.push(encodedKey + "=" + encodedValue);
+            }
         }
 
-        for (var i=0; i < usersToAssign.length; i++) {
-            console.log(usersToAssign[i]);
-            fetch(process.env.REACT_APP_URL + ('/events/'+ props.taskInfo._id + '/tasks/' + props.taskId) ,{
-                method: 'PUT',
-                credentials: 'include',
-            })
-            .then(response => response.json())
-            .then(response =>{
-                console.log("RESPONSE: " + response.status);
-            })
+        formBody = formBody.join("&");
+
+        const put = await putAssignees(props.taskInfo.event, props.taskInfo._id, formBody)
+
+        const data = await put.json();
+
+        if(put.status == 200)
+        {
+            let temp = user;
+
+            temp.events[props.index].tasks[props.i].assignees = tempUsersToAssign2;
+
+            setUser(temp)
+
+            localStorage.setItem('user', JSON.stringify(temp))
+
+            props.update()
         }
     }
 
-    if(props.taskInfo.assignees.length > 0){
-        for (var i=0; i<props.taskInfo.assignees.length; i++) {
-            assignees.push(
-                <AssigneeDisplay assignees={props.taskInfo.assignees[i].firstName}/>
-            )
-        }
+    for (var i=0; i<props.taskInfo.assignees.length; i++) {
+        assignees.push(
+            <AssigneeDisplay assigneeInfo={props.taskInfo.assignees[i]} index={i} assigneeRemove={assigneeRemove}/>
+        )
     }
 
-    
-    console.log()
     let userId = "";
     let selectString = "";
-    for (var i=0; i < props.guests.length; i++) {
-        userId = "" + props.guests[i]._id;
-        selectString = "" + props.guests[i].firstName + " " + props.guests[i].lastName;
-        options.push({value: userId, label: selectString},)
+
+    for (let i=0; i < props.guests.length; i++) {
+        let isAssignee = false
+        for(let j = 0; j < user.events[props.index].tasks[props.i].assignees.length;j++)
+        {
+            if(props.guests[i].username == user.events[props.index].tasks[props.i].assignees[j].username)
+            {
+                isAssignee = true;
+            }
+        }
+
+        if(!isAssignee)
+        {
+            userId = props.guests[i];
+            selectString = "" + props.guests[i].firstName + " " + props.guests[i].lastName;
+            options.push({value: userId, label: selectString},)
+        }
     }
 
     return (
-
         <tr>
-            <td><Typography variant='h5' sx={{ fontWeight: 'bold', color: '#000000' }}>{props.taskInfo.name}</Typography></td>
+            <td><Typography variant='h5' sx={{ fontWeight: 'bold', color: '#ffffff' }}>{props.taskInfo.name}</Typography></td>
             <td>
-                <Typography variant='h5' sx={{ fontWeight: 'bold', color: '#000000' }}>{assignees}</Typography>
+
                 <Select fullWidth 
-                isSearchable={true}
-                isMulti
+                isSearchable={false}
                 options={options}
                 placeholder="Add Assignees"
                 defaultValue=""
-                onChange={(e) => usersToAssign = e}
+                value=""
+                onChange={(e) => assigneeAdd(e)}
                 />
-                <Button fullWidth variant="contained" onClick={handleAddAssignee} sx={{ fontSize: '18px', fontWeight: 600, paddingRight: 5, paddingLeft: 5 }}>Add</Button>
+                <Typography variant='body1' sx={{ fontWeight: 'bold', color: '#000000' }}>{assignees}</Typography>
             </td>
             <td>
-                <div>
-                    <IconButton aria-label="edit">
-                        <EditIcon />
-                    </IconButton>
-                </div>
                 <form onSubmit={handleTaskDelete}>
-                    <IconButton type="submit" aria-label="delete" style={{color:'#000000'}}>
+                    <IconButton type="submit" aria-label="delete" style={{ color:'#C62828'}}>
                         <DeleteIcon />
                     </IconButton>
                 </form>

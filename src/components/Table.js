@@ -40,7 +40,7 @@ export default function Table(props){
         let temp = props.tasks[i]
         
         tasksArr.push(
-            <Task taskInfo={temp} guests={props.guests} key={i}/>
+            <Task taskInfo={temp} guests={props.guests} key={i} index={props.index} update={props.update} i={i}/>
         )
     }
 
@@ -80,10 +80,10 @@ export default function Table(props){
     return (
         <>
             <form onSubmit={newTaskSubmit}>
-                <Grid container spacing={1} display='flex' justifyContent='center' alignItems='center'>
-                    <Grid item xs={5}>
+                <Grid container display='flex' sx={{marginBottom: 7, marginTop: 3, marginLeft: 4}}>
+                    <Grid item xs={8} >
                             <TextField
-                                style={{ backgroundColor: '#ffffff', color: '#ffffff' }}
+                                style={{ backgroundColor: '#ffffff', color: '#ffffff', marginLeft: 15 }}
                                 type="text"
                                 label="Add New Task"
                                 variant="filled"
@@ -107,19 +107,29 @@ export default function Table(props){
                 </Grid>
             </form>
 
-            <table>
-                <thead>
-                    <tr>
-                        <th><Typography variant='h5' sx={{ fontWeight: 'bold', color: '#000000' }}>Task </Typography></th>
-                        <th><Typography variant='h5' sx={{ fontWeight: 'bold', color: '#000000' }}>Assignee </Typography></th>
-                        <th><Typography variant='h5' sx={{ fontWeight: 'bold', color: '#000000' }}>Edit </Typography></th>
-                    </tr>
-                </thead>
+            {tasksArr.length != 0
+                ?
+                    <div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th><Typography variant='h5' sx={{ fontWeight: 'bold', color: '#ffffff', backgroundColor: '#17171A' }}>Task </Typography></th>
+                                <th><Typography variant='h5' sx={{ fontWeight: 'bold', color: '#ffffff', backgroundColor: '#17171A' }}>Assignee </Typography></th>
+                                <th><Typography variant='h5' sx={{ fontWeight: 'bold', color: '#ffffff', backgroundColor: '#17171A' }}>Edit </Typography></th>
+                            </tr>
+                        </thead>
 
-                <tbody>
-                    {tasksArr}
-                </tbody>
-            </table>
+                        <tbody>
+                            {tasksArr}
+                        </tbody>
+                    </table>
+                    </div>
+                :
+                    <div>
+                         
+                    </div>
+            }
+
         </>
     )
 }

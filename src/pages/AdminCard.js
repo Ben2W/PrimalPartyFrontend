@@ -96,7 +96,6 @@ const AdminCard = () => {
                         </Grid>
                     </Grid>
                 </Grid>
-
             </Grid>
             <Grid container>
                 <Grid item xs={1}>
@@ -108,26 +107,24 @@ const AdminCard = () => {
 
                 </Grid>
                 <Grid item xs={3} sx={{ marginLeft: 2 }}>
-                    <Typography variant='h5' sx={{ marginTop: 3, color: '#ffffff' }}>                                    <Moment format='MMMM Do YYYY, h:mm'>
-                        {event.date}
-                    </Moment></Typography>
+                    <Typography variant='h5' sx={{ marginTop: 3, color: '#ffffff' }}>                                    
+                        <Moment format='MMMM Do YYYY, h:mm'>
+                            {event.date}
+                        </Moment>
+                    </Typography>
                     <Typography variant='h5' sx={{ marginTop: 3, color: '#ffffff' }}>{event.address}</Typography>
                     <Typography variant='h5' sx={{ marginTop: 3, marginBottom: 3, color: '#ffffff' }}>{event.description}</Typography>
                     <GuestSearch _id={event._id} index={id} update={useForceUpdate()} />
                 </Grid>
-                <Grid item xs={2} sx={{ paddingLeft: 5 }}>
-                    <Typography variant='h5' sx={{ marginTop: 3, fontWeight: 'bold', color: '#ffffff' }}>Guests List: {event.guests.length} </Typography>
-                    <GuestList guests={event.guests} index={id} _id={event._id} update={useForceUpdate()} />
-                </Grid>
-                <Grid item xs={4} sx={{ paddingLeft: 5 }}>
+                <Grid item xs={9}>
                     <Typography variant='h5' sx={{ marginTop: 3, fontWeight: 'bold', color: '#ffffff' }}>Tasks: </Typography>
                     <Table tasks={event.tasks} index={id} _id={event._id} guests={event.guests} update={useForceUpdate()} />
                 </Grid>
-
-
+                <Grid item xs={3}>
+                    <Typography variant='h5' sx={{ marginTop: 3, fontWeight: 'bold', color: '#ffffff' }}>Guests List: {event.guests.length} </Typography>
+                    <GuestList guests={event.guests} index={id} _id={event._id} update={useForceUpdate()} />
+                </Grid>
             </Grid>
-
-
         </div >
     );
 }

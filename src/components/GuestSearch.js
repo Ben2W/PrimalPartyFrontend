@@ -26,8 +26,8 @@ function customTheme(theme) {
         colors:
         {
             ...theme.colors,
-            primary25: 'orange',
-            primary: 'green',
+            //primary25: 'orange',
+            //primary: 'green',
         }
     }
 }
@@ -41,10 +41,26 @@ export default function GuestSearch(props) {
     let userId = "";
     let selectString = "";
     options = [];
-    for (var i = 0; i < user.friends.length; i++) {
-        userId = "" + user.friends[i]._id;
-        selectString = "" + user.friends[i].firstName + " " + user.friends[i].lastName;
-        options.push({ value: userId, label: selectString },)
+
+    console.log("bruh")
+    console.log(props)
+
+    for (let i = 0; i < user.friends.length; i++) {
+        let isGuest = false;
+        for(let j = 0; j < user.events[props.index].guests.length; j++)
+        {
+            if(user.friends[i].username == user.events[props.index].guests[j].username)
+            {
+                isGuest = true;
+            }
+        }
+
+        if(!isGuest)
+        {
+            userId = "" + user.friends[i]._id;
+            selectString = "" + user.friends[i].firstName + " " + user.friends[i].lastName;
+            options.push({ value: userId, label: selectString },)
+        }
     }
 
     const searchUsers = async () => {
@@ -91,13 +107,15 @@ export default function GuestSearch(props) {
                 localStorage.setItem('user', JSON.stringify(temp))
             }
         }
+        //props.searchUpdate()
+
         props.update()
     }
 
     return (
         <form >
             <Grid container>
-                <Grid item xs={8} >
+                <Grid item xs={8}>
                     <Select
                         fullWidth
                         isSearchable={true}
@@ -109,9 +127,9 @@ export default function GuestSearch(props) {
                         onChange={(e) => setUsersToAdd(e)}
                     />
                 </Grid>
-                <Grid item xs={2}>
+                <Grid item xs={4}>
                     <Button
-                        style={{ fontSize: '18px', fontWeight: 600, paddingRight: 5, paddingLeft: 5 }}
+                        style={{ fontSize: '18px', fontWeight: 600, paddingRight: 10, paddingLeft: 10 }}
                         onClick={newGuestSubmit}
                         size='small'
                         variant='contained'

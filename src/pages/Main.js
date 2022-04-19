@@ -24,6 +24,9 @@ const useStyles = makeStyles(() => ({
     backgroundColor: '#242528',
     paddingTop: 50,
     paddingBottom: 100
+  },
+  section3: {
+    backgroundColor: '#000000'
   }
 }))
 
@@ -134,8 +137,6 @@ function Main() {
           </Grid>
         </Container>
       </div>
-
-
     </div>
   )
 }

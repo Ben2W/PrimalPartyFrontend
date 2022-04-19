@@ -28,7 +28,7 @@ function Friends(){
             <FriendSearch update={useForceUpdate()}/>
           </Grid>
           <Grid item xs={6}>
-          <FriendList friendsList={user.friends} update={useForceUpdate()}/>
+            <FriendList friendsList={user.friends} update={useForceUpdate()}/>
           </Grid>
         </Grid>
     </div>

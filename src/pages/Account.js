@@ -27,14 +27,14 @@ function Account() {
       <Typography variant='h3'sx={{ color: '#ffffff'}}>Welcome, {user.firstName}</Typography>
       <Typography variant='h4' sx={{ marginTop: 3, color: '#ffffff' }}>Your Profile</Typography>
       <Grid container>
-        <Grid item xs={1}>
+        <Grid item xs={2}>
           <Typography variant='h5' sx={{ marginTop: 3, fontWeight: 'bold', color: '#ffffff' }}>Name: </Typography>
           <Typography variant='h5' sx={{ marginTop: 3, fontWeight: 'bold', color: '#ffffff' }}>User: </Typography>
           <Typography variant='h5' sx={{ marginTop: 3, fontWeight: 'bold', color: '#ffffff' }}>Email: </Typography>
           <Typography variant='h5' sx={{ marginTop: 3, fontWeight: 'bold', color: '#ffffff' }}>Phone: </Typography>
 
         </Grid>
-        <Grid item xs={2}>
+        <Grid item xs={3}>
           <Typography variant='h5' sx={{ marginTop: 3, color: '#ffffff' }}>{user.firstName} {user.lastName}</Typography>
           <Typography variant='h5' sx={{ marginTop: 3, color: '#ffffff' }}>{user.username}</Typography>
           <Typography variant='h5' sx={{ marginTop: 3, color: '#ffffff' }}>{user.email}</Typography>

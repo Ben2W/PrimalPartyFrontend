@@ -17,18 +17,13 @@ body {
 
 table {
     width: 100%;
-    border: 2px solid black;
-    background: white;
     border-collapse: collapse;
 }
 
-th {
-    border-bottom: 1px solid black;
-}
+
 
 td {
     text-align: center;
-    border: 2px solid black;
     margin: 0px;
 }
 

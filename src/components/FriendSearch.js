@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Component } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Grid, Paper, Avatar, TextField, FormControlLabel, Checkbox, Button, Typography, Link } from '@material-ui/core'
 import '../App.css';
 import Task from './Task';
@@ -8,7 +8,7 @@ import { MenuItem } from '@mui/material';
 import { InputLabel } from '@mui/material';
 import Select from 'react-select';
 import { Box } from "@mui/material";
-
+import { UserContext } from '../context/UserContext';
 import UserSearchResult from "../components/UserSearchResult.js"
 
 let users = [];
@@ -37,14 +37,16 @@ function customTheme(theme)
     }
 }
 
+
 export default function FriendSearch(props){
+
+    const [value, setValue] = useState(0); // integer state
 
     const [search, setSearch] = useState('');
     const [newUserResults, setNewUserResults] = useState([]);
-
+    const { user, setUser } = useContext(UserContext);
 
     useEffect(() => {
-        console.log("Searching users: " + search);
         if(search != "")
         {
             searchUsers();
@@ -52,12 +54,41 @@ export default function FriendSearch(props){
         {
             setNewUserResults([]);
         }
-        
     }, [search]);
 
-    useEffect(() => {
-        console.log("Setting users: " + newUserResults);
-    }, [newUserResults]);
+    function forceSearchUpdate(){
+        searchUsers()
+        //return () => setValue(value => value + 1); // update the state to force render
+    }
+
+    function createUsersToDisplay(data)
+    {
+        for(let i = 0; i < data.users.length;i++)
+        {
+            let alreadyFriend = false
+            for(let j = 0; j < user.friends.length; j++)
+            {
+                if(data.users[i].username == user.friends[j].username)
+                {
+                    alreadyFriend = true
+                }
+            }
+
+            if(alreadyFriend == false)                
+            {
+                usersToDisplay.push(<UserSearchResult 
+                    firstName = {data.users[i].firstName} 
+                    lastName = {data.users[i].lastName}
+                    username = {data.users[i].username}
+                    _id = {data.users[i]._id}
+                    userInfo = {data.users[i]}
+                    update = {props.update}
+                    searchUserUpdate={forceSearchUpdate}
+                    />);
+            }                
+        }
+        return usersToDisplay
+    }
 
     let userId = "";
     let selectString = "";
@@ -75,31 +106,43 @@ export default function FriendSearch(props){
         })
         .then(response => response.json())
         .then(data => {
-            console.log("RESPONSE: ");
-            console.log(data.users);
             usersToDisplay = [];
             for(let i = 0; i < data.users.length;i++)
             {
-                console.log(data.users[i]._id);
-                usersToDisplay.push(<UserSearchResult 
-                    firstName = {data.users[i].firstName} 
-                    lastName = {data.users[i].lastName}
-                    username = {data.users[i].username}
-                    _id = {data.users[i]._id}
-                    userInfo = {data.users[i]}
-                    update = {props.update}
-                    />);
-                
+                let alreadyFriend = false
+                for(let j = 0; j < user.friends.length; j++)
+                {
+                    if(data.users[i].username == user.friends[j].username)
+                    {
+                        alreadyFriend = true
+                    }
+                }
+    
+                if(alreadyFriend == false)                
+                {
+                    usersToDisplay.push(<UserSearchResult 
+                        firstName = {data.users[i].firstName} 
+                        lastName = {data.users[i].lastName}
+                        username = {data.users[i].username}
+                        _id = {data.users[i]._id}
+                        userInfo = {data.users[i]}
+                        update = {props.update}
+                        searchUserUpdate={forceSearchUpdate}
+                        />);
+                }                
             }
+
             setNewUserResults(usersToDisplay);
+            props.update()
         })
     }
 
     return(
         <div>
             <label style={{ color: '#ffffff' }} >Search </label>
-            <input onChange = {(e) => setSearch(e.target.value)}></input>
-
+            <input 
+                onChange = {(e) => setSearch(e.target.value)}>
+            </input>
             <Grid container>
                 {newUserResults}
             </Grid>
