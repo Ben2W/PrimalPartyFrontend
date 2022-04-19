@@ -180,7 +180,7 @@ export default function Task(props){
 
     return (
         <tr>
-            <td><Typography variant='h5' sx={{ fontWeight: 'bold', color: '#000000' }}>{props.taskInfo.name}</Typography></td>
+            <td><Typography variant='h5' sx={{ fontWeight: 'bold', color: '#ffffff' }}>{props.taskInfo.name}</Typography></td>
             <td>
 
                 <Select fullWidth 
@@ -195,7 +195,7 @@ export default function Task(props){
             </td>
             <td>
                 <form onSubmit={handleTaskDelete}>
-                    <IconButton type="submit" aria-label="delete" style={{color:'#000000'}}>
+                    <IconButton type="submit" aria-label="delete" style={{ color:'#C62828'}}>
                         <DeleteIcon />
                     </IconButton>
                 </form>

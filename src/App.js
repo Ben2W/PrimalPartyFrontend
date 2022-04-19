@@ -15,8 +15,10 @@ import RequireAuth from './components/RequireAuth';
 import EditAccount from './pages/EditAccount';
 import AdminCard from './pages/AdminCard';
 import GuestCard from './pages/GuestCard'
+import EditEvent from './pages/EditEvent';
 import { Routes, Route } from 'react-router-dom'
 import { UserContext } from './context/UserContext';
+
 
 
 function App() {
@@ -48,6 +50,7 @@ function App() {
             <Route path="/editaccount" element={<EditAccount />} />
             <Route path="/eventadmin/:id" element={<AdminCard />} />
             <Route path="/event/:id" element={<GuestCard />} />
+            <Route path="/editevent/:id" element={<EditEvent />} />
           </Route>
         </Route>
       </Routes>

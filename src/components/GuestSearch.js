@@ -115,7 +115,7 @@ export default function GuestSearch(props) {
     return (
         <form >
             <Grid container>
-                <Grid item xs={8} >
+                <Grid item xs={8}>
                     <Select
                         fullWidth
                         isSearchable={true}
@@ -127,9 +127,9 @@ export default function GuestSearch(props) {
                         onChange={(e) => setUsersToAdd(e)}
                     />
                 </Grid>
-                <Grid item xs={2}>
+                <Grid item xs={4}>
                     <Button
-                        style={{ fontSize: '18px', fontWeight: 600, paddingRight: 5, paddingLeft: 5 }}
+                        style={{ fontSize: '18px', fontWeight: 600, paddingRight: 10, paddingLeft: 10 }}
                         onClick={newGuestSubmit}
                         size='small'
                         variant='contained'

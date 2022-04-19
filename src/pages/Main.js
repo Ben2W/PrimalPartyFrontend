@@ -24,6 +24,9 @@ const useStyles = makeStyles(() => ({
     backgroundColor: '#242528',
     paddingTop: 50,
     paddingBottom: 100
+  },
+  section3: {
+    backgroundColor: '#000000'
   }
 }))
 
@@ -41,7 +44,7 @@ function Main() {
           <Divider sx={{ backgroundColor: '#4A98FA', paddingBottom: '4px', marginBottom: 3, width: '26%' }} />
           <Grid className={styles.content} container spacing={3} justifyContent="space-between" alignItems="center">
             <Grid item sm={4}>
-              <Card elevation={5} sx={{ height: '340px', maxWidth: '100%', paddingLeft: 2, paddingTop: 1, paddingRight: 2, backgroundColor: '#242528' }}>
+              <Card elevation={5} style={{ backgroundColor: '#242528'}} sx={{ height: '340px', maxWidth: '100%', paddingLeft: 2, paddingTop: 1, paddingRight: 2 }}>
                 <CardContent>
                   <img src={icon1}></img>
                   <Typography gutterBottom variant='h5' sx={{ paddingTop: 2, color: '#ffffff' }}>
@@ -55,7 +58,7 @@ function Main() {
               </Card>
             </Grid>
             <Grid item sm={4}>
-              <Card elevation={5} sx={{ height: '340px', maxWidth: '100%', paddingLeft: 2, paddingTop: 1, paddingRight: 2, backgroundColor: '#242528' }}>
+              <Card elevation={5} style={{ backgroundColor: '#242528' }} sx={{ height: '340px', maxWidth: '100%', paddingLeft: 2, paddingTop: 1, paddingRight: 2}}>
                 <CardContent>
                   <img src={icon2}></img>
                   <Typography gutterBottom variant='h5' sx={{ paddingTop: 4, color: '#ffffff' }}>
@@ -70,7 +73,7 @@ function Main() {
               </Card>
             </Grid>
             <Grid item sm={4}>
-              <Card elevation={5} sx={{ height: '340px', maxWidth: '100%', paddingLeft: 2, paddingTop: 1, paddingRight: 2, backgroundColor: '#242528' }}>
+              <Card elevation={5} style={{ backgroundColor: '#242528' }} sx={{ height: '340px', maxWidth: '100%', paddingLeft: 2, paddingTop: 1, paddingRight: 2}}>
                 <CardContent>
                   <img src={icon3}></img>
                   <Typography gutterBottom variant='h5' sx={{ paddingTop: 2, color: '#ffffff' }}>
@@ -107,7 +110,7 @@ function Main() {
               </div>
             </Grid>
             <Grid item sm={6} sx={{ marginTop: 8 }}>
-              <Card elevation={12} sx={{ maxWidth: '100%', paddingLeft: 2, paddingTop: 3, paddingRight: 2, backgroundColor: '#242528' }}>
+              <Card elevation={12} style={{ backgroundColor: '#242528' }} sx={{ maxWidth: '100%', paddingLeft: 2, paddingTop: 3, paddingRight: 2 }}>
                 <Typography sx={{ color: '#ffffff', fontSize: '19px', paddingBottom: 3, display: 'inline-flex', alignItems: 'center' }}>
                   <CheckBoxIcon fontSize="large" sx={{ paddingRight: 2 }} />
                   Easy to use dashboard that anyone can understand
@@ -134,8 +137,6 @@ function Main() {
           </Grid>
         </Container>
       </div>
-
-
     </div>
   )
 }
