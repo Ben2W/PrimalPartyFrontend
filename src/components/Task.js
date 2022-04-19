@@ -7,6 +7,7 @@ import { IconButton } from '@material-ui/core';
 import EditIcon from '@mui/icons-material/Edit';
 import Select from 'react-select';
 import { UserContext } from '../context/UserContext';
+import { PriceChange } from '@mui/icons-material';
 
 export default function Task(props){
 
@@ -17,6 +18,9 @@ export default function Task(props){
     const [title, setTitle] = useState('');
     const [assigneesToAdd, setAssigneesToAdd] = useState([]);
     const { user, setUser } = useContext(UserContext);
+
+    console.log(props)
+    console.log(user)
 
     async function deleteTask(eventId, taskId) {
         const response = await fetch(process.env.REACT_APP_URL + ('/events/'+ eventId + '/tasks/' + taskId) ,{
@@ -64,87 +68,59 @@ export default function Task(props){
       }
 
     const handleAddAssignee = async (e) => {
+        
+        let tempUsersToAssign = []
+        let tempUsersToAssign2 = []
 
-        console.log(usersToAssign)
-
-        let tempUsersToAssign = ""
-
-        /*
-        for(let i = 0; i < user.events[props.index].tasks[i].assignees.length;i++)
-        {
-            tempUsersToAssign += user.events[props.index].tasks[i].assignees[i]
-            if(usersToAssign > 0)
-            {
-                tempUsersToAssign += ",";
-            }
-
-        }
-
-        */
         for (let i = 0; i < usersToAssign.length;i++)
         {
-            if(i == usersToAssign.length-1){
-                tempUsersToAssign += (usersToAssign[i].value)
-            }else
-            {
-                tempUsersToAssign += (usersToAssign[i].value + ',')
-            }
+            tempUsersToAssign.push(usersToAssign[i].value._id)
+            tempUsersToAssign2.push(usersToAssign[i].value)
         }
 
         const details = {
-            'name' : props.taskInfo.name,
-            'description' : "none",
-            'assignees': tempUsersToAssign,
-            'done' : false,
+            name : props.taskInfo.name,
+            description : "none",
+            done : false,
+            assignees: tempUsersToAssign,
         }
 
-        console.log("tempUsersToAssign")
-        console.log(tempUsersToAssign)
-
-        //console.log("users to assign")
-        //console.log(usersToAssign)
-
         var formBody = [];
-        for (var property in details) {
-             if(property == 'assignees')
-             {
-                 var encodedKey = encodeURIComponent(property);
-                 formBody.push(encodedKey + "=" + tempUsersToAssign);
-             }
+
+        for (let property in details) {
+            if(property == 'assignees')
+            {
+            for (let i = 0; i < details.assignees.length; i++){
+                //console.log(details.assignees.length)
+                let encodedKey = encodeURIComponent(`assignees[${i}]`);
+                let encodedValue = encodeURIComponent(details.assignees[i]);
+                formBody.push(encodedKey + "=" + encodedValue);
+            }
+                break;
+            }
             else
             {
-                var encodedKey = encodeURIComponent(property);
-                var encodedValue = encodeURIComponent(details[property]);
+                let encodedKey = encodeURIComponent(property);
+                let encodedValue = encodeURIComponent(details[property]);
                 formBody.push(encodedKey + "=" + encodedValue);
             }
         }
 
         formBody = formBody.join("&");
 
-        console.log("Form Body")
-        console.log(formBody)
-
         const put = await putAssignees(props.taskInfo.event, props.taskInfo._id, formBody)
 
         const data = await put.json();
 
-        console.log("data")
-        console.log(data)
+        //console.log(data)
 
-        if(putAssignees.status == 200)
+        if(put.status == 200)
         {
             const temp = user;
 
-            //temp.events[props.index].tasks[props.i] = data.retval.tasks;
-
-            //tempUsersToAssign += user.events[props.index].tasks[i].assignees = ;
-            
-            setUser(temp);
-
-            localStorage.setItem('user', JSON.stringify(temp))
+            temp.events[props.index].tasks[props.i].assignees = tempUsersToAssign2;
 
             props.update()
-            
         }
 
         /*
@@ -163,6 +139,8 @@ export default function Task(props){
         */
     }
 
+    console.log(props)
+
     for (var i=0; i<props.taskInfo.assignees.length; i++) {
         assignees.push(
             <AssigneeDisplay assigneeInfo={props.taskInfo.assignees[i]}/>
@@ -172,7 +150,8 @@ export default function Task(props){
     let userId = "";
     let selectString = "";
     for (var i=0; i < props.guests.length; i++) {
-        userId = "" + props.guests[i]._id;
+        console.log(props.guests[i]);
+        userId = props.guests[i];
         selectString = "" + props.guests[i].firstName + " " + props.guests[i].lastName;
         options.push({value: userId, label: selectString},)
     }
@@ -181,27 +160,21 @@ export default function Task(props){
         <tr>
             <td><Typography variant='h5' sx={{ fontWeight: 'bold', color: '#000000' }}>{props.taskInfo.name}</Typography></td>
             <td>
-                <Typography variant='h5' sx={{ fontWeight: 'bold', color: '#000000' }}>{assignees}</Typography>
+                <Typography variant='body1' sx={{ fontWeight: 'bold', color: '#000000' }}>{assignees}</Typography>
                 <Select fullWidth 
-                isSearchable={true}
-                isMulti
+                isSearchable={false}
                 options={options}
                 placeholder="Add Assignees"
                 defaultValue=""
                 onChange={(e) => usersToAssign = e}
                 />
-                <Button fullWidth 
+                {/* <Button fullWidth 
                         variant="contained" 
-                        onClick={handleAddAssignee} 
+                        onClick={handleAddAssignee}
                         sx={{ fontSize: '18px', fontWeight: 600, paddingRight: 5, paddingLeft: 5 }}
-                >Add</Button>
+                >Add</Button> */}
             </td>
             <td>
-                <div>
-                    <IconButton aria-label="edit">
-                        <EditIcon />
-                    </IconButton>
-                </div>
                 <form onSubmit={handleTaskDelete}>
                     <IconButton type="submit" aria-label="delete" style={{color:'#000000'}}>
                         <DeleteIcon />
