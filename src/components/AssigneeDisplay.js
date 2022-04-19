@@ -10,7 +10,7 @@ export default function AssigneeDisplay(props){
     return (
         <div>
             {props.assigneeInfo.firstName + " " + props.assigneeInfo.lastName}
-            <IconButton aria-label="delete">
+            <IconButton type="submit" onClick={()=>props.assigneeRemove(props.index)} aria-label="delete">
                 <DeleteIcon />
             </IconButton>
         </div>
