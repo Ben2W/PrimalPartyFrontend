@@ -97,7 +97,7 @@ export default function GuestSearch(props) {
     return (
         <form >
             <Grid container>
-                <Grid item xs={8} sx={{marginRight: -1}}>
+                <Grid item xs={8}>
                     <Select
                         fullWidth
                         isSearchable={true}
