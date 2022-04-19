@@ -61,6 +61,35 @@ export default function FriendSearch(props){
         //return () => setValue(value => value + 1); // update the state to force render
     }
 
+    function createUsersToDisplay(data)
+    {
+        for(let i = 0; i < data.users.length;i++)
+        {
+            let alreadyFriend = false
+            for(let j = 0; j < user.friends.length; j++)
+            {
+                if(data.users[i].username == user.friends[j].username)
+                {
+                    alreadyFriend = true
+                }
+            }
+
+            if(alreadyFriend == false)                
+            {
+                usersToDisplay.push(<UserSearchResult 
+                    firstName = {data.users[i].firstName} 
+                    lastName = {data.users[i].lastName}
+                    username = {data.users[i].username}
+                    _id = {data.users[i]._id}
+                    userInfo = {data.users[i]}
+                    update = {props.update}
+                    searchUserUpdate={forceSearchUpdate}
+                    />);
+            }                
+        }
+        return usersToDisplay
+    }
+
     let userId = "";
     let selectString = "";
     options = [];
@@ -88,7 +117,7 @@ export default function FriendSearch(props){
                         alreadyFriend = true
                     }
                 }
-
+    
                 if(alreadyFriend == false)                
                 {
                     usersToDisplay.push(<UserSearchResult 
@@ -98,9 +127,11 @@ export default function FriendSearch(props){
                         _id = {data.users[i]._id}
                         userInfo = {data.users[i]}
                         update = {props.update}
+                        searchUserUpdate={forceSearchUpdate}
                         />);
                 }                
             }
+
             setNewUserResults(usersToDisplay);
             props.update()
         })

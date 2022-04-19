@@ -35,6 +35,12 @@ export default function UserSearchResult(props){
     const { user, setUser } = useContext(UserContext);
     const friend = user.friends[props.index];
 
+    async function buttonPress()
+    {
+        let temp = await newFriendSubmit()
+        props.searchUserUpdate()
+    }
+
     const newFriendSubmit = async() => {
         fetch(process.env.REACT_APP_URL + ('/friends/'+ props._id) ,{
             method: 'POST',
@@ -54,9 +60,12 @@ export default function UserSearchResult(props){
                 setUser(temp);
 
                 localStorage.setItem('user', JSON.stringify(temp))
+                
+                props.searchUserUpdate()
 
                 props.update()
             }
+            
           })
 
           
@@ -68,7 +77,7 @@ export default function UserSearchResult(props){
                 <Typography style={{ color: '#ffffff' }}>{props.firstName + " " + props.lastName + " (" + props.username + ")"}</Typography>
             </Grid>
             <Grid item>
-                <Button className={styles.button} onClick={newFriendSubmit}>Add</Button>
+                <Button className={styles.button} onClick={buttonPress}>Add</Button>
             </Grid>
         </Grid>
     )
