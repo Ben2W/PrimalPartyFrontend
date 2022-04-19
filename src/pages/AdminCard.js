@@ -75,7 +75,7 @@ const AdminCard = () => {
                                 type='submit'
                                 size='large'
                                 variant='contained'
-                                // onClick={() => navigate('/editaccount')}
+                                onClick={() => navigate('/editevent/' + id)}
                                 fullWidth
                             >
                                 Edit
@@ -83,7 +83,7 @@ const AdminCard = () => {
                         </Grid>
                         <Grid item sx={6}>
                             <Button
-                                sx={{fontSize: '18px', fontWeight: 600, paddingRight: 5, paddingLeft: 5}}
+                                sx={{ fontSize: '18px', fontWeight: 600, paddingRight: 5, paddingLeft: 5 }}
                                 type='submit'
                                 size='large'
                                 variant='contained'

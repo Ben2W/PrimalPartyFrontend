@@ -59,6 +59,7 @@ function EditAccount() {
             .then(response => {
                 console.log(response.status)
                 setUser({ ...user, firstName: fname, lastName: lname, phone: phone, username: username })
+                localStorage.setItem('user', JSON.stringify(user))
                 navigate('/account')
             })
     }

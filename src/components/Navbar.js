@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import Link from "@material-ui/core/Link"
 import { makeStyles } from '@material-ui/core/styles';
-import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Container from '@mui/material/Container';
 import Logo from '../img/PartyHatDinoLogo.png';
