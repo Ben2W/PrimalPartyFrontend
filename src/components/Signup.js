@@ -206,7 +206,7 @@ const Signup = ({ handleChange }) => {
                             className={styles.button}
                             fullWidth
                         >
-                            Sign In
+                            Sign Up
                         </Button>}
 
                         {isPending && <Button
@@ -216,7 +216,7 @@ const Signup = ({ handleChange }) => {
                             className={styles.button}
                             fullWidth
                         >
-                            Signing In
+                            Signing Up
                         </Button>}
                     </form>
 
@@ -228,7 +228,7 @@ const Signup = ({ handleChange }) => {
                             href="#"
                             onClick={() => handleChange("event", 0)}
                         >
-                            Sign In
+                            Sign Up
                         </Link>
                     </Typography>
                 </Paper>
