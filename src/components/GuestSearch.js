@@ -118,6 +118,8 @@ export default function GuestSearch(props) {
                 <Grid item xs={8}>
                     <Select
                         fullWidth
+                        styles={{ menuPortal: base => ({ ...base, zIndex: 9999 }) }}
+                        menuPortalTarget={document.body} 
                         isSearchable={true}
                         isMulti
                         theme={customTheme}

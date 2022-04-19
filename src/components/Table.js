@@ -115,7 +115,7 @@ export default function Table(props){
                             <tr>
                                 <th><Typography variant='h5' sx={{ fontWeight: 'bold', color: '#ffffff', backgroundColor: '#17171A' }}>Task </Typography></th>
                                 <th><Typography variant='h5' sx={{ fontWeight: 'bold', color: '#ffffff', backgroundColor: '#17171A' }}>Assignee </Typography></th>
-                                <th><Typography variant='h5' sx={{ fontWeight: 'bold', color: '#ffffff', backgroundColor: '#17171A' }}>Edit </Typography></th>
+                                <th></th>
                             </tr>
                         </thead>
 
