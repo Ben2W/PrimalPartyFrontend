@@ -9,7 +9,8 @@ import Navbar from './Navbar'
 const useStyles = makeStyles(() => ({
     section: {
       minheight: "50vh",
-      backgroundImage: "url(/HomeBackground.png)",
+      // backgroundImage: "url(/HomeBackground.png)",
+      background: 'linear-gradient(343deg, rgba(43,32,235,1) 0%, rgba(0,212,255,1) 100%)',
       backgroundSize: "cover",
       backgroundPosition: "center",
 
