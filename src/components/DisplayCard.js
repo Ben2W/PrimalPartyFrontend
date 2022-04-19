@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router-dom';
 const DisplayCard = () => {
     const { user } = useContext(UserContext);
     const navigate = useNavigate();
-    console.log(user.events.length);
+    console.log(user);
     if (user.events.length == 0) {
         return (
             <div>

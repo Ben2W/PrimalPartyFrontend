@@ -80,9 +80,9 @@ export default function Task(props){
     return (
 
         <tr>
-            <td><Typography variant='h5' sx={{ fontWeight: 'bold', color: '#000000' }}>{props.taskInfo.name}</Typography></td>
+            <td><Typography variant='h5' sx={{ fontWeight: 'bold', color: '#ffffff' }}>{props.taskInfo.name}</Typography></td>
             <td>
-                <Typography variant='h5' sx={{ fontWeight: 'bold', color: '#000000' }}>{assignees}</Typography>
+                <Typography variant='h5' sx={{ fontWeight: 'bold', color: '#ffffff' }}>{assignees}</Typography>
                 <Select fullWidth 
                 isSearchable={true}
                 isMulti
@@ -94,13 +94,8 @@ export default function Task(props){
                 <Button fullWidth variant="contained" onClick={handleAddAssignee} sx={{ fontSize: '18px', fontWeight: 600, paddingRight: 5, paddingLeft: 5 }}>Add</Button>
             </td>
             <td>
-                <div>
-                    <IconButton aria-label="edit">
-                        <EditIcon />
-                    </IconButton>
-                </div>
                 <form onSubmit={handleTaskDelete}>
-                    <IconButton type="submit" aria-label="delete" style={{color:'#000000'}}>
+                    <IconButton type="submit" aria-label="delete" style={{ color:'#C62828'}}>
                         <DeleteIcon />
                     </IconButton>
                 </form>
